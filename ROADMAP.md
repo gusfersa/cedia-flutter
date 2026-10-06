@@ -2,8 +2,10 @@
 
 Nivel: laboratorio académico local.
 
-Ahora: completar y verificar Práctica Sesión 2, actividad Moodle 49354.
-Siguiente: revisar la actividad atrasada del mismo curso y su posibilidad de entrega.
-Después: continuar prácticas solicitadas del curso.
+Ahora: publicar versiones verificadas de Sesiones 2 y 3 y entregar los archivos concretos tras el visto bueno final.
+Sesión 2: implementada/verificada, código19ff031, actividad49354.
+Sesión 3: implementada/verificada, código78d2076, actividad49368; el aula permite entrega atrasada.
+Siguiente: continuar las prácticas del curso que solicite el estudiante.
 
-Decisiones pendientes: publicación GitHub, nombre remoto, propietario y visibilidad; aprobación de archivos finales antes de entrega.
+Decisión: repositorio público GitHub btoaldas/BtoCediaFlutter, autorizado para revisión docente.
+Entrega Moodle: pendiente de aprobación de nombres/tamaños/versiones exactos.

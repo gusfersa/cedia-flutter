@@ -1,0 +1,17 @@
+{
+  "fecha": "2026-10-05",
+  "entorno": "Flutter web + Edge",
+  "flujos": [
+    "tema y grilla3",
+    "carga1s",
+    "vacío",
+    "error y reintento vuelve carga",
+    "normal recupera6",
+    "lista estrecha tras arranque limpio",
+    "grilla horizontal2",
+    "tarjeta accesible abre detalle correcto"
+  ],
+  "consola_errores": 0,
+  "pruebas": 17,
+  "limites": "Sin Android/TalkBack; accesibilidad Semantics y navegador."
+}

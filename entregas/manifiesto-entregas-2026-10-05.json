@@ -1,0 +1,26 @@
+[
+  {
+    "archivo": "entregas/sesion02/exploraec-sesion02.zip",
+    "bytes": 54102,
+    "sha256": "d207f4c9675c00acdd00a1269d9fb5874ee26248369a2ee85d8b0c443fcdd41b",
+    "version": "final"
+  },
+  {
+    "archivo": "entregas/sesion02/informe-practica-sesion02-entrega.pdf",
+    "bytes": 168884,
+    "sha256": "bc8bda48e1c5f526b76209af4cd584eda5591ea5a34e19d8a379527e18480e99",
+    "version": "final"
+  },
+  {
+    "archivo": "entregas/sesion03/exploraec-sesion03.zip",
+    "bytes": 60938,
+    "sha256": "e918369d1a7f1638623dbc974b2c38179a191a73ab7a5a2881bfdb27184ba51f",
+    "version": "final"
+  },
+  {
+    "archivo": "entregas/sesion03/informe-practica-sesion03-entrega.pdf",
+    "bytes": 191182,
+    "sha256": "384192727f0fc253333518b0b27deeef3fb932e52af3aeda45c5ddb7033d626b",
+    "version": "final"
+  }
+]

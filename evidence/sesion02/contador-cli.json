@@ -1,0 +1,18 @@
+{
+  "fecha": "2026-10-05",
+  "entorno": "Flutter web-server interactivo + Edge",
+  "valor_antes": 2,
+  "hot_reload": {
+    "ms": 75,
+    "valor_despues": 2
+  },
+  "hot_restart": {
+    "ms": 227,
+    "valor_despues": 0
+  },
+  "capturas": [
+    "05-contador-dos.png",
+    "06-contador-hot-reload.png",
+    "07-contador-hot-restart.png"
+  ]
+}
