@@ -16,6 +16,8 @@ Cada informe contiene un enlace clicable al commit exacto de su práctica.
 
 Ambas prácticas fueron entregadas el 5 de octubre de 2026: Sesión 2 a las 19:58 y Sesión 3 a las 19:59. Moodle muestra «Enviado para calificar» y aún «Sin calificar»; los cuatro archivos descargados coinciden con sus originales por SHA-256.
 
+Sesiones 4 y 5 fueron entregadas el mismo día a las 21:33, tras aprobar sus archivos finales. Ambas muestran «Enviado para calificar» y «Sin calificar». Los cuatro archivos se descargaron y coinciden con los aprobados; el estado y sus nombres también se comprobaron en la interfaz del aula. Los registros están en `evidence/sesion04/verificacion-moodle-entrega.json` y `evidence/sesion05/verificacion-moodle-entrega.json`.
+
 ## Ejecutar y comprobar
 
 Requiere Flutter. Validado con Flutter 3.47.6 y Dart 3.13.5 en web.
@@ -53,13 +55,13 @@ La versión actual utiliza GetX 4.7.3. `PlacesController` comparte lista y estad
 
 [Explicación y requisitos](docs/practica-sesion04.md). Referencia del docente: rama `sesion-04`, commit `197a3d2df93b74b4ff706886f01d00c7f8275a0a`.
 
-El ZIP de fuentes y el informe con enlaces a la versión fija se encuentran en `entregas/sesion04/`. Están preparados para la actividad 49406; la entrega en Moodle queda sujeta al visto bueno sobre los archivos exactos.
+El ZIP de fuentes y el informe con enlaces a la versión fija se encuentran en `entregas/sesion04/`. Se entregaron y verificaron en la actividad 49406.
 
 ## Sesión 5
 
 Mapa utiliza OpenStreetMap y observa la posición y la lista compartida. Los marcadores abren el detalle correspondiente con distancia en metros o kilómetros. Guardar un lugar actualiza Inicio y Mapa sin recargar. La aplicación normal usa Geolocator; la demostración web utiliza una coordenada pública de Quito.
 
-[Explicación y requisitos](docs/practica-sesion05.md). Referencia docente: rama `sesion-05`, commit `39b5f23b50364181bccd001bcb1dcccfd4be221c`. Las 36 pruebas y las comprobaciones web y Android están aprobadas. Las capturas y los registros saneados están en `evidence/sesion05/`. El informe final de diez páginas y el ZIP de 58 fuentes están en `entregas/sesion05/`; el envío a la actividad 49411 espera el visto bueno de esos archivos exactos.
+[Explicación y requisitos](docs/practica-sesion05.md). Referencia docente: rama `sesion-05`, commit `39b5f23b50364181bccd001bcb1dcccfd4be221c`. Las 36 pruebas y las comprobaciones web y Android están aprobadas. Las capturas y los registros saneados están en `evidence/sesion05/`. El informe final de diez páginas y el ZIP de 58 fuentes están en `entregas/sesion05/`; se entregaron y verificaron en la actividad 49411.
 
 ```bash
 flutter run -d chrome -t lib/playground/mapa_demo_main.dart

@@ -1,0 +1,31 @@
+{
+  "sesion": 4,
+  "actividad_moodle": 49406,
+  "estado": "Enviado para calificar",
+  "calificacion": "Sin calificar",
+  "fecha_mostrada": "lunes, 5 de octubre de 2026, 21:33",
+  "zona_horaria_del_registro": "America/Guayaquil",
+  "codigo_verificado": "5372f57a7b4f0d5bec0008d5c1ec58510e450bf6",
+  "aprobacion": "Sí, entregar Sesiones 4 y 5; aprobación humana de nombres, tamaños y versiones finales",
+  "archivos": [
+    {
+      "archivo": "exploraec-sesion04.zip",
+      "bytes": 67338,
+      "sha256": "c912057cc0cc35218a1b1c913d9841050aaa8c913f133b7ff0a60bfa3dd977a5",
+      "descarga_moodle": "idéntica"
+    },
+    {
+      "archivo": "informe-practica-sesion04-entrega.pdf",
+      "bytes": 224339,
+      "sha256": "3e7e50571d365cded9d19582ee46bad0ad141ac93bb9b5329ba3de609f1b1221",
+      "descarga_moodle": "idéntica"
+    }
+  ],
+  "verificacion": {
+    "transporte_upload_salida": 0,
+    "descarga_comparacion_salida": 0,
+    "interfaz_aula": "estado, fecha y dos nombres visibles; captura conservada en archivo privado",
+    "sha256_iguales": true
+  },
+  "verificado_utc": "2026-10-06T02:36:44.236709+00:00"
+}
