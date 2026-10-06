@@ -2,10 +2,11 @@
 
 Nivel: laboratorio académico local.
 
-Ahora: Sesiones 2 y 3 entregadas en Moodle y verificadas; etapa cerrada.
+Ahora: Sesión 4 implementada y verificada; preparar la entrega exacta para el visto bueno del estudiante.
 Sesión 2: implementada/verificada, código19ff031, actividad49354.
 Sesión 3: implementada/verificada, código78d2076, actividad49368; el aula permite entrega atrasada.
 Siguiente: continuar las prácticas del curso que solicite el estudiante.
+Sesión 4: código5372f57; 25 pruebas y análisis aprobados, revisión independiente APTO. ZIP e informe finales generados; recursos ordenados y completos. Publicación y copias en comprobación antes del visto bueno para Moodle49406. Conservar las versiones de Sesiones 2 y 3.
 
 Decisión: repositorio público GitHub btoaldas/BtoCediaFlutter, autorizado para revisión docente.
 Publicación comprobada: acceso sin autenticación a ambos commits y a los cuatro entregables; SHA-256 remoto igual al local y a OneDrive.

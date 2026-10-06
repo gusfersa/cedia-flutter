@@ -1,0 +1,29 @@
+{
+  "actividad_moodle": 49406,
+  "codigo_commit": "5372f57a7b4f0d5bec0008d5c1ec58510e450bf6",
+  "version": "Final",
+  "pruebas_aprobadas": 25,
+  "paginas_informe": 8,
+  "archivos_zip_verificados": 33,
+  "enlaces_pdf": [
+    "https://github.com/btoaldas/BtoCediaFlutter/tree/5372f57a7b4f0d5bec0008d5c1ec58510e450bf6",
+    "https://github.com/btoaldas/BtoCediaFlutter/blob/5372f57a7b4f0d5bec0008d5c1ec58510e450bf6/docs/practica-sesion04.md",
+    "https://github.com/Patricio-CEDIA/exploraec-app/tree/197a3d2df93b74b4ff706886f01d00c7f8275a0a"
+  ],
+  "archivos": [
+    {
+      "nombre": "exploraec-sesion04.zip",
+      "bytes": 67338,
+      "sha256": "c912057cc0cc35218a1b1c913d9841050aaa8c913f133b7ff0a60bfa3dd977a5",
+      "version": "Final",
+      "onedrive_identico": true
+    },
+    {
+      "nombre": "informe-practica-sesion04-entrega.pdf",
+      "bytes": 224339,
+      "sha256": "3e7e50571d365cded9d19582ee46bad0ad141ac93bb9b5329ba3de609f1b1221",
+      "version": "Final",
+      "onedrive_identico": true
+    }
+  ]
+}
