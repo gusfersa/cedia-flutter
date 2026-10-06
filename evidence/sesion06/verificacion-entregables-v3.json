@@ -1,0 +1,179 @@
+{
+  "veredicto": "APTO",
+  "fecha_utc": "2026-10-06T03:15:16.907590+00:00",
+  "commit_fuente": "0c35a2b5a6e4e19b38b6443cc56363cd18716b7b",
+  "defectos": [],
+  "zip": {
+    "archivo": "entregas/sesion06/exploraec-sesion06.zip",
+    "bytes": 108761,
+    "sha256": "458c863b0b0b3750eaeffe4de17105aff21d37fae57d8e9974bbdb69a45a4f96",
+    "crc_correcto": true,
+    "archivos": 71,
+    "archivos_esperados_del_commit": 71,
+    "por_raiz": {
+      ".gitattributes": 1,
+      ".gitignore": 1,
+      "PLACEHOLDERS.md": 1,
+      "analysis_options.yaml": 1,
+      "android": 19,
+      "docs": 1,
+      "lib": 28,
+      "pubspec.lock": 1,
+      "pubspec.yaml": 1,
+      "test": 10,
+      "web": 7
+    },
+    "cada_archivo_identico_a_git_show": true,
+    "diferencias": [],
+    "faltantes": [],
+    "extras": [],
+    "duplicados": [],
+    "rutas_inseguras": [],
+    "archivos_fuera_de_alcance": [],
+    "alcance": "Árbol Flutter versionado lib/test/android/web y configuración; documentación de reproducción.",
+    "hash_y_bytes_iguales_a_auditoria_v2": true
+  },
+  "pdf": {
+    "archivo": "entregas/sesion06/informe-practica-sesion06-entrega-v3.pdf",
+    "bytes": 179785,
+    "sha256": "6963e4d713cd8d82702799240cfb9c8f2c633abfca3a54ff117cdd682513006a",
+    "paginas": 10,
+    "paginas_con_texto": 10,
+    "commit_completo_presente": true,
+    "uri": [
+      {
+        "uri": "https://github.com/btoaldas/BtoCediaFlutter/tree/0c35a2b5a6e4e19b38b6443cc56363cd18716b7b",
+        "codigo_http": 200,
+        "uri_final": "https://github.com/btoaldas/BtoCediaFlutter/tree/0c35a2b5a6e4e19b38b6443cc56363cd18716b7b",
+        "valido": true,
+        "comprobacion_http_reutilizada": "evidence/sesion06/verificacion-entregables-v2.json"
+      },
+      {
+        "uri": "https://github.com/btoaldas/BtoCediaFlutter/tree/0c35a2b5a6e4e19b38b6443cc56363cd18716b7b/evidence/sesion06",
+        "codigo_http": 200,
+        "uri_final": "https://github.com/btoaldas/BtoCediaFlutter/tree/0c35a2b5a6e4e19b38b6443cc56363cd18716b7b/evidence/sesion06",
+        "valido": true,
+        "comprobacion_http_reutilizada": "evidence/sesion06/verificacion-entregables-v2.json"
+      },
+      {
+        "uri": "https://github.com/Patricio-CEDIA/exploraec-app/tree/acaa1afb8fb362ae68525315fa35f22dacab04f0",
+        "codigo_http": 200,
+        "uri_final": "https://github.com/Patricio-CEDIA/exploraec-app/tree/acaa1afb8fb362ae68525315fa35f22dacab04f0",
+        "valido": true,
+        "comprobacion_http_reutilizada": "evidence/sesion06/verificacion-entregables-v2.json"
+      },
+      {
+        "uri": "https://github.com/cj-murillo/proyecto-curso-spec-kit/tree/480481ed87cedcfd7681da9ecacbcd80ac4ef08f",
+        "codigo_http": 200,
+        "uri_final": "https://github.com/cj-murillo/proyecto-curso-spec-kit/tree/480481ed87cedcfd7681da9ecacbcd80ac4ef08f",
+        "valido": true,
+        "comprobacion_http_reutilizada": "evidence/sesion06/verificacion-entregables-v2.json"
+      }
+    ],
+    "cuatro_uri_extraidos_ahora_identicos_a_v2": true,
+    "pendientes_fuente": 0,
+    "afirmaciones_moodle_ya_entregado": 0,
+    "revision": "V3 comparada por extracción textual, imágenes y metadatos; APTO visual final comunicado por el agente raíz."
+  },
+  "escaneo_privacidad": {
+    "archivos_locales_de_referencia": 17,
+    "valores_privados_comparados": 4,
+    "errores_de_lectura": 0,
+    "coincidencias_valores_privados": 0,
+    "rutas_personales_detectadas": 0,
+    "jwt_detectados": 0,
+    "valores_privados_publicados_en_registro": false,
+    "alcance": "Nueva comparación local de bytes ZIP y texto/metadatos/bytes de V3; imágenes idénticas a V2 y revisión visual final del agente raíz."
+  },
+  "fuente_sin_alteracion": {
+    "head_inicio": "0c35a2b5a6e4e19b38b6443cc56363cd18716b7b",
+    "head_fin": "0c35a2b5a6e4e19b38b6443cc56363cd18716b7b",
+    "archivos_de_codigo_configuracion_comparados": 67,
+    "hashes_antes_despues_y_commit_identicos": true,
+    "huella_inventario_sha256": "516546b142017347295d6c537c2e2e774cb1a757307780156a5fad0a8dc08098",
+    "procedencia_hashes_67_archivos": "evidence/sesion06/verificacion-entregables-v2.json",
+    "comprobacion_actual_head_inicio": "0c35a2b5a6e4e19b38b6443cc56363cd18716b7b",
+    "comprobacion_actual_head_fin": "0c35a2b5a6e4e19b38b6443cc56363cd18716b7b",
+    "comprobacion_actual_diff_fuentes_vacio": true
+  },
+  "pruebas": {
+    "normales_aprobadas": 61,
+    "adicional_laboratorio_aprobada": 1,
+    "casos_unicos": 62,
+    "regresiones_previas_incluidas": 36,
+    "fuente": "Registros de verificación ya ejecutados; no se repiten pruebas al auditar archivos."
+  },
+  "verificaciones_reutilizadas": {
+    "procedencia": {
+      "archivo": "evidence/sesion06/verificacion-entregables-v2.json",
+      "sha256": "3fc5e7f00e91f8dcaf48d08357ba8ec069f1bca23d51cd74bd05608e89437ec5",
+      "fecha_utc": "2026-10-06T03:11:16.897668+00:00",
+      "veredicto": "APTO"
+    },
+    "zip": "CRC, 71/71 entradas iguales a git show, árbol completo y exclusiones se reutilizan porque el ZIP conserva exactamente tamaño y SHA256.",
+    "fuente": "Se reutilizan los hashes de los 67 archivos de fuente/configuración. Se comprueban ahora HEAD y ausencia de diferencias versionadas frente al commit fijo.",
+    "enlaces": "HTTP 200 de los cuatro URI se reutiliza; se extrajeron ahora de V3 y son idénticos. No se repitieron solicitudes HTTP.",
+    "pruebas": "61 casos normales y uno adicional de laboratorio ya aprobados; no se volvió a ejecutar Flutter."
+  },
+  "comparativa_v2_v3": {
+    "pdf_v2_sha256": "a8c7799b1ac2a275db1d79115a7a4d39ed830ef56a72cbc4a335ac33a386f317",
+    "solo_cambios_de_espacios_en_texto": true,
+    "fragmentos_cambiados": [
+      {
+        "operacion": "insert",
+        "caracteres_v2": 0,
+        "caracteres_v3": 1,
+        "solo_espacios": true
+      },
+      {
+        "operacion": "insert",
+        "caracteres_v2": 0,
+        "caracteres_v3": 1,
+        "solo_espacios": true
+      },
+      {
+        "operacion": "insert",
+        "caracteres_v2": 0,
+        "caracteres_v3": 1,
+        "solo_espacios": true
+      },
+      {
+        "operacion": "insert",
+        "caracteres_v2": 0,
+        "caracteres_v3": 1,
+        "solo_espacios": true
+      },
+      {
+        "operacion": "insert",
+        "caracteres_v2": 0,
+        "caracteres_v3": 1,
+        "solo_espacios": true
+      },
+      {
+        "operacion": "insert",
+        "caracteres_v2": 0,
+        "caracteres_v3": 1,
+        "solo_espacios": true
+      },
+      {
+        "operacion": "insert",
+        "caracteres_v2": 0,
+        "caracteres_v3": 1,
+        "solo_espacios": true
+      },
+      {
+        "operacion": "insert",
+        "caracteres_v2": 0,
+        "caracteres_v3": 1,
+        "solo_espacios": true
+      }
+    ],
+    "imagenes_identicas_por_pagina": true,
+    "imagenes_totales": 8,
+    "paginas_identicas_en_numero": true,
+    "claves_metadatos_cambiadas": [
+      "/CreationDate",
+      "/ModDate"
+    ]
+  }
+}

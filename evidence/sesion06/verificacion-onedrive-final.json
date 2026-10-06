@@ -1,0 +1,21 @@
+{
+  "actividad_moodle": 49556,
+  "copia_aditiva": true,
+  "carpeta_nombre": "Preparación verificada Sesión 6 (2026-10-05 22-10)",
+  "archivos": [
+    {
+      "nombre": "exploraec-sesion06.zip",
+      "bytes": 108761,
+      "sha256": "458c863b0b0b3750eaeffe4de17105aff21d37fae57d8e9974bbdb69a45a4f96",
+      "onedrive_identico": true
+    },
+    {
+      "nombre": "informe-practica-sesion06-entrega-v3.pdf",
+      "bytes": 179785,
+      "sha256": "6963e4d713cd8d82702799240cfb9c8f2c633abfca3a54ff117cdd682513006a",
+      "onedrive_identico": true
+    }
+  ],
+  "sha256_identicos": true,
+  "versiones_previas_preservadas": true
+}

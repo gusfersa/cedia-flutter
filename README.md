@@ -10,6 +10,7 @@ Aplicación de formación en Flutter y Dart para las prácticas de widgets, tema
 | Sesión 3: tema, estados y accesibilidad | [78d2076](https://github.com/btoaldas/BtoCediaFlutter/tree/78d2076b7c9f03f5e64c209dc26f7054a86ffb77) | 17 pruebas; carga/vacío/error/reintento, lista/grilla y Semantics |
 | Sesión 4: estado compartido con GetX | [5372f57](https://github.com/btoaldas/BtoCediaFlutter/tree/5372f57a7b4f0d5bec0008d5c1ec58510e450bf6) | 25 pruebas; instancia única, alta inmediata, contador, avisos, worker y concurrencia |
 | Sesión 5: mapas y geolocalización | [d79f3b9](https://github.com/btoaldas/BtoCediaFlutter/tree/d79f3b94a8bada236060390318c64e83a03b5be3) | 36 pruebas; permisos Android reales, GPS emulado público, OSM, distancias y alta compartida |
+| Sesión 6: gastos desde el backend | [0c35a2b](https://github.com/btoaldas/BtoCediaFlutter/tree/0c35a2b5a6e4e19b38b6443cc56363cd18716b7b) | 61 pruebas normales y 1 adicional; API/PostgreSQL reales, vacío/tres gastos, conexión, 401/422 y timeout autenticado 1 ms→15 s |
 
 Los informes y los ZIP de fuentes están organizados por práctica en `entregas/`.
 Cada informe contiene un enlace clicable al commit exacto de su práctica.
@@ -74,3 +75,5 @@ Gastos añade registro, login mediante formulario y listado paginado contra el b
 [Explicación y requisitos](docs/practica-sesion06.md). Backend docente fijo: [480481e](https://github.com/cj-murillo/proyecto-curso-spec-kit/tree/480481ed87cedcfd7681da9ecacbcd80ac4ef08f). Validación:61 pruebas normales, una adicional de laboratorio, análisis y formato aprobados; flujo visible en Edge con API y PostgreSQL reales, errores de conexión/401/422 y timeout autenticado1ms→15s. Las fuentes Android contienen Internet y HTTP de desarrollo; esta sesión se ejecutó en web con un adaptador CORS local documentado. No se afirma ejecución Android S6.
 
 El backend, sus accesos y el agrupador de soporte no se incluyen en Git ni en el ZIP. La actividad49556 conserva su aprobación de entrega pendiente hasta revisar los archivos exactos.
+
+Entregables finales: [ZIP de 71 fuentes](entregas/sesion06/exploraec-sesion06.zip) e [informe de diez páginas](entregas/sesion06/informe-practica-sesion06-entrega-v3.pdf). El informe enlaza el commit exacto; la entrega en Moodle sigue pendiente de visto bueno específico.

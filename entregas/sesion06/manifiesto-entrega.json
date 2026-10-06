@@ -1,0 +1,32 @@
+{
+  "actividad_moodle": 49556,
+  "version": "Final; informe revisión3",
+  "codigo_commit": "0c35a2b5a6e4e19b38b6443cc56363cd18716b7b",
+  "tag_codigo": "sesion-06",
+  "codigo_url": "https://github.com/btoaldas/BtoCediaFlutter/tree/0c35a2b5a6e4e19b38b6443cc56363cd18716b7b",
+  "archivos": [
+    {
+      "nombre": "exploraec-sesion06.zip",
+      "bytes": 108761,
+      "sha256": "458c863b0b0b3750eaeffe4de17105aff21d37fae57d8e9974bbdb69a45a4f96",
+      "version": "Final"
+    },
+    {
+      "nombre": "informe-practica-sesion06-entrega-v3.pdf",
+      "bytes": 179785,
+      "sha256": "6963e4d713cd8d82702799240cfb9c8f2c633abfca3a54ff117cdd682513006a",
+      "version": "Final"
+    }
+  ],
+  "estado_moodle": "Pendiente de aprobación específica de estos dos archivos; no entregado",
+  "zip_archivos": 71,
+  "pdf_paginas": 10,
+  "limites_moodle_verificados": {
+    "maxfiles": 20,
+    "maxbytes_por_archivo": 134217728
+  },
+  "onedrive_sha256_identicos": true,
+  "versiones_preliminares_preservadas": true,
+  "datos_privados_excluidos": true,
+  "backend_excluido": true
+}

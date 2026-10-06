@@ -1,0 +1,22 @@
+{
+  "actividad_moodle": 49556,
+  "solo_get_sin_subida": true,
+  "maxfiles": 20,
+  "maxbytes_por_archivo": 134217728,
+  "archivos": [
+    {
+      "nombre": "exploraec-sesion06.zip",
+      "bytes": 108761,
+      "sha256": "458c863b0b0b3750eaeffe4de17105aff21d37fae57d8e9974bbdb69a45a4f96",
+      "version": "Final"
+    },
+    {
+      "nombre": "informe-practica-sesion06-entrega-v3.pdf",
+      "bytes": 179785,
+      "sha256": "6963e4d713cd8d82702799240cfb9c8f2c633abfca3a54ff117cdd682513006a",
+      "version": "Final"
+    }
+  ],
+  "todos_compatibles": true,
+  "estado": "Pendiente de aprobación de archivos exactos"
+}

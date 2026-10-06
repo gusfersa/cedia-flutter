@@ -1,0 +1,329 @@
+{
+  "actividad_moodle": 49556,
+  "veredicto": "APTO",
+  "verificado": "2026-10-05T22:13:30.236553-05:00",
+  "archivo_pdf": "entregas/sesion06/informe-practica-sesion06-entrega-v3.pdf",
+  "bytes_pdf": 179785,
+  "sha256_pdf_antes": "6963e4d713cd8d82702799240cfb9c8f2c633abfca3a54ff117cdd682513006a",
+  "sha256_pdf_despues": "6963e4d713cd8d82702799240cfb9c8f2c633abfca3a54ff117cdd682513006a",
+  "pdf_preservado": true,
+  "paginas": 10,
+  "distribucion": {
+    "informe": 2,
+    "capturas": 8
+  },
+  "metodo": {
+    "renderizador": "Poppler 26.04.0",
+    "dpi": 144,
+    "mosaico_inspeccionado": true,
+    "paginas_inspeccionadas_individualmente": [
+      3,
+      5,
+      9,
+      10
+    ],
+    "segundo_angulo": "Comparación pypdf con versión2: seis folios de texto e imágenes idénticos, ocho imágenes embebidas sin cambios, cuatro URI sin cambios; revisión específica de la redacción corregida en folios3/5/9/10.",
+    "paginas_inspeccionadas_en_mosaico": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ]
+  },
+  "revision_por_pagina": [
+    {
+      "pagina": 1,
+      "contenido": "Informe, matriz de requisitos0–9 y reproducción",
+      "veredicto": "APTO",
+      "legible": true,
+      "sin_cortes": true,
+      "sin_superposiciones": true,
+      "observaciones_editoriales": [],
+      "comprobacion_version3": "Mosaico y texto/imágenes idénticos a versión2"
+    },
+    {
+      "pagina": 2,
+      "contenido": "Alcance, atribución, commits y cuatro enlaces",
+      "veredicto": "APTO",
+      "legible": true,
+      "sin_cortes": true,
+      "sin_superposiciones": true,
+      "observaciones_editoriales": [],
+      "comprobacion_version3": "Mosaico y texto/imágenes idénticos a versión2"
+    },
+    {
+      "pagina": 3,
+      "contenido": "Usuario nuevo y estado vacío",
+      "veredicto": "APTO",
+      "legible": true,
+      "sin_cortes": true,
+      "sin_superposiciones": true,
+      "observaciones_editoriales": [],
+      "comprobacion_version3": "Mosaico y visual individual"
+    },
+    {
+      "pagina": 4,
+      "contenido": "Estado de carga real",
+      "veredicto": "APTO",
+      "legible": true,
+      "sin_cortes": true,
+      "sin_superposiciones": true,
+      "observaciones_editoriales": [],
+      "comprobacion_version3": "Mosaico y texto/imágenes idénticos a versión2"
+    },
+    {
+      "pagina": 5,
+      "contenido": "Tres gastos guardados en PostgreSQL",
+      "veredicto": "APTO",
+      "legible": true,
+      "sin_cortes": true,
+      "sin_superposiciones": true,
+      "observaciones_editoriales": [],
+      "comprobacion_version3": "Mosaico y visual individual"
+    },
+    {
+      "pagina": 6,
+      "contenido": "Error real de conexión",
+      "veredicto": "APTO",
+      "legible": true,
+      "sin_cortes": true,
+      "sin_superposiciones": true,
+      "observaciones_editoriales": [],
+      "comprobacion_version3": "Mosaico y texto/imágenes idénticos a versión2"
+    },
+    {
+      "pagina": 7,
+      "contenido": "Timeout con sesión ya iniciada",
+      "veredicto": "APTO",
+      "legible": true,
+      "sin_cortes": true,
+      "sin_superposiciones": true,
+      "observaciones_editoriales": [],
+      "comprobacion_version3": "Mosaico y texto/imágenes idénticos a versión2"
+    },
+    {
+      "pagina": 8,
+      "contenido": "Plazo normal restaurado",
+      "veredicto": "APTO",
+      "legible": true,
+      "sin_cortes": true,
+      "sin_superposiciones": true,
+      "observaciones_editoriales": [],
+      "comprobacion_version3": "Mosaico y texto/imágenes idénticos a versión2"
+    },
+    {
+      "pagina": 9,
+      "contenido": "Respuesta401 y sesión cerrada",
+      "veredicto": "APTO",
+      "legible": true,
+      "sin_cortes": true,
+      "sin_superposiciones": true,
+      "observaciones_editoriales": [],
+      "comprobacion_version3": "Mosaico y visual individual"
+    },
+    {
+      "pagina": 10,
+      "contenido": "Respuesta422 comprensible",
+      "veredicto": "APTO",
+      "legible": true,
+      "sin_cortes": true,
+      "sin_superposiciones": true,
+      "observaciones_editoriales": [],
+      "comprobacion_version3": "Mosaico y visual individual"
+    }
+  ],
+  "tabla": {
+    "pagina": 1,
+    "celdas_completas": true,
+    "sin_texto_fuera_de_celdas": true,
+    "pasos_obligatorios": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "paso10_opcional_identificado_en_pagina2": true
+  },
+  "enlaces": {
+    "cantidad": 4,
+    "uri_exactas_frente_a_datos_generador": true,
+    "objetivos": [
+      {
+        "pagina": 2,
+        "url": "https://github.com/btoaldas/BtoCediaFlutter/tree/0c35a2b5a6e4e19b38b6443cc56363cd18716b7b"
+      },
+      {
+        "pagina": 2,
+        "url": "https://github.com/btoaldas/BtoCediaFlutter/tree/0c35a2b5a6e4e19b38b6443cc56363cd18716b7b/evidence/sesion06"
+      },
+      {
+        "pagina": 2,
+        "url": "https://github.com/Patricio-CEDIA/exploraec-app/tree/acaa1afb8fb362ae68525315fa35f22dacab04f0"
+      },
+      {
+        "pagina": 2,
+        "url": "https://github.com/cj-murillo/proyecto-curso-spec-kit/tree/480481ed87cedcfd7681da9ecacbcd80ac4ef08f"
+      }
+    ],
+    "codigo_commit": "0c35a2b5a6e4e19b38b6443cc56363cd18716b7b",
+    "validacion": "Anotaciones URI exactas; este registro no afirma disponibilidad de una publicación futura."
+  },
+  "capturas": [
+    {
+      "pagina": 3,
+      "archivo": "evidence/sesion06/02-usuario-nuevo-vacio.png",
+      "titulo": "Usuario nuevo y estado vacío",
+      "sha256_origen": "763ebe43acd7d30a8ac07567151f41bc48b6b7f925364678576704b32ccaecda",
+      "sha256_coincide_con_evidencia_ui": true,
+      "dimensiones_coinciden": true,
+      "diferencia_media_rgb_0_a_255": 0.017268,
+      "conversion_embebida": "JPEG; diferencia mínima respecto al PNG de origen, sin pérdida visible de legibilidad.",
+      "caption_corresponde": true,
+      "legible": true,
+      "sin_cortes": true
+    },
+    {
+      "pagina": 4,
+      "archivo": "evidence/sesion06/03-cargando-api-real.png",
+      "titulo": "Estado de carga real",
+      "sha256_origen": "79d51a314b8a951437c145f9e4130bc3d691ebbac574f76ba14c0497cd39e5aa",
+      "sha256_coincide_con_evidencia_ui": true,
+      "dimensiones_coinciden": true,
+      "diferencia_media_rgb_0_a_255": 0.011246,
+      "conversion_embebida": "JPEG; diferencia mínima respecto al PNG de origen, sin pérdida visible de legibilidad.",
+      "caption_corresponde": true,
+      "legible": true,
+      "sin_cortes": true
+    },
+    {
+      "pagina": 5,
+      "archivo": "evidence/sesion06/04-tres-gastos-servidor.png",
+      "titulo": "Tres gastos guardados en PostgreSQL",
+      "sha256_origen": "1c4d53a77952fe6588f34911aee8bd0cf71ed1da42d968e6828fc3c8bf368d3e",
+      "sha256_coincide_con_evidencia_ui": true,
+      "dimensiones_coinciden": true,
+      "diferencia_media_rgb_0_a_255": 0.020852,
+      "conversion_embebida": "JPEG; diferencia mínima respecto al PNG de origen, sin pérdida visible de legibilidad.",
+      "caption_corresponde": true,
+      "legible": true,
+      "sin_cortes": true
+    },
+    {
+      "pagina": 6,
+      "archivo": "evidence/sesion06/05-error-conexion-real.png",
+      "titulo": "Error real de conexión",
+      "sha256_origen": "8b44f3c9104cba3aca890c524aba9f4d57e40d3249109979d2da54ec134a36b0",
+      "sha256_coincide_con_evidencia_ui": true,
+      "dimensiones_coinciden": true,
+      "diferencia_media_rgb_0_a_255": 0.018459,
+      "conversion_embebida": "JPEG; diferencia mínima respecto al PNG de origen, sin pérdida visible de legibilidad.",
+      "caption_corresponde": true,
+      "legible": true,
+      "sin_cortes": true
+    },
+    {
+      "pagina": 7,
+      "archivo": "evidence/sesion06/07-timeout-autenticado-1ms.png",
+      "titulo": "Timeout con sesión ya iniciada",
+      "sha256_origen": "21cb9482ce00f41fe79e9ffb115e2b4996756d2fee144098e5a56e487a11f0da",
+      "sha256_coincide_con_evidencia_ui": true,
+      "dimensiones_coinciden": true,
+      "diferencia_media_rgb_0_a_255": 0.01849,
+      "conversion_embebida": "JPEG; diferencia mínima respecto al PNG de origen, sin pérdida visible de legibilidad.",
+      "caption_corresponde": true,
+      "legible": true,
+      "sin_cortes": true
+    },
+    {
+      "pagina": 8,
+      "archivo": "evidence/sesion06/08-timeout-restaurado-15s.png",
+      "titulo": "Plazo normal restaurado",
+      "sha256_origen": "30df7b88128f86c4cec30780dd06502008d97ecb2775ce3817b8d227b74c392d",
+      "sha256_coincide_con_evidencia_ui": true,
+      "dimensiones_coinciden": true,
+      "diferencia_media_rgb_0_a_255": 0.020778,
+      "conversion_embebida": "JPEG; diferencia mínima respecto al PNG de origen, sin pérdida visible de legibilidad.",
+      "caption_corresponde": true,
+      "legible": true,
+      "sin_cortes": true
+    },
+    {
+      "pagina": 9,
+      "archivo": "evidence/sesion06/09-401-formulario-vacio.png",
+      "titulo": "Respuesta 401 y sesión cerrada",
+      "sha256_origen": "6892d6469fc57a8960022bb5fb8e04f7611176b069b4f0238c65697dd5702e1f",
+      "sha256_coincide_con_evidencia_ui": true,
+      "dimensiones_coinciden": true,
+      "diferencia_media_rgb_0_a_255": 0.052119,
+      "conversion_embebida": "JPEG; diferencia mínima respecto al PNG de origen, sin pérdida visible de legibilidad.",
+      "caption_corresponde": true,
+      "legible": true,
+      "sin_cortes": true
+    },
+    {
+      "pagina": 10,
+      "archivo": "evidence/sesion06/11-422-campo-espanol.png",
+      "titulo": "Respuesta 422 comprensible",
+      "sha256_origen": "d4643e61eb4e63236165fcabe03a202c72ab42cbb18ec8d308a5d4d5aa2ba5d1",
+      "sha256_coincide_con_evidencia_ui": true,
+      "dimensiones_coinciden": true,
+      "diferencia_media_rgb_0_a_255": 0.050023,
+      "conversion_embebida": "JPEG; diferencia mínima respecto al PNG de origen, sin pérdida visible de legibilidad.",
+      "caption_corresponde": true,
+      "legible": true,
+      "sin_cortes": true
+    }
+  ],
+  "contenido_cotejado": {
+    "pruebas_normales": 61,
+    "regresiones_previas": 36,
+    "pruebas_nuevas_normales": 25,
+    "caso_laboratorio_adicional": 1,
+    "casos_unicos": 62,
+    "plataforma_real": "Flutter web en Edge con backend docente, PostgreSQL y adaptador CORS local",
+    "ejecucion_android_sesion06_afirmada": false,
+    "paso10_opcional_incorporado": false,
+    "timeout_prueba_ms": 1,
+    "timeout_final_ms": 15000,
+    "fecha_local_informe": "2026-10-05",
+    "fecha_gastos_utc": "2026-10-06",
+    "atribucion_conservada": true,
+    "licencia_inventada": false
+  },
+  "hallazgos_sustantivos": [],
+  "reparaciones_necesarias": [],
+  "estado_moodle": "No se ha realizado una entrega mediante esta auditoría; requiere el flujo de entrega y autorización posterior.",
+  "version_informe": 3,
+  "observaciones_editoriales": [],
+  "version1_preservada": true,
+  "registro_version1_preservado_sha256": "f93e0cf0d39cf9adc406dfcea91b659a1b716cd3dc0928f477fcbed727524a73",
+  "capturas_embebidas_identicas_a_version1": 8,
+  "enlaces_identicos_a_version1": 4,
+  "redaccion_corregida_en_paginas1y2": true,
+  "limite_veredicto": "Revisión de la versión3: mosaico de los 10 folios y revisión visual individual de las cuatro páginas con cambios; otras seis con texto e imágenes idénticos a la versión2 ya revisada. Sin cortes, superposiciones ni observaciones pendientes.",
+  "observaciones_editoriales_de_version2_corregidas": true,
+  "version2_preservada": true,
+  "registro_version2_preservado_sha256": "11ca2240891589e792d79064cfdc2563398de9fc2b01518799e861a25a90cbb3",
+  "capturas_embebidas_identicas_a_version2": 8,
+  "enlaces_identicos_a_version2": 4,
+  "paginas_sin_cambios_texto_imagenes_frente_a_version2": [
+    1,
+    2,
+    4,
+    6,
+    7,
+    8
+  ]
+}
