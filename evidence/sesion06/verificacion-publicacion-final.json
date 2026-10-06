@@ -1,0 +1,40 @@
+{
+  "actividad_moodle": 49556,
+  "artefactos_commit": "ed81e752c92b64f6eb0b76cc43d491832720739c",
+  "codigo_commit": "0c35a2b5a6e4e19b38b6443cc56363cd18716b7b",
+  "verificado_utc": "2026-10-06T03:16:19.385244+00:00",
+  "archivos": [
+    {
+      "nombre": "exploraec-sesion06.zip",
+      "bytes": 108761,
+      "sha256": "458c863b0b0b3750eaeffe4de17105aff21d37fae57d8e9974bbdb69a45a4f96",
+      "github_status": 200,
+      "github_url_fija": "https://raw.githubusercontent.com/btoaldas/BtoCediaFlutter/ed81e752c92b64f6eb0b76cc43d491832720739c/entregas/sesion06/exploraec-sesion06.zip",
+      "github_local_onedrive_identicos": true
+    },
+    {
+      "nombre": "informe-practica-sesion06-entrega-v3.pdf",
+      "bytes": 179785,
+      "sha256": "6963e4d713cd8d82702799240cfb9c8f2c633abfca3a54ff117cdd682513006a",
+      "github_status": 200,
+      "github_url_fija": "https://raw.githubusercontent.com/btoaldas/BtoCediaFlutter/ed81e752c92b64f6eb0b76cc43d491832720739c/entregas/sesion06/informe-practica-sesion06-entrega-v3.pdf",
+      "github_local_onedrive_identicos": true
+    }
+  ],
+  "acceso_anonimo": true,
+  "referencias_remotas": [
+    {
+      "sha": "ed81e752c92b64f6eb0b76cc43d491832720739c",
+      "ref": "refs/heads/main"
+    },
+    {
+      "sha": "ed81e752c92b64f6eb0b76cc43d491832720739c",
+      "ref": "refs/heads/practica/sesion06"
+    },
+    {
+      "sha": "0c35a2b5a6e4e19b38b6443cc56363cd18716b7b",
+      "ref": "refs/tags/sesion-06^{}"
+    }
+  ],
+  "verificado": true
+}
