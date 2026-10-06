@@ -2,7 +2,7 @@
 
 Nivel: laboratorio académico local.
 
-Ahora: implementar y verificar Sesión 5 de mapas y geolocalización, actividad49411.
+Ahora: Sesiones4 y5 preparadas y verificadas; pedir visto bueno de los archivos finales para Moodle49406 y49411.
 Sesión 2: implementada/verificada, código19ff031, actividad49354.
 Sesión 3: implementada/verificada, código78d2076, actividad49368; el aula permite entrega atrasada.
 Siguiente: continuar las prácticas del curso que solicite el estudiante.

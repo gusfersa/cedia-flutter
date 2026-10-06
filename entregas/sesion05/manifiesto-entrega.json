@@ -1,0 +1,24 @@
+{
+  "actividad_moodle": 49411,
+  "sesion": 5,
+  "commit_codigo": "d79f3b94a8bada236060390318c64e83a03b5be3",
+  "archivos": [
+    {
+      "archivo": "exploraec-sesion05.zip",
+      "bytes": 95182,
+      "sha256": "02721d85b7525502be8db5eb89ff6f450764efc05fd76d486cc47966fcde03e9",
+      "version": "Final"
+    },
+    {
+      "archivo": "informe-practica-sesion05-entrega.pdf",
+      "bytes": 4361087,
+      "sha256": "2eeb2ef5473cc89e50e8324280841c17bd29fd0a520111fbad787bb7b99a062e",
+      "version": "Final"
+    }
+  ],
+  "verificacion_zip": {
+    "crc": "correcto",
+    "archivos": 58
+  },
+  "moodle": "Pendiente de aprobación exacta; no subido"
+}

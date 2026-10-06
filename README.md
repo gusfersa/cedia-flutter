@@ -9,7 +9,7 @@ Aplicación de formación en Flutter y Dart para las prácticas de widgets, tema
 | Sesión 2: widgets básicos y avanzados | [19ff031](https://github.com/btoaldas/BtoCediaFlutter/tree/19ff031d586437d69fbc6350079e1cf51c0d3616) | 9 pruebas; lista/detalle/formulario/pestañas y hot reload/restart real |
 | Sesión 3: tema, estados y accesibilidad | [78d2076](https://github.com/btoaldas/BtoCediaFlutter/tree/78d2076b7c9f03f5e64c209dc26f7054a86ffb77) | 17 pruebas; carga/vacío/error/reintento, lista/grilla y Semantics |
 | Sesión 4: estado compartido con GetX | [5372f57](https://github.com/btoaldas/BtoCediaFlutter/tree/5372f57a7b4f0d5bec0008d5c1ec58510e450bf6) | 25 pruebas; instancia única, alta inmediata, contador, avisos, worker y concurrencia |
-| Sesión 5: mapas y geolocalización | [sesion-05](https://github.com/btoaldas/BtoCediaFlutter/tree/sesion-05) | 36 pruebas; permisos Android reales, GPS emulado público, OSM, distancias y alta compartida |
+| Sesión 5: mapas y geolocalización | [d79f3b9](https://github.com/btoaldas/BtoCediaFlutter/tree/d79f3b94a8bada236060390318c64e83a03b5be3) | 36 pruebas; permisos Android reales, GPS emulado público, OSM, distancias y alta compartida |
 
 Los informes y los ZIP de fuentes están organizados por práctica en `entregas/`.
 Cada informe contiene un enlace clicable al commit exacto de su práctica.
@@ -59,7 +59,7 @@ El ZIP de fuentes y el informe con enlaces a la versión fija se encuentran en `
 
 Mapa utiliza OpenStreetMap y observa la posición y la lista compartida. Los marcadores abren el detalle correspondiente con distancia en metros o kilómetros. Guardar un lugar actualiza Inicio y Mapa sin recargar. La aplicación normal usa Geolocator; la demostración web utiliza una coordenada pública de Quito.
 
-[Explicación y requisitos](docs/practica-sesion05.md). Referencia docente: rama `sesion-05`, commit `39b5f23b50364181bccd001bcb1dcccfd4be221c`. Las 36 pruebas y las comprobaciones web y Android están aprobadas. Las capturas y los registros saneados están en `evidence/sesion05/`. El informe y el ZIP finales se preparan para la actividad 49411; el envío espera el visto bueno de esos archivos exactos.
+[Explicación y requisitos](docs/practica-sesion05.md). Referencia docente: rama `sesion-05`, commit `39b5f23b50364181bccd001bcb1dcccfd4be221c`. Las 36 pruebas y las comprobaciones web y Android están aprobadas. Las capturas y los registros saneados están en `evidence/sesion05/`. El informe final de diez páginas y el ZIP de 58 fuentes están en `entregas/sesion05/`; el envío a la actividad 49411 espera el visto bueno de esos archivos exactos.
 
 ```bash
 flutter run -d chrome -t lib/playground/mapa_demo_main.dart

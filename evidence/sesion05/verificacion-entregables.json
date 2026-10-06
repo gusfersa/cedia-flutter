@@ -1,0 +1,40 @@
+{
+  "codigo": "d79f3b94a8bada236060390318c64e83a03b5be3",
+  "revision_independiente": "APTO",
+  "pdf": {
+    "paginas": 10,
+    "paginas_revisadas_visualmente": 10,
+    "enlaces_uri_exactos": 4,
+    "problemas_de_legibilidad": 0
+  },
+  "zip": {
+    "crc": "correcto",
+    "archivos": 58
+  },
+  "archivos": [
+    {
+      "archivo": "exploraec-sesion05.zip",
+      "bytes": 95182,
+      "sha256": "02721d85b7525502be8db5eb89ff6f450764efc05fd76d486cc47966fcde03e9",
+      "version": "Final"
+    },
+    {
+      "archivo": "informe-practica-sesion05-entrega.pdf",
+      "bytes": 4361087,
+      "sha256": "2eeb2ef5473cc89e50e8324280841c17bd29fd0a520111fbad787bb7b99a062e",
+      "version": "Final"
+    }
+  ],
+  "copias_onedrive": {
+    "archivos": 15,
+    "sha256_coinciden": true
+  },
+  "limites_moodle": {
+    "cmid": 49411,
+    "maxfiles": 20,
+    "maxbytes": 134217728,
+    "tipos": "sin restricción declarada",
+    "simulacion": "salida0, sin subida"
+  },
+  "envio_moodle": "Pendiente del visto bueno de los archivos exactos"
+}
