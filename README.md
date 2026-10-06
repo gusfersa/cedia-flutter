@@ -47,7 +47,7 @@ Se verificó web sobre Edge, incluidos estados, formularios y controles accesibl
 
 ## Fuente académica
 
-Basado en el material de [Patricio-CEDIA/exploraec-app](https://github.com/Patricio-CEDIA/exploraec-app), ramas `sesion-02` a `sesion-05`, y sus instructivos de práctica. Se conserva la atribución del curso.
+Basado en el material de [Patricio-CEDIA/exploraec-app](https://github.com/Patricio-CEDIA/exploraec-app), ramas `sesion-02` a `sesion-06`, y sus instructivos de práctica. Se conserva la atribución del curso. Las referencias docentes consultadas no declaran licencia; no se les asigna una licencia inventada.
 
 ## Sesión 4
 
@@ -66,3 +66,11 @@ Mapa utiliza OpenStreetMap y observa la posición y la lista compartida. Los mar
 ```bash
 flutter run -d chrome -t lib/playground/mapa_demo_main.dart
 ```
+
+## Sesión 6
+
+Gastos añade registro, login mediante formulario y listado paginado contra el backend real del curso. El JWT permanece en memoria; `X-Total-Count` determina el total. Se conservan Inicio, Mapa y Favoritos, y se reutilizan carga, vacío, error y reintento.
+
+[Explicación y requisitos](docs/practica-sesion06.md). Backend docente fijo: [480481e](https://github.com/cj-murillo/proyecto-curso-spec-kit/tree/480481ed87cedcfd7681da9ecacbcd80ac4ef08f). Validación:61 pruebas normales, una adicional de laboratorio, análisis y formato aprobados; flujo visible en Edge con API y PostgreSQL reales, errores de conexión/401/422 y timeout autenticado1ms→15s. Las fuentes Android contienen Internet y HTTP de desarrollo; esta sesión se ejecutó en web con un adaptador CORS local documentado. No se afirma ejecución Android S6.
+
+El backend, sus accesos y el agrupador de soporte no se incluyen en Git ni en el ZIP. La actividad49556 conserva su aprobación de entrega pendiente hasta revisar los archivos exactos.

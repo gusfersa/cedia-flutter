@@ -1,0 +1,88 @@
+{
+  "nota": "Solo respuestas y errores de red; sin cuerpos, claves ni cabeceras de autenticación. La pestaña termina online y con plazo15s.",
+  "peticiones": [
+    {
+      "tipo": "Fetch",
+      "url": "http://127.0.0.1:8000/gastos/?skip=0&limit=20",
+      "codigo": 200,
+      "total": "0"
+    },
+    {
+      "tipo": "Fetch",
+      "url": "http://127.0.0.1:8000/gastos/?skip=0&limit=20",
+      "codigo": 200,
+      "total": "3"
+    },
+    {
+      "evento": "Network.loadingFailed",
+      "error": "net::ERR_INTERNET_DISCONNECTED",
+      "cancelada": false
+    },
+    {
+      "tipo": "Fetch",
+      "url": "http://127.0.0.1:8000/gastos/?skip=0&limit=20",
+      "codigo": 200,
+      "total": "3"
+    },
+    {
+      "tipo": "Fetch",
+      "url": "http://127.0.0.1:8000/gastos/?skip=0&limit=20",
+      "codigo": 200,
+      "total": "3"
+    },
+    {
+      "tipo": "Fetch",
+      "url": "http://127.0.0.1:8000/gastos/?skip=0&limit=20",
+      "codigo": 200,
+      "total": "3"
+    },
+    {
+      "tipo": "Fetch",
+      "url": "http://127.0.0.1:8000/gastos/?skip=0&limit=20",
+      "codigo": 401,
+      "total": null
+    },
+    {
+      "tipo": "Fetch",
+      "url": "http://127.0.0.1:8000/usuarios/",
+      "codigo": 400,
+      "total": null
+    },
+    {
+      "tipo": "Fetch",
+      "url": "http://127.0.0.1:8000/usuarios/token",
+      "codigo": 200,
+      "total": null
+    },
+    {
+      "tipo": "Fetch",
+      "url": "http://127.0.0.1:8000/gastos/?skip=0&limit=20",
+      "codigo": 200,
+      "total": "3"
+    },
+    {
+      "tipo": "Fetch",
+      "url": "http://127.0.0.1:8000/usuarios/",
+      "codigo": 422,
+      "total": null
+    },
+    {
+      "tipo": "Fetch",
+      "url": "http://127.0.0.1:8000/usuarios/",
+      "codigo": 400,
+      "total": null
+    },
+    {
+      "tipo": "Fetch",
+      "url": "http://127.0.0.1:8000/usuarios/token",
+      "codigo": 200,
+      "total": null
+    },
+    {
+      "tipo": "Fetch",
+      "url": "http://127.0.0.1:8000/gastos/?skip=0&limit=20",
+      "codigo": 200,
+      "total": "3"
+    }
+  ]
+}

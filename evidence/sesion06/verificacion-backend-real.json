@@ -1,0 +1,360 @@
+{
+  "sesion": 6,
+  "alcance": "Verificación real del backend de laboratorio; el flujo de la interfaz Flutter se verifica por separado",
+  "hora_verificacion_api_utc": "2026-10-06T02:55:37.820578+00:00",
+  "hora_verificacion_sql_utc": "2026-10-06T02:55:38.478549+00:00",
+  "hora_publicacion_utc": "2026-10-06T02:57:40.820890+00:00",
+  "referencia_docente": {
+    "repositorio": "https://github.com/cj-murillo/proyecto-curso-spec-kit",
+    "commit": "480481ed87cedcfd7681da9ecacbcd80ac4ef08f",
+    "archivo_zip_sha256": "45daf9a3d18e21aead71a79a968de207fb06b08e639cb6fd5f639b7d042bf4d6",
+    "fuentes_revisadas": [
+      {
+        "archivo": "docker-compose.yml",
+        "sha256": "198a2a006071dffbfc30042899fbf94f1e7ced398e905ef85631b49b3ffce327",
+        "intacto": true
+      },
+      {
+        "archivo": "Dockerfile",
+        "sha256": "a77ca76c8ffc7241ddf0fa513123e8764c22699a9d7301b6733252094f6921ed",
+        "intacto": true
+      },
+      {
+        "archivo": "pyproject.toml",
+        "sha256": "16fec25c20fb787201243dfecf0e935df3cfe9923313465bd50d9cd61598c6e3",
+        "intacto": true
+      },
+      {
+        "archivo": "uv.lock",
+        "sha256": "ff2014624fdaf78d9b0f59cee74aae348d6a275c606212433ef9c62c753ff18e",
+        "intacto": true
+      },
+      {
+        "archivo": "app/main.py",
+        "sha256": "4513d4f1e51bdf6ab9d5e2e1ecc89182001dec5007ee5db5bf79467ebca50397",
+        "intacto": true
+      },
+      {
+        "archivo": "app/routers/usuarios.py",
+        "sha256": "f85aaf1e2a3d6046bba1dbd6220a793617a499caf04f5fe200a2efc68b6731f9",
+        "intacto": true
+      },
+      {
+        "archivo": "app/routers/gastos.py",
+        "sha256": "0231241c79399bf532d2552e87a8b334383b5f4a491a47d53417e2ecfefc0539",
+        "intacto": true
+      },
+      {
+        "archivo": "app/routers/health.py",
+        "sha256": "f8b897b60229cb9cb8670e884511dc0bf3fa03ae1e6d40fd9c3701aa39f99c36",
+        "intacto": true
+      },
+      {
+        "archivo": "app/schemas/usuario.py",
+        "sha256": "d3b9cbca2aaa6175b4abebb3c4cbf6a2c72075942c52c691ecab5b31bbf6d297",
+        "intacto": true
+      },
+      {
+        "archivo": "app/schemas/gasto.py",
+        "sha256": "d0f9a1a8aa9c7e3f826d26d8baed109c55917dab3b3fa4a364685999ad64f1ed",
+        "intacto": true
+      }
+    ],
+    "archivos_comprobados": 10,
+    "todos_intactos": true
+  },
+  "entorno": {
+    "motor": "OrbStack",
+    "contexto_docker": "orbstack",
+    "version_docker": "29.4.3",
+    "version_compose": "5.1.3",
+    "proyecto_compose": "cedia-sesion06",
+    "contenedores": [
+      {
+        "nombre": "cedia-s06-db",
+        "estado": "running",
+        "codigo_salida": 0,
+        "imagen_id": "sha256:721873c34ceb9f8d8fc265984940dc982404c105f19ad51be9fdc5970a6080ea",
+        "publicacion_puertos": {
+          "5432/tcp": null
+        },
+        "redes": [
+          "cedia-sesion06_default"
+        ],
+        "volumenes": [
+          "cedia-sesion06_gastos_db_data"
+        ]
+      },
+      {
+        "nombre": "cedia-s06-migrate",
+        "estado": "exited",
+        "codigo_salida": 0,
+        "imagen_id": "sha256:5671def93ad0ea42d602504180ad1ccbea317e727a7e4c4c26173ed04e85799b",
+        "publicacion_puertos": {},
+        "redes": [
+          "cedia-sesion06_default"
+        ],
+        "volumenes": []
+      },
+      {
+        "nombre": "cedia-s06-backend",
+        "estado": "running",
+        "codigo_salida": 0,
+        "imagen_id": "sha256:5671def93ad0ea42d602504180ad1ccbea317e727a7e4c4c26173ed04e85799b",
+        "publicacion_puertos": {
+          "8000/tcp": [
+            {
+              "HostIp": "127.0.0.1",
+              "HostPort": "8000"
+            }
+          ]
+        },
+        "redes": [
+          "cedia-sesion06_default"
+        ],
+        "volumenes": []
+      }
+    ],
+    "red_exclusiva": "cedia-sesion06_default",
+    "volumen_exclusivo": "cedia-sesion06_gastos_db_data",
+    "api_publicada_solo_en": "127.0.0.1:8000",
+    "sin_puerto_postgresql_publicado": true,
+    "imagenes_base_efectivas": {
+      "python": {
+        "imagen": "python:3.12-slim",
+        "digest_construccion": "sha256:02108f5d322dd89f1c9e552442c25acb0543dfdbc455693a5599624f20d9155d"
+      },
+      "uv": {
+        "imagen": "ghcr.io/astral-sh/uv:0.12.7",
+        "digest_construccion": "sha256:95f2aa1fe59274951cfe9b0cbc7972e879ff1004bc8945d130a32eb0dbd85945"
+      },
+      "postgres": {
+        "imagen": "postgres:16-alpine",
+        "id": "sha256:721873c34ceb9f8d8fc265984940dc982404c105f19ad51be9fdc5970a6080ea",
+        "repo_digests": [
+          "postgres@sha256:721873c34ceb9f8d8fc265984940dc982404c105f19ad51be9fdc5970a6080ea"
+        ],
+        "arquitectura": "arm64"
+      }
+    },
+    "dockerfile_docente_intacto": true,
+    "asgi_adaptador_local_sha256": "9f24fe48c00479cd55457972da714473430764cb3616a7e2892736f19df5817e",
+    "compose_laboratorio_sha256": "5256283a4bd2c7d1a689fb9c94e1deea4430f6e71f47fe21d0beaec61d3380c4"
+  },
+  "api": {
+    "salud": {
+      "status": "ok",
+      "db": "ok"
+    },
+    "health_status": 200,
+    "docs_status": 200,
+    "openapi_status": 200,
+    "registro_status": 201,
+    "login_formulario_status": 200,
+    "lista_inicial_cuenta_sintetica": 0,
+    "total_inicial": 0,
+    "gastos_finales": [
+      {
+        "descripcion": "Almuerzo en el Mercado Central",
+        "monto": 6.5,
+        "categoria": "comida",
+        "fecha": "2026-10-06"
+      },
+      {
+        "descripcion": "Taxi al terminal",
+        "monto": 3.25,
+        "categoria": "transporte",
+        "fecha": "2026-10-06"
+      },
+      {
+        "descripcion": "Entrada al Museo Casa del Alabado",
+        "monto": 4.0,
+        "categoria": "entretenimiento",
+        "fecha": "2026-10-06"
+      }
+    ],
+    "total_final": 3,
+    "listado_limit1_longitud": 1,
+    "listado_limit1_x_total_count": 3,
+    "ruta_sin_credencial_status": 401,
+    "credencial_invalida_status": 401,
+    "registro_con_contraseña_corta_status": 422,
+    "cliente_python_timeout_1ms_observado": true,
+    "cliente_python_restaurado_15s_y_reintento_status": 200,
+    "resumen_peticiones_http": [
+      {
+        "metodo": "GET",
+        "ruta": "/health",
+        "status": 200,
+        "milisegundos": 22.37
+      },
+      {
+        "metodo": "GET",
+        "ruta": "/docs",
+        "status": 200,
+        "milisegundos": 2.62
+      },
+      {
+        "metodo": "GET",
+        "ruta": "/openapi.json",
+        "status": 200,
+        "milisegundos": 28.74
+      },
+      {
+        "metodo": "POST",
+        "ruta": "/usuarios/",
+        "status": 201,
+        "milisegundos": 56.28
+      },
+      {
+        "metodo": "POST",
+        "ruta": "/usuarios/token",
+        "status": 200,
+        "milisegundos": 37.13
+      },
+      {
+        "metodo": "GET",
+        "ruta": "/gastos/?skip=0&limit=100",
+        "status": 200,
+        "milisegundos": 4.7
+      },
+      {
+        "metodo": "POST",
+        "ruta": "/gastos/",
+        "status": 201,
+        "milisegundos": 9.27
+      },
+      {
+        "metodo": "POST",
+        "ruta": "/gastos/",
+        "status": 201,
+        "milisegundos": 4.39
+      },
+      {
+        "metodo": "POST",
+        "ruta": "/gastos/",
+        "status": 201,
+        "milisegundos": 4.31
+      },
+      {
+        "metodo": "GET",
+        "ruta": "/gastos/?skip=0&limit=100",
+        "status": 200,
+        "milisegundos": 2.33
+      },
+      {
+        "metodo": "GET",
+        "ruta": "/gastos/?skip=0&limit=1",
+        "status": 200,
+        "milisegundos": 2.16
+      },
+      {
+        "metodo": "OPTIONS",
+        "ruta": "/usuarios/",
+        "status": 200,
+        "milisegundos": 0.64
+      },
+      {
+        "metodo": "OPTIONS",
+        "ruta": "/usuarios/",
+        "status": 200,
+        "milisegundos": 0.48
+      },
+      {
+        "metodo": "OPTIONS",
+        "ruta": "/usuarios/",
+        "status": 200,
+        "milisegundos": 0.48
+      },
+      {
+        "metodo": "OPTIONS",
+        "ruta": "/usuarios/",
+        "status": 200,
+        "milisegundos": 0.41
+      },
+      {
+        "metodo": "OPTIONS",
+        "ruta": "/usuarios/",
+        "status": 400,
+        "milisegundos": 0.5
+      },
+      {
+        "metodo": "GET",
+        "ruta": "/gastos/",
+        "status": 401,
+        "milisegundos": 1.23
+      },
+      {
+        "metodo": "GET",
+        "ruta": "/gastos/",
+        "status": 401,
+        "milisegundos": 1.23
+      },
+      {
+        "metodo": "POST",
+        "ruta": "/usuarios/",
+        "status": 422,
+        "milisegundos": 1.34
+      },
+      {
+        "metodo": "GET",
+        "ruta": "/gastos/?limit=1",
+        "status": 200,
+        "milisegundos": 8.37
+      }
+    ]
+  },
+  "cors": {
+    "origenes_permitidos": [
+      "http://127.0.0.1:8802",
+      "http://localhost:8802",
+      "http://127.0.0.1:8803",
+      "http://localhost:8803"
+    ],
+    "preflight_cuatro_origenes_status": 200,
+    "origen_ajeno_status": 400,
+    "origen_ajeno_sin_cabecera_de_acceso": true,
+    "cabecera_total_expuesta": "X-Total-Count",
+    "comprobado": true
+  },
+  "postgresql": {
+    "consulta_exit_code": 0,
+    "version_alembic": "a3f5c8d1e2b4",
+    "tablas": [
+      "alembic_version",
+      "gastos",
+      "usuarios"
+    ],
+    "cuenta_sintetica_almacenada_con_argon2id": true,
+    "gastos_en_base": [
+      {
+        "descripcion": "Almuerzo en el Mercado Central",
+        "monto": 6.5,
+        "categoria": "comida",
+        "fecha": "2026-10-06"
+      },
+      {
+        "descripcion": "Taxi al terminal",
+        "monto": 3.25,
+        "categoria": "transporte",
+        "fecha": "2026-10-06"
+      },
+      {
+        "descripcion": "Entrada al Museo Casa del Alabado",
+        "monto": 4.0,
+        "categoria": "entretenimiento",
+        "fecha": "2026-10-06"
+      }
+    ],
+    "api_y_sql_coinciden": true,
+    "registro_invalido_422_no_guardo_usuario": true,
+    "cuenta_ui_no_registrada_al_momento_de_esta_consulta": true
+  },
+  "limites": "La prueba del timeout aquí corresponde al cliente Python contra la API real. La presentación de estados y timeout en la app requiere su comprobación UI independiente. El stack permanece en ejecución.",
+  "revision_publicacion": {
+    "solo_datos_sinteticos": true,
+    "secretos_detectados": 0,
+    "rutas_privadas_detectadas": 0
+  },
+  "verificado": true
+}

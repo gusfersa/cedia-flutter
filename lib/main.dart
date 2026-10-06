@@ -1,11 +1,12 @@
 // Práctica académica CEDIA MOD3, basada en Patricio-CEDIA/exploraec-app,
-// rama sesion-02. Los datos de esta sesión viven únicamente en memoria.
+// sesiones 02–06. Lugares locales y JWT en memoria; Gastos usa una API REST.
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 
-import 'bindings/places_binding.dart';
+import 'bindings/app_binding.dart';
 import 'screens/favorites_placeholder_screen.dart';
+import 'screens/gastos_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/map_screen.dart';
 import 'theme/app_theme.dart';
@@ -24,7 +25,7 @@ class ExploraEcApp extends StatelessWidget {
       supportedLocales: const [Locale('es')],
       localizationsDelegates: GlobalMaterialLocalizations.delegates,
       theme: AppTheme.theme,
-      initialBinding: PlacesBinding(),
+      initialBinding: AppBinding(),
       home: const RootShell(),
     );
   }
@@ -46,9 +47,11 @@ class _RootShellState extends State<RootShell> {
       body: switch (_indiceActual) {
         0 => const HomeScreen(),
         1 => const MapScreen(),
-        _ => const FavoritesPlaceholderScreen(),
+        2 => const FavoritesPlaceholderScreen(),
+        _ => const GastosScreen(),
       },
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         currentIndex: _indiceActual,
         onTap: (indice) => setState(() => _indiceActual = indice),
         items: const [
@@ -57,6 +60,10 @@ class _RootShellState extends State<RootShell> {
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite),
             label: 'Favoritos',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.receipt_long),
+            label: 'Gastos',
           ),
         ],
       ),

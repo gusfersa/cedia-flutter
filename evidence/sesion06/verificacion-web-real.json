@@ -1,0 +1,114 @@
+{
+  "actividad_moodle": 49556,
+  "plataforma": "Flutter web en Edge",
+  "entrypoint": "lib/main.dart",
+  "api_real": "http://127.0.0.1:8000",
+  "backend_docente_commit": "480481ed87cedcfd7681da9ecacbcd80ac4ef08f",
+  "cuenta": "Datos sintéticos locales; sin información personal o financiera real.",
+  "registro_login_listado": {
+    "registro": 201,
+    "login_formulario": 200,
+    "listado": 200,
+    "total_nuevo": 0
+  },
+  "gastos_finales": 3,
+  "montos": [
+    "6.50",
+    "3.25",
+    "4.00"
+  ],
+  "fechas_utc": "2026-10-06",
+  "fecha_local": "2026-10-05",
+  "carga_real": {
+    "latencia_temporal_navegador_ms": 1800,
+    "capturada": true,
+    "latencia_final_ms": 0
+  },
+  "conexion": {
+    "red_interrumpida_solo_en_pestana": true,
+    "error_real": "net::ERR_INTERNET_DISCONNECTED",
+    "reintento_recupera_tres": true,
+    "servidor_permanecio_activo": true,
+    "red_final_online": true
+  },
+  "timeout": {
+    "sesion_ya_iniciada": true,
+    "plazo_prueba_ms": 1,
+    "latencia_añadida_en_prueba_ms": 0,
+    "error_view_observado": true,
+    "plazo_restaurado_ms": 15000,
+    "recupera_tres_sin_reiniciar_sesion": true,
+    "peticion_puede_finalizar_en_servidor_tras_plazo_cliente": true
+  },
+  "http401": {
+    "token_invalidado_por_menu_academico": true,
+    "codigo_servidor": 401,
+    "regreso_formulario_campos_vacios": true,
+    "explicacion_espanol": true,
+    "relogin_registro_duplicado400_login200_recupera3": true
+  },
+  "http422": {
+    "registro_con_password3_caracteres": true,
+    "codigo_servidor": 422,
+    "correo_sintetico_rechazado": "ui.invalido.sesion06@ejemplo.com",
+    "mensaje": "Datos inválidos — contraseña: Debe tener al menos 8 caracteres",
+    "json_crudo_oculto": true
+  },
+  "capturas": {
+    "01-formulario-api-real.png": {
+      "bytes": 20818,
+      "sha256": "711fe8e1671600d816fefe201c4c7a5a92705f55ca7e0e27531cf9c6e8b85336"
+    },
+    "02-usuario-nuevo-vacio.png": {
+      "bytes": 11564,
+      "sha256": "763ebe43acd7d30a8ac07567151f41bc48b6b7f925364678576704b32ccaecda"
+    },
+    "03-cargando-api-real.png": {
+      "bytes": 12171,
+      "sha256": "79d51a314b8a951437c145f9e4130bc3d691ebbac574f76ba14c0497cd39e5aa"
+    },
+    "04-tres-gastos-servidor.png": {
+      "bytes": 21893,
+      "sha256": "1c4d53a77952fe6588f34911aee8bd0cf71ed1da42d968e6828fc3c8bf368d3e"
+    },
+    "05-error-conexion-real.png": {
+      "bytes": 17070,
+      "sha256": "8b44f3c9104cba3aca890c524aba9f4d57e40d3249109979d2da54ec134a36b0"
+    },
+    "06-conexion-restaurada.png": {
+      "bytes": 21784,
+      "sha256": "30df7b88128f86c4cec30780dd06502008d97ecb2775ce3817b8d227b74c392d"
+    },
+    "07-timeout-autenticado-1ms.png": {
+      "bytes": 17063,
+      "sha256": "21cb9482ce00f41fe79e9ffb115e2b4996756d2fee144098e5a56e487a11f0da"
+    },
+    "08-timeout-restaurado-15s.png": {
+      "bytes": 21784,
+      "sha256": "30df7b88128f86c4cec30780dd06502008d97ecb2775ce3817b8d227b74c392d"
+    },
+    "09-401-formulario-vacio.png": {
+      "bytes": 29636,
+      "sha256": "6892d6469fc57a8960022bb5fb8e04f7611176b069b4f0238c65697dd5702e1f"
+    },
+    "10-401-login-recuperado.png": {
+      "bytes": 21784,
+      "sha256": "30df7b88128f86c4cec30780dd06502008d97ecb2775ce3817b8d227b74c392d"
+    },
+    "11-422-campo-espanol.png": {
+      "bytes": 30818,
+      "sha256": "d4643e61eb4e63236165fcabe03a202c72ab42cbb18ec8d308a5d4d5aa2ba5d1"
+    },
+    "12-final-gastos-tres.png": {
+      "bytes": 21784,
+      "sha256": "30df7b88128f86c4cec30780dd06502008d97ecb2775ce3817b8d227b74c392d"
+    }
+  },
+  "limites": [
+    "No ejecución nativa Android S6, teléfono físico, iOS ni TalkBack.",
+    "Paso10 opcional fuera del alcance.",
+    "Adaptador CORS local propio, no atribuido al backend docente.",
+    "Controles de plazo adicionales solo depuración+LAB_PRUEBAS=true; final15s."
+  ],
+  "verificado": true
+}

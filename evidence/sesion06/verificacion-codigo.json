@@ -1,0 +1,125 @@
+{
+  "actividad_moodle": 49556,
+  "verificado_utc": "2026-10-06T03:03:29.173466+00:00",
+  "flutter": "3.47.6",
+  "dart": "3.13.5",
+  "pruebas_normales": 61,
+  "regresiones_previas": 36,
+  "pruebas_nuevas_normales": 25,
+  "prueba_adicional_laboratorio": 1,
+  "casos_unicos": 62,
+  "etapas": [
+    {
+      "etapa": "analisis-final-01",
+      "codigo_salida": 0,
+      "inicio_utc": "2026-10-06T02:59:52.090891+00:00",
+      "fin_utc": "2026-10-06T02:59:55.678611+00:00",
+      "comando": [
+        "flutter",
+        "analyze"
+      ]
+    },
+    {
+      "etapa": "pruebas-final-01",
+      "codigo_salida": 0,
+      "inicio_utc": "2026-10-06T02:59:25.255610+00:00",
+      "fin_utc": "2026-10-06T02:59:29.721510+00:00",
+      "comando": [
+        "flutter",
+        "test",
+        "--reporter",
+        "expanded"
+      ]
+    },
+    {
+      "etapa": "prueba-timeout-final-01",
+      "codigo_salida": 0,
+      "inicio_utc": "2026-10-06T03:00:17.187014+00:00",
+      "fin_utc": "2026-10-06T03:00:20.068012+00:00",
+      "comando": [
+        "flutter",
+        "test",
+        "test/sesion06_test.dart",
+        "--dart-define=LAB_PRUEBAS=true",
+        "--plain-name",
+        "Laboratorio cambia 1 ms→15 s",
+        "--reporter",
+        "expanded"
+      ]
+    },
+    {
+      "etapa": "formato-verificacion-01",
+      "codigo_salida": 0,
+      "inicio_utc": "2026-10-06T03:00:18.674467+00:00",
+      "fin_utc": "2026-10-06T03:00:18.835787+00:00",
+      "comando": [
+        "dart",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "lib",
+        "test"
+      ]
+    }
+  ],
+  "formato_archivos": 38,
+  "formato_cambios": 0,
+  "configuracion_plataforma": {
+    "archivo": "android/app/src/main/AndroidManifest.xml",
+    "xml_valido": true,
+    "permisos": [
+      "android.permission.ACCESS_FINE_LOCATION",
+      "android.permission.ACCESS_COARSE_LOCATION",
+      "android.permission.INTERNET"
+    ],
+    "http_laboratorio_permitido": true,
+    "compilacion_android_sesion06_realizada": false,
+    "apk_sesion05_preservado": true,
+    "api_timeout_normal_ms": 15000,
+    "lab_pruebas_por_defecto": false
+  },
+  "revision_independiente": "APTO en lectura del código frente a los pasos0–9; pruebas reales de interfaz por separado.",
+  "sha256_fuentes": {
+    "lib/bindings/app_binding.dart": "fc50d147ab74f78364058949c58110228f1aeba6f1cb4b8db1f8452ddb897373",
+    "lib/bindings/gastos_binding.dart": "c589fb52da0b2892b2bd475738ca7dae0281dc248a52e0f59ab2ae03615e40d5",
+    "lib/bindings/places_binding.dart": "3a8fa411298178bf1eaa0bc22a7e1efdef02b88b0974cd1a2fcbab2c85aadbfa",
+    "lib/config/api_config.dart": "8c4127f3b77984fa96ca0721b47fa1ff499de12f41d5264cf3a6c5021ee01693",
+    "lib/controllers/gastos_controller.dart": "80d38d045c3a5aee8ae78e155543296c9ef0ae29d8f80d1de918b69639a6d85f",
+    "lib/controllers/places_controller.dart": "37c9dcf7c85de724ebffa831ac264724874a65e905e2c2e0cf2609ed5709395a",
+    "lib/main.dart": "7345ecdbaac5953dcc064b708d3eff1d845cf0ffbe20c0df002bf3d674cd0cd0",
+    "lib/models/gasto.dart": "6aa016b8e65834cd51d0bd8137c6bb260ce6ae10afd69996e82d0d3fbb082a23",
+    "lib/models/place.dart": "18bc61889cdf02c50f9f1fca2eb3daac1cab7425dfd8a58c410fe88cc33ae385",
+    "lib/playground/contador_demo.dart": "6450630528add81b51e28d8562d8554d465029b5fd7ab9c7a7bda077cc34865e",
+    "lib/playground/contador_demo_main.dart": "5442d8e8bd8e7e5f3b62c6f31b2f7dd0670b47f69d4c220ffc500a4847ced437",
+    "lib/playground/dart_basics.dart": "12e095139222e1ea3cc1f208f4c0cf090d95731fd1d467664da435c541e13801",
+    "lib/playground/mapa_demo_main.dart": "36e803098a51eb0c09021156805a447e10cbf624dabb856d3f80ce4b9baa346c",
+    "lib/screens/add_place_screen.dart": "14ea565ab8cba7a67e90944f99b7b55e8e149ddbed2677a9e4582f27833e38ef",
+    "lib/screens/detail_screen.dart": "fa5503d3d304a796ae92df4fd9cde12a6c777625b9280ddae9ca805277d5fbe2",
+    "lib/screens/favorites_placeholder_screen.dart": "0484a4d525f05aca568654fac0e68c56e1f25c8375ecc4ecf813af332a828ee8",
+    "lib/screens/gastos_screen.dart": "fef3d13a4bc1fbcd09a6906d2c4b064384e69f55dac129581cc796081f5a1674",
+    "lib/screens/home_screen.dart": "66c7940fc72481df49175886f4df986a44bf547270c90aabd4d5dcf934ca7675",
+    "lib/screens/map_placeholder_screen.dart": "6bf049c7fc5f868908e4e39fc1eb03bc51f33ebc1c7737d9a2aa3042d476ecdf",
+    "lib/screens/map_screen.dart": "a9e2a6f9eb3274fc65af344ec2fc2500f321ad1899394b6d25b4e7665b84425c",
+    "lib/services/api_exception.dart": "0d782aff58bce450c0370f8c41cc9cd28ffc0fff8c8426cab125bdd5756311d4",
+    "lib/services/gastos_api_service.dart": "c4c62a69f116418e7a0374a6638c578608cffa2bbbc2b39a953d510ba5193032",
+    "lib/services/location_service.dart": "8f7eb4c08cc0d3a4a85a5360a470faa52bf03ed769a9469af3921669f8b6e8a8",
+    "lib/theme/app_theme.dart": "ff69b8279dbf9c1b0b5d5af73e056abcde36e296bde452b00f81f0e7e91e8de5",
+    "lib/widgets/empty_view.dart": "f50cab96754e33975a07fb264cb251bf64e01be5e1e393dc4c417bbefcb70903",
+    "lib/widgets/error_view.dart": "737ab54f3a0d46c4ca58a7185801a84303caa97af42b53a80285424e98c4e9c2",
+    "lib/widgets/loading_view.dart": "9959250f014cdeed6cb993dc0029804a56f43234c502e50622bf48a44395dacf",
+    "lib/widgets/place_card.dart": "1e3d67bf4857fe6253b6e086555b84fee961af7bd3f25c6e7f64be069c3d08d2",
+    "test/app_test.dart": "8b4633e08d899ef9d414081f466f28f216cf04b4d4cf5e402f1673e5d6c36543",
+    "test/contador_demo_test.dart": "dd3118ed9d68dac2e2f79affb562a6c36daf2a8db7f20bc551e402f93be96554",
+    "test/gastos_api_service_test.dart": "bb31ed7202161202f9c43a1b7f505806b6ec6caac9e8d02ff62801093ec9dec7",
+    "test/gastos_controller_test.dart": "882a43253099f49c842d5e971e7d592e6432dc2c129b664d0e599de492ee3000",
+    "test/helpers/geo_fake.dart": "3a8c0bad35d6785aa6de87e7828002f087fe55eec4714a08ec93e51d160e310c",
+    "test/location_service_test.dart": "791924a6b4390ac021efdf4a5555f763de2e673dc2d44fef3a80f5eee20834e4",
+    "test/sesion03_test.dart": "2387019d2167e2824b1ab478873ca9f63ba738befb0c8b23986f916ca7df81f4",
+    "test/sesion04_test.dart": "8ac7390c7c5dff9e308641d2a80c09091534d9dc4ca30ccae4b0c87a3305dee3",
+    "test/sesion05_test.dart": "9cbb0e3bee2ff5137af6f00da378e224687d32f3ae8e6140052bf620a46e965f",
+    "test/sesion06_test.dart": "2937c989446c535ac0edba62b0bb5ec2615da7a7d36d82a99eae3975e708ab2a",
+    "pubspec.yaml": "2910e96120fae7969f43a9e08a59b39ed0898aba6ca2256efebfb1eaa6882422",
+    "pubspec.lock": "46d72d4e09ff18d4a9edcfe00f14370d9809e57e40046dc6760e621ca983f734",
+    "android/app/src/main/AndroidManifest.xml": "f38f167db0b4d7de484b840a1b0cd68af94da4c1a4f92705555702b4bf719fc5"
+  }
+}

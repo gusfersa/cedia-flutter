@@ -1,0 +1,26 @@
+{
+  "nota": "Respuestas de las peticiones reales; preflight CORS excluido.",
+  "peticiones": [
+    {
+      "secuencia": 77,
+      "tipo": "Fetch",
+      "url": "http://127.0.0.1:8000/usuarios/",
+      "codigo": 201,
+      "total": null
+    },
+    {
+      "secuencia": 83,
+      "tipo": "Fetch",
+      "url": "http://127.0.0.1:8000/usuarios/token",
+      "codigo": 200,
+      "total": null
+    },
+    {
+      "secuencia": 94,
+      "tipo": "Fetch",
+      "url": "http://127.0.0.1:8000/gastos/?skip=0&limit=20",
+      "codigo": 200,
+      "total": "0"
+    }
+  ]
+}

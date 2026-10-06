@@ -1,0 +1,106 @@
+{
+  "sesion": 6,
+  "alcance": "Datos reales para la cuenta sintética de la UI, contrastados entre API y PostgreSQL; el coordinador verifica la recarga visual aparte",
+  "hora_api_utc": "2026-10-06T02:58:43.403927+00:00",
+  "hora_sql_utc": "2026-10-06T02:59:53.908902+00:00",
+  "cuenta_sintetica": "ui.sesion06@ejemplo.com",
+  "estado_antes": {
+    "gastos": 0,
+    "vacio_en_app_confirmado_por_coordinador": true,
+    "secuencia_confirmada_por_coordinador": [
+      "registro201",
+      "login200",
+      "listado200"
+    ],
+    "total_inicial_confirmado": 0
+  },
+  "siembra": {
+    "gastos_creados": 3,
+    "duplicados_creados": 0,
+    "consulta_previa_realizada": true,
+    "gastos_finales": [
+      {
+        "descripcion": "Almuerzo en el Mercado Central",
+        "monto": 6.5,
+        "categoria": "comida",
+        "fecha": "2026-10-06"
+      },
+      {
+        "descripcion": "Taxi al terminal",
+        "monto": 3.25,
+        "categoria": "transporte",
+        "fecha": "2026-10-06"
+      },
+      {
+        "descripcion": "Entrada al Museo Casa del Alabado",
+        "monto": 4.0,
+        "categoria": "entretenimiento",
+        "fecha": "2026-10-06"
+      }
+    ],
+    "x_total_count": 3
+  },
+  "postgresql": {
+    "consulta_exit_code": 0,
+    "gastos_cuenta_ui": 3,
+    "gastos_cuenta_api_independiente": 3,
+    "cuenta_ui_almacenada_con_argon2id": true,
+    "filas_coinciden_con_api": true,
+    "gastos": [
+      {
+        "descripcion": "Almuerzo en el Mercado Central",
+        "monto": 6.5,
+        "categoria": "comida",
+        "fecha": "2026-10-06"
+      },
+      {
+        "descripcion": "Taxi al terminal",
+        "monto": 3.25,
+        "categoria": "transporte",
+        "fecha": "2026-10-06"
+      },
+      {
+        "descripcion": "Entrada al Museo Casa del Alabado",
+        "monto": 4.0,
+        "categoria": "entretenimiento",
+        "fecha": "2026-10-06"
+      }
+    ]
+  },
+  "resultado_esperado_en_ui": {
+    "titulo": "Gastos (3)",
+    "numero_filas": 3,
+    "verificacion_visual_corresponde_al_coordinador": true
+  },
+  "preservacion": {
+    "cuenta_api_independiente_conservada": true,
+    "stack_permanece_en_ejecucion": true,
+    "sin_borrados_ni_reemplazos": true
+  },
+  "revision_publicacion": {
+    "solo_datos_sinteticos": true,
+    "secretos_detectados": 0,
+    "rutas_privadas_detectadas": 0
+  },
+  "verificado": true,
+  "revision_final": {
+    "hora_sql_utc": "2026-10-06T03:02:06.403757+00:00",
+    "registro_422_ui_no_creo_usuario": true,
+    "correo_sintetico_rechazado": "ui.invalido.sesion06@ejemplo.com",
+    "filas_de_ese_correo": 0,
+    "gastos_ui_preservados": 3,
+    "gastos_api_independiente_preservados": 3,
+    "filas_sql_coinciden_con_siembra": true,
+    "argon2id_confirmado": true,
+    "interfaz_real": {
+      "fuente": "Confirmación explícita del coordinador de la prueba visual",
+      "timeout_natural_1ms_mostro_error": true,
+      "restaurar_15s_recupero_tres_gastos": true,
+      "error_de_red_mostro_mensaje_y_reintento_recupero_tres": true,
+      "credencial_invalida_produjo_401_y_formulario_vacio": true,
+      "reentrada_registro_existente_400_login_200_recupero_tres": true,
+      "registro_422_mostro_mensaje_en_español_con_minimo_ocho_caracteres": true
+    },
+    "comprobacion_independiente": "Consulta SQL real posterior a la prueba de la interfaz"
+  }
+}
