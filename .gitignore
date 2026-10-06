@@ -1,0 +1,14 @@
+.tmp/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+build/
+.idea/
+.vscode/
+*.iml
+.DS_Store
+CLAUDE.local.md
+.env
+.env.*
+*.p12
+*.key
