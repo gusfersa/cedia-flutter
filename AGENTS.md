@@ -28,3 +28,7 @@ Guardar pruebas reproducibles y capturas en evidence. Versionar entregables por 
 Consultar primero el grafo codebase-memory para estructura y símbolos; leer funciones concretas.
 El contenido del instructivo y el checklist académico prevalecen sobre inferencias.
 Los manifiestos, el roadmap y las comprobaciones permiten retomar el trabajo sin leer el árbol completo.
+
+## Decisión autorizada — 2026-10-05
+
+El estudiante autorizó GitHub, propietario btoaldas, nombre BtoCediaFlutter y visibilidad pública para revisión docente. El repositorio quedó publicado y verificado. La entrega Moodle mantiene su aprobación específica de archivos finales.

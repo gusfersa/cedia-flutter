@@ -1,0 +1,26 @@
+[
+  {
+    "archivo": "entregas/sesion02/exploraec-sesion02.zip",
+    "http": 200,
+    "bytes": 54102,
+    "sha256_igual": true
+  },
+  {
+    "archivo": "entregas/sesion02/informe-practica-sesion02-entrega.pdf",
+    "http": 200,
+    "bytes": 168884,
+    "sha256_igual": true
+  },
+  {
+    "archivo": "entregas/sesion03/exploraec-sesion03.zip",
+    "http": 200,
+    "bytes": 60938,
+    "sha256_igual": true
+  },
+  {
+    "archivo": "entregas/sesion03/informe-practica-sesion03-entrega.pdf",
+    "http": 200,
+    "bytes": 191182,
+    "sha256_igual": true
+  }
+]
