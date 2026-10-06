@@ -1,0 +1,47 @@
+{
+  "verificado": "2026-10-05T21:40:54.092071-05:00",
+  "curso": 945,
+  "materiales_docentes": 12,
+  "archivos_propios_entregados": 8,
+  "grabaciones_completas": 5,
+  "grabaciones_pendientes": 0,
+  "audios_redescargados": 0,
+  "adiciones": 10,
+  "previos_preservados_sha256": 89,
+  "adiciones_sha256_verificadas": 10,
+  "enlaces_md_validos": 43,
+  "enlaces_html_validos": 6,
+  "entregas_nuevas": [
+    {
+      "archivo": "exploraec-sesion04.zip",
+      "sha256": "c912057cc0cc35218a1b1c913d9841050aaa8c913f133b7ff0a60bfa3dd977a5",
+      "copia_moodle_en_onedrive_identica": true
+    },
+    {
+      "archivo": "informe-practica-sesion04-entrega.pdf",
+      "sha256": "3e7e50571d365cded9d19582ee46bad0ad141ac93bb9b5329ba3de609f1b1221",
+      "copia_moodle_en_onedrive_identica": true
+    },
+    {
+      "archivo": "exploraec-sesion05.zip",
+      "sha256": "02721d85b7525502be8db5eb89ff6f450764efc05fd76d486cc47966fcde03e9",
+      "copia_moodle_en_onedrive_identica": true
+    },
+    {
+      "archivo": "informe-practica-sesion05-entrega.pdf",
+      "sha256": "2eeb2ef5473cc89e50e8324280841c17bd29fd0a520111fbad787bb7b99a062e",
+      "copia_moodle_en_onedrive_identica": true
+    }
+  ],
+  "resumen": {
+    "actividades": 19,
+    "archivos": 20,
+    "fallidos": 0,
+    "paginas": 6,
+    "videos": 5,
+    "no_disponibles": 0,
+    "copia": "2026-10-05 21:37"
+  },
+  "destino": "Carpeta existente de formación CEDIA en OneDrive",
+  "constancias": "Conservadas sin cambios; archivo separado"
+}
