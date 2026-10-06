@@ -11,3 +11,7 @@ ZIP `exploraec-sesion06.zip`:108761 bytes,71 fuentes idénticas al commit, CRC c
 Recursos actuales del curso:99 archivos anteriores preservados,9 adiciones; cero fallidos y pendientes. Grabación de Sesión6 aún no publicada; cinco anteriores completas.
 
 Pendiente: OK específico de Alberto sobre estos dos archivos antes de subir a Moodle. La práctica todavía no está entregada. Tras aprobar: subir ambos, verificar bytes descargados y estado visible, conservar constancia y registrar cierre.
+
+## Actualización posterior: entregada
+
+El OK específico llegó y ambos archivos se entregaron el 5 de octubre de 2026 a las 22:21. Moodle muestra «Enviado para calificar», «Sin calificar»; las dos descargas son idénticas por SHA-256 y el estado se comprobó también en la interfaz. Esta sección cierra el pendiente histórico de preparación. El hito de entrega detalla la constancia y el respaldo final; no se regeneró el ZIP ni el PDF aprobado.

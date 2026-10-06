@@ -1,0 +1,171 @@
+{
+  "actividad_moodle": 49556,
+  "sesion": 6,
+  "veredicto": "APTO",
+  "observado_utc": "2026-10-06T03:26:42.242502+00:00",
+  "hallazgos": [],
+  "artefactos": [
+    {
+      "archivo": "entregas/sesion06/exploraec-sesion06.zip",
+      "bytes": 108761,
+      "sha256": "458c863b0b0b3750eaeffe4de17105aff21d37fae57d8e9974bbdb69a45a4f96",
+      "coincide_con_aprobado": true
+    },
+    {
+      "archivo": "entregas/sesion06/informe-practica-sesion06-entrega-v3.pdf",
+      "bytes": 179785,
+      "sha256": "6963e4d713cd8d82702799240cfb9c8f2c633abfca3a54ff117cdd682513006a",
+      "coincide_con_aprobado": true
+    }
+  ],
+  "zip": {
+    "integridad_crc": true,
+    "archivos": 71,
+    "archivos_identicos_a_blobs_del_commit": 71,
+    "extras_faltantes_o_diferencias": 0,
+    "metodo": "Lectura independiente de cada entrada ZIP y comparación con git show; sin extracción ni modificación de artefactos."
+  },
+  "fuentes": {
+    "commit": "0c35a2b5a6e4e19b38b6443cc56363cd18716b7b",
+    "archivos_comparados": 67,
+    "todos_identicos": true,
+    "alcance": [
+      "lib",
+      "test",
+      "android",
+      "web",
+      "pubspec.yaml",
+      "pubspec.lock",
+      "analysis_options.yaml"
+    ],
+    "metodo": "Lectura local de los archivos y comparación directa con los blobs del commit, más diff versionado vacío."
+  },
+  "pdf": {
+    "paginas_con_texto": 10,
+    "extraccion_sin_advertencias": true,
+    "cuatro_anotaciones_uri_exactas": true,
+    "uri": [
+      "https://github.com/btoaldas/BtoCediaFlutter/tree/0c35a2b5a6e4e19b38b6443cc56363cd18716b7b",
+      "https://github.com/btoaldas/BtoCediaFlutter/tree/0c35a2b5a6e4e19b38b6443cc56363cd18716b7b/evidence/sesion06",
+      "https://github.com/Patricio-CEDIA/exploraec-app/tree/acaa1afb8fb362ae68525315fa35f22dacab04f0",
+      "https://github.com/cj-murillo/proyecto-curso-spec-kit/tree/480481ed87cedcfd7681da9ecacbcd80ac4ef08f"
+    ],
+    "limite": "Se verificaron integridad, texto y anotaciones URI. La revisión visual completa previa permanece en revision-informe-v3.json; no se repitió su renderizado."
+  },
+  "moodle": {
+    "estado": "Enviado para calificar",
+    "calificacion": "Sin calificar",
+    "fecha_modificacion": "lunes, 5 de octubre de 2026, 22:21",
+    "archivos": [
+      "exploraec-sesion06.zip",
+      "informe-practica-sesion06-entrega-v3.pdf"
+    ],
+    "puede_enviar": false,
+    "constancia_publica_coincide_con_estado_privado": true,
+    "texto_ax_confirma_estado_fecha_y_adjuntos": true,
+    "evidencia": "evidence/sesion06/verificacion-moodle-entrega.json",
+    "procedencia_descargas": "Salida y hashes de descarga conservados por el coordinador en la constancia. Esta auditoría no repite POST ni descargas de Moodle."
+  },
+  "onedrive_constancia": {
+    "copias_comparadas": 6,
+    "bytes_y_sha256_coinciden": true,
+    "indice_aditivo_presente": true,
+    "contenido_privado_no_publicado": true
+  },
+  "documentos_revisados": [
+    {
+      "archivo": "README.md",
+      "bytes": 6596,
+      "sha256": "a8806fa66c24ea1dbe52c81519bb74453fe710194dd845905d7f4a21fc17ab90"
+    },
+    {
+      "archivo": "ROADMAP.md",
+      "bytes": 2945,
+      "sha256": "bae9086518830f57c214b075e6fc2bf5be834a00f15fbed6ffc65403cd324cad"
+    },
+    {
+      "archivo": "docs/manifiestos/2026-10-05-sesion06.md",
+      "bytes": 4002,
+      "sha256": "af163f287d155977b927f5e8b19f64caba14a2f2839bbc7a176c27c657da8d7b"
+    },
+    {
+      "archivo": "docs/hitos/2026-10-05-sesion06-preparada.md",
+      "bytes": 2067,
+      "sha256": "01589c8523e5ef25a06302b81f31ff6a6675e10d498dda34434f00791b88cd36"
+    },
+    {
+      "archivo": "docs/hitos/2026-10-05-sesion06-entregada.md",
+      "bytes": 1491,
+      "sha256": "756e5479b80029c804e040d0cd9f222c2ee937d5425b7394ad861141c968a1cc"
+    },
+    {
+      "archivo": "docs/bitacora/2026-10-05.md",
+      "bytes": 11085,
+      "sha256": "da1ec707b2224c829b10041f19727cadc551be3eea66cb9f40b2213b8a545908"
+    },
+    {
+      "archivo": "evidence/sesion06/verificacion-moodle-entrega.json",
+      "bytes": 1575,
+      "sha256": "24b429759f9c882377a36e0bf7d2fd084827e76e956f7eefaa09de9a500ee24d"
+    }
+  ],
+  "enlaces_locales": [
+    {
+      "origen": "README.md",
+      "destino": "docs/practica-sesion04.md",
+      "existe": true
+    },
+    {
+      "origen": "README.md",
+      "destino": "docs/practica-sesion05.md",
+      "existe": true
+    },
+    {
+      "origen": "README.md",
+      "destino": "docs/practica-sesion06.md",
+      "existe": true
+    },
+    {
+      "origen": "README.md",
+      "destino": "entregas/sesion06/exploraec-sesion06.zip",
+      "existe": true
+    },
+    {
+      "origen": "README.md",
+      "destino": "entregas/sesion06/informe-practica-sesion06-entrega-v3.pdf",
+      "existe": true
+    },
+    {
+      "origen": "README.md",
+      "destino": "evidence/sesion06/verificacion-moodle-entrega.json",
+      "existe": true
+    },
+    {
+      "origen": "docs/manifiestos/2026-10-05-sesion06.md",
+      "destino": "../../evidence/sesion06/verificacion-moodle-entrega.json",
+      "existe": true
+    },
+    {
+      "origen": "docs/hitos/2026-10-05-sesion06-entregada.md",
+      "destino": "../../evidence/sesion06/verificacion-moodle-entrega.json",
+      "existe": true
+    }
+  ],
+  "privacidad": {
+    "valores_privados_comparados": 4,
+    "coincidencias_valores_privados": 0,
+    "rutas_privadas_detectadas": 0,
+    "jwt_detectados": 0,
+    "secretos_publicados": false
+  },
+  "coordinacion": {
+    "anexos_recursos_y_registro_obsidian": "Pendientes de recepción en el instante de esta revisión; no representan una falta académica ni alteran los entregables aprobados."
+  },
+  "no_interferencia": {
+    "pruebas_flutter_repetidas": false,
+    "solicitudes_moodle_efectuadas": false,
+    "api_docker_avd_o_procesos_modificados": false,
+    "fuentes_modificadas": false,
+    "unica_escritura_de_esta_revision": "evidence/sesion06/revision-cierre-entrega.json"
+  }
+}

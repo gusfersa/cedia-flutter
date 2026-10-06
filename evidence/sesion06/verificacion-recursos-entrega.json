@@ -1,0 +1,106 @@
+{
+  "verificado": "2026-10-05T22:27:55.791572-05:00",
+  "curso_moodle": 945,
+  "actividad_moodle": 49556,
+  "url_actividad": "https://cursos.cedia.org.ec/mod/assign/view.php?id=49556&forceview=1",
+  "resumen": {
+    "actividades": 19,
+    "archivos_moodle": 22,
+    "materiales_docentes": 12,
+    "entregas_propias": 10,
+    "paginas": 6,
+    "fallidos": 0,
+    "no_disponibles": 0,
+    "grabaciones_completas": 5,
+    "grabaciones_pendientes": 0,
+    "audios_redescargados": 0
+  },
+  "archivo_local": {
+    "previos_preservados_sha256": 112,
+    "adiciones_verificadas_sha256": 6,
+    "archivos_totales_fuera_de_constancias": 118,
+    "bytes_adicionados": 317243,
+    "enlaces_md_validos": 56,
+    "enlaces_html_validos": 3,
+    "constancias_preservadas": true,
+    "verificacion": "Inventario Moodle completo, 22 archivos físicos contrastados con estado local, SHA-256 de 112 archivos previos y 6 adiciones, enlaces y CRC del ZIP.",
+    "enlaces_fallidos": 0,
+    "indice_nuevo": "00 Índice del curso (actualizado 2026-10-05 22-23).md",
+    "constancias_excluidas_del_conteo": true,
+    "preparaciones_preservadas": true
+  },
+  "grabacion_sesion06": "Aún no publicada en el aula al cierre; cinco sesiones anteriores completas, sin redescarga de audios.",
+  "documentos": [
+    {
+      "nombre": "04 - Sesión 6.pdf",
+      "paginas": 39,
+      "bytes": 2725488,
+      "sha256": "5b5005b2a6d18ce550517f7a7c97675ad21ca0ecd3d9cc7d23ba2864316ab46a"
+    },
+    {
+      "nombre": "instructivo-practica-sesion-06.pdf",
+      "paginas": 39,
+      "bytes": 282967,
+      "sha256": "d7c909a3a1cd679b8e36672b49b3ecd150dd248e744b0cc4866f79c36d510610"
+    }
+  ],
+  "referencias": [
+    {
+      "repositorio": "Patricio-CEDIA/exploraec-app",
+      "commit": "acaa1afb8fb362ae68525315fa35f22dacab04f0",
+      "licencia_declarada": false,
+      "licencia_github": null,
+      "archivos_licencia_encontrados": 0,
+      "nombre_zip": "exploraec-app-sesion-06-acaa1afb8fb3.zip",
+      "sha256_zip": "ac6b0cf619ee6b50396fdb687b6ce743417a3214e665ba380a681e1c68324ea2",
+      "archivos": 27,
+      "crc": "correcto"
+    },
+    {
+      "repositorio": "cj-murillo/proyecto-curso-spec-kit",
+      "commit": "480481ed87cedcfd7681da9ecacbcd80ac4ef08f",
+      "licencia_declarada": false,
+      "licencia_github": null,
+      "archivos_licencia_encontrados": 0,
+      "nombre_zip": "proyecto-curso-spec-kit-backend-sesion-06-480481ed87ce.zip",
+      "sha256_zip": "45daf9a3d18e21aead71a79a968de207fb06b08e639cb6fd5f639b7d042bf4d6",
+      "archivos": 128,
+      "crc": "correcto"
+    }
+  ],
+  "atribucion": "Adaptación académica de ExploraEC, referencia Patricio-CEDIA/exploraec-app, rama sesion-06 y commit acaa1afb8fb362ae68525315fa35f22dacab04f0. Backend de referencia cj-murillo/proyecto-curso-spec-kit, commit 480481ed87cedcfd7681da9ecacbcd80ac4ef08f. Licencias no declaradas en los snapshots consultados.",
+  "alcance_del_readme_frontend": "Starter de referencia académica con instrucciones de incorporar y adaptar archivos a la práctica; no declara permiso expreso de publicación pública.",
+  "fechas_moodle": {
+    "capturado": "2026-10-05T22:23:23.171605-05:00",
+    "apertura": "2026-10-05T00:00:00-05:00",
+    "cierre": "2026-10-12T00:00:00-05:00",
+    "estado_en_captura": "Enviado para calificar",
+    "calificacion_en_captura": "Sin calificar",
+    "ultima_modificacion": "2026-10-05T22:21:00-05:00"
+  },
+  "fase": "Cierre de recursos después de la entrega",
+  "entrega_sesion06": {
+    "estado": "Enviado para calificar",
+    "calificacion": "Sin calificar",
+    "ultima_modificacion": "2026-10-05T22:21:00-05:00",
+    "archivos": [
+      {
+        "nombre": "exploraec-sesion06.zip",
+        "bytes": 108761,
+        "sha256": "458c863b0b0b3750eaeffe4de17105aff21d37fae57d8e9974bbdb69a45a4f96",
+        "crc_correcto": true,
+        "archivos_zip": 71
+      },
+      {
+        "nombre": "informe-practica-sesion06-entrega-v3.pdf",
+        "bytes": 179785,
+        "sha256": "6963e4d713cd8d82702799240cfb9c8f2c633abfca3a54ff117cdd682513006a",
+        "paginas": 10
+      }
+    ],
+    "sha256_coinciden_con_archivos_aprobados": true,
+    "descargados_desde_moodle_y_archivados": true
+  },
+  "nota_inventario_cache": "23 referencias de URL apuntan a 22 archivos físicos; dos aliases de Sesión 2 corresponden al mismo PDF. No hay archivo faltante ni nueva descarga duplicada.",
+  "limite": "Este registro verifica la copia local de OneDrive; no afirma por sí solo sincronización remota de la nube. La entrega Moodle fue realizada por el coordinador y contrastada en el refresco de lectura."
+}

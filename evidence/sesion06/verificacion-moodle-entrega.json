@@ -1,0 +1,37 @@
+{
+  "actividad_moodle": 49556,
+  "sesion": 6,
+  "url_tarea": "https://cursos.cedia.org.ec/mod/assign/view.php?id=49556",
+  "observado": "2026-10-05T22:23:23-05:00",
+  "fecha_modificacion_moodle": "lunes, 5 de octubre de 2026, 22:21",
+  "fecha_entrega_local": "2026-10-05T22:21:00-05:00",
+  "estado": "Enviado para calificar",
+  "calificacion": "Sin calificar",
+  "puede_enviar": false,
+  "archivos": [
+    {
+      "nombre": "exploraec-sesion06.zip",
+      "bytes": 108761,
+      "sha256": "458c863b0b0b3750eaeffe4de17105aff21d37fae57d8e9974bbdb69a45a4f96",
+      "descarga_moodle_identica": true,
+      "version": "Final"
+    },
+    {
+      "nombre": "informe-practica-sesion06-entrega-v3.pdf",
+      "bytes": 179785,
+      "sha256": "6963e4d713cd8d82702799240cfb9c8f2c633abfca3a54ff117cdd682513006a",
+      "descarga_moodle_identica": true,
+      "version": "Final revisión 3"
+    }
+  ],
+  "codigo_fijo": "0c35a2b5a6e4e19b38b6443cc56363cd18716b7b",
+  "entregables_fijos": "ed81e752c92b64f6eb0b76cc43d491832720739c",
+  "autorizacion": "Aprobación explícita de los dos archivos exactos por el estudiante antes de subir.",
+  "verificacion": {
+    "subida": "Dos archivos subidos y guardados, salida 0 del procedimiento moodle-tarea mediante cedia-transporte-curl.",
+    "descarga": "--verificar con ambos archivos, salida 0: ambos idénticos por SHA-256.",
+    "estado": "--estado posterior, salida 0.",
+    "interfaz": "Edge: Enviado para calificar, Sin calificar, fecha y ambos adjuntos visibles. Captura privada conservada en la constancia."
+  },
+  "resultado": "APTO"
+}
