@@ -1,6 +1,8 @@
 // Formulario validado de la práctica CEDIA MOD3, ExploraEC sesion-02.
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import '../controllers/places_controller.dart';
 import '../models/place.dart';
 
 class AddPlaceScreen extends StatefulWidget {
@@ -15,6 +17,7 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
   final _nombreController = TextEditingController();
   final _categoriaController = TextEditingController();
   final _descripcionController = TextEditingController();
+  bool _guardando = false;
 
   @override
   void dispose() {
@@ -24,9 +27,17 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
     super.dispose();
   }
 
-  void _guardar() {
-    if (!_formKey.currentState!.validate()) return;
-    lugaresEjemplo.add(
+  Future<void> _guardar() async {
+    if (_guardando || !_formKey.currentState!.validate()) return;
+    setState(() => _guardando = true);
+    // Esperar los avisos evita que Get.back cierre un aviso en vez de la ruta.
+    while (Get.isSnackbarOpen) {
+      await Get.closeCurrentSnackbar();
+      // Get actualiza su cola después de resolver el cierre del aviso.
+      await WidgetsBinding.instance.endOfFrame;
+    }
+    if (!mounted) return;
+    Get.find<PlacesController>().agregarLugar(
       Place(
         id: DateTime.now().microsecondsSinceEpoch.toString(),
         nombre: _nombreController.text.trim(),
@@ -37,7 +48,8 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
         lng: -78.4859,
       ),
     );
-    Navigator.pop(context, true);
+    Get.back<void>();
+    Get.snackbar('Lugar agregado', 'Ya aparece en Inicio');
   }
 
   @override
@@ -88,7 +100,10 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                         : null,
               ),
               const SizedBox(height: 24),
-              ElevatedButton(onPressed: _guardar, child: const Text('Guardar')),
+              ElevatedButton(
+                onPressed: _guardando ? null : _guardar,
+                child: const Text('Guardar'),
+              ),
             ],
           ),
         ),

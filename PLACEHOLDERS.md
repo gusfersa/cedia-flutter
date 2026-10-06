@@ -1,10 +1,15 @@
-# Bloques completados — Sesión 2
+# Práctica de la Sesión 4 — estado compartido con GetX
 
-Referencia: Patricio-CEDIA/exploraec-app, rama sesion-02.
+Los pasos obligatorios 0–5 del instructivo están implementados. Inicio usa
+`GetView<PlacesController>` y `Obx`; el binding registra una única instancia;
+guardar un lugar actualiza la lista y el contador sin volver a cargar datos.
+La navegación usa `Get.to` y `Get.back`. El aviso de error se crea con `ever`
+en `onInit` y su suscripción se libera en `onClose`.
 
-Los bloques de la práctica quedaron activos en esta versión: lista lugaresEjemplo (6), PlaceCard, ListView.builder, Navigator.push a DetailScreen, tres TextFormField con validadores, guardado con Navigator.pop, barra inferior y cambio de pantalla con setState.
+Se conservan el tema, los estados, la validación, la accesibilidad y el diseño
+responsivo de las prácticas anteriores. Los datos permanecen en memoria.
 
-Los seis ejercicios de Dart se ejecutan en lib/playground/dart_basics.dart.
-El contador vive en lib/playground/contador_demo.dart; su entrada separada es lib/playground/contador_demo_main.dart.
+El paso 6 (favoritos e idioma) es opcional y queda fuera de esta entrega.
+Mapa y Favoritos conservan las pantallas provisionales de la Sesión 2.
 
-Las pantallas Mapa y Favoritos conservan los textos provisionales requeridos: todavía no implementan mapas o favoritos reales. El curso vigente publica mapas en la Sesión 5.
+Referencia académica: `Patricio-CEDIA/exploraec-app`, rama `sesion-04`.

@@ -9,16 +9,26 @@ import 'package:exploraec/widgets/loading_view.dart';
 import 'package:exploraec/widgets/place_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:get/get.dart';
 
 void main() {
   final ejemplosIniciales = List<Place>.of(lugaresEjemplo);
   setUp(() {
+    Get.reset();
+    Get.testMode = true;
     lugaresEjemplo
       ..clear()
       ..addAll(ejemplosIniciales);
   });
+  tearDown(() => Get.reset());
 
   Future<void> seleccionarModo(WidgetTester tester, String modo) async {
+    while (Get.isSnackbarOpen) {
+      final cierre = Get.closeCurrentSnackbar();
+      await tester.pumpAndSettle();
+      await cierre;
+      await tester.pump();
+    }
     await tester.tap(find.byTooltip('Simular estado (solo práctica)'));
     await tester.pumpAndSettle();
     await tester.tap(find.text('Simular: $modo'));
@@ -76,7 +86,11 @@ void main() {
     await terminarCarga(tester);
     expect(find.byType(ErrorView), findsOneWidget);
     expect(
-      find.text('Exception: No se pudo conectar con el servidor (simulado)'),
+      find.descendant(
+        of: find.byType(ErrorView),
+        matching: find
+            .text('Exception: No se pudo conectar con el servidor (simulado)'),
+      ),
       findsOneWidget,
     );
     expect(find.text('Reintentar'), findsOneWidget);
@@ -160,7 +174,7 @@ void main() {
     try {
       final lugar = ejemplosIniciales.first;
       await tester.pumpWidget(
-        MaterialApp(
+        GetMaterialApp(
           theme: AppTheme.theme,
           home: Scaffold(body: PlaceCard(place: lugar)),
         ),

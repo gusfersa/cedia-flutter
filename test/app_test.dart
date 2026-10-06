@@ -5,15 +5,19 @@ import 'package:exploraec/screens/detail_screen.dart';
 import 'package:exploraec/widgets/place_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:get/get.dart';
 
 void main() {
   final ejemplosIniciales = List<Place>.of(lugaresEjemplo);
 
   setUp(() {
+    Get.reset();
+    Get.testMode = true;
     lugaresEjemplo
       ..clear()
       ..addAll(ejemplosIniciales);
   });
+  tearDown(() => Get.reset());
 
   Future<void> abrirFormulario(WidgetTester tester) async {
     await tester.pumpWidget(const ExploraEcApp());
@@ -127,6 +131,8 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text('1234567890'), findsOneWidget);
     expect(tester.takeException(), isNull);
+    await tester.pump(const Duration(seconds: 4));
+    await tester.pumpAndSettle();
   });
 
   testWidgets('Cancelar el formulario conserva los seis lugares',
@@ -151,7 +157,7 @@ void main() {
     expect(find.text('Próximamente: favoritos (Sesión 7)'), findsOneWidget);
     await tester.tap(find.text('Inicio'));
     await tester.pumpAndSettle();
-    expect(find.text('ExploraEC'), findsOneWidget);
+    expect(find.text('ExploraEC (6)'), findsOneWidget);
     expect(find.byType(PlaceCard), findsWidgets);
     expect(tester.takeException(), isNull);
   });
@@ -179,5 +185,7 @@ void main() {
     await tester.pumpAndSettle();
     expect(lugaresEjemplo, hasLength(7));
     expect(tester.takeException(), isNull);
+    await tester.pump(const Duration(seconds: 4));
+    await tester.pumpAndSettle();
   });
 }

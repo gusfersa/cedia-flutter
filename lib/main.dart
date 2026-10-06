@@ -2,7 +2,9 @@
 // rama sesion-02. Los datos de esta sesión viven únicamente en memoria.
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:get/get.dart';
 
+import 'bindings/places_binding.dart';
 import 'screens/favorites_placeholder_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/map_placeholder_screen.dart';
@@ -15,13 +17,14 @@ class ExploraEcApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'ExploraEC',
       debugShowCheckedModeBanner: false,
       locale: const Locale('es'),
       supportedLocales: const [Locale('es')],
       localizationsDelegates: GlobalMaterialLocalizations.delegates,
       theme: AppTheme.theme,
+      initialBinding: PlacesBinding(),
       home: const RootShell(),
     );
   }

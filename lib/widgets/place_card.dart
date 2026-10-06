@@ -1,5 +1,6 @@
 // Tarjeta de la práctica CEDIA MOD3; referencia: ExploraEC, sesion-02.
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../models/place.dart';
 import '../screens/detail_screen.dart';
@@ -17,10 +18,7 @@ class PlaceCard extends StatelessWidget {
         vertical: AppSpacing.sm,
       ),
       child: InkWell(
-        onTap: () => Navigator.push<void>(
-          context,
-          MaterialPageRoute(builder: (context) => DetailScreen(place: place)),
-        ),
+        onTap: () => Get.to<void>(() => DetailScreen(place: place)),
         child: Semantics(
           label: '${place.nombre}, categoría ${place.categoria}',
           hint: 'Toca dos veces para ver el detalle',

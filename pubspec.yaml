@@ -1,5 +1,5 @@
 name: exploraec
-description: "Práctica académica de ExploraEC, Sesión 2 del curso CEDIA MOD3."
+description: "Prácticas académicas de ExploraEC del curso CEDIA MOD3."
 publish_to: "none"
 version: 1.0.0+1
 
@@ -11,6 +11,7 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
+  get: ^4.6.6
 
 dev_dependencies:
   flutter_test:
