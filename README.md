@@ -12,6 +12,8 @@ Aplicación de formación en Flutter y Dart para las prácticas de widgets, tema
 Los informes y los ZIP de fuentes están en `entregas/sesion02/` y `entregas/sesion03/`.
 Cada informe contiene un enlace clicable al commit exacto de su práctica.
 
+Ambas prácticas fueron entregadas el 5 de octubre de 2026: Sesión 2 a las 19:58 y Sesión 3 a las 19:59. Moodle muestra «Enviado para calificar» y aún «Sin calificar»; los cuatro archivos descargados coinciden con sus originales por SHA-256.
+
 ## Ejecutar y comprobar
 
 Requiere Flutter. Validado con Flutter 3.47.6 y Dart 3.13.5 en web.

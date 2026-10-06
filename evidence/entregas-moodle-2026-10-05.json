@@ -1,0 +1,31 @@
+{
+  "fecha": "2026-10-05",
+  "verificacion_bytes": "4 de 4 archivos idénticos por SHA-256; verificar salida 0 en ambas tareas",
+  "verificacion_ui": "Estado, nombres y fechas confirmados en vista del aula",
+  "sesiones": [
+    {
+      "sesion": "02",
+      "cmid": 49354,
+      "estado": "Enviado para calificar",
+      "calificacion": "Sin calificar",
+      "modificado": "lunes, 5 de octubre de 2026, 19:58",
+      "archivos": [
+        "exploraec-sesion02.zip",
+        "informe-practica-sesion02-entrega.pdf"
+      ],
+      "puede_enviar": false
+    },
+    {
+      "sesion": "03",
+      "cmid": 49368,
+      "estado": "Enviado para calificar",
+      "calificacion": "Sin calificar",
+      "modificado": "lunes, 5 de octubre de 2026, 19:59",
+      "archivos": [
+        "exploraec-sesion03.zip",
+        "informe-practica-sesion03-entrega.pdf"
+      ],
+      "puede_enviar": false
+    }
+  ]
+}

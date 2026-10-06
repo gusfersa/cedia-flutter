@@ -32,3 +32,5 @@ Los manifiestos, el roadmap y las comprobaciones permiten retomar el trabajo sin
 ## Decisión autorizada — 2026-10-05
 
 El estudiante autorizó GitHub, propietario btoaldas, nombre BtoCediaFlutter y visibilidad pública para revisión docente. El repositorio quedó publicado y verificado. La entrega Moodle mantiene su aprobación específica de archivos finales.
+
+Tras aprobar los cuatro archivos exactos, se completaron las entregas 49354 y 49368 el 2026-10-05. Esta aprobación corresponde a esas versiones; una entrega posterior requiere revisar su autoridad concreta.
