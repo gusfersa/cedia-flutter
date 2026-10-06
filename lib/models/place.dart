@@ -74,3 +74,15 @@ final List<Place> lugaresEjemplo = [
     lng: -78.5122,
   ),
 ];
+
+// Carga simulada de la Sesión 3: permite observar carga, vacío y error.
+Future<List<Place>> fetchLugaresSimulado({
+  bool forzarError = false,
+  bool forzarVacio = false,
+}) async {
+  await Future<void>.delayed(const Duration(seconds: 1));
+  if (forzarError) {
+    throw Exception('No se pudo conectar con el servidor (simulado)');
+  }
+  return forzarVacio ? <Place>[] : List<Place>.of(lugaresEjemplo);
+}

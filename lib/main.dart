@@ -6,6 +6,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'screens/favorites_placeholder_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/map_placeholder_screen.dart';
+import 'theme/app_theme.dart';
 
 void main() => runApp(const ExploraEcApp());
 
@@ -14,13 +15,14 @@ class ExploraEcApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'ExploraEC',
       debugShowCheckedModeBanner: false,
-      locale: Locale('es'),
-      supportedLocales: [Locale('es')],
+      locale: const Locale('es'),
+      supportedLocales: const [Locale('es')],
       localizationsDelegates: GlobalMaterialLocalizations.delegates,
-      home: RootShell(),
+      theme: AppTheme.theme,
+      home: const RootShell(),
     );
   }
 }
