@@ -1,0 +1,30 @@
+{
+  "actividad_moodle": 49411,
+  "plataforma": "web Edge",
+  "entrypoint": "lib/playground/mapa_demo_main.dart",
+  "posicion_publica_de_prueba": {
+    "latitud": -0.1938,
+    "longitud": -78.4869,
+    "origen": "Coordenada académica de Café Galletti; sensor inyectado, no ubicación privada"
+  },
+  "pruebas_aprobadas": 36,
+  "regresion_previa": 25,
+  "pruebas_nuevas": 11,
+  "analisis": "sin problemas",
+  "formato": {
+    "archivos": 27,
+    "cambios": 0
+  },
+  "revision_independiente": "APTO en fuente; ejecución Android pendiente",
+  "flujos_verificados": [
+    "Carga de teselas OpenStreetMap reales y atribución",
+    "Seis marcadores de lugares y un marcador de posición",
+    "Café Galletti desde marcador: 0m",
+    "Parque El Ejido desde marcador: 1.5km",
+    "Activación accesible por clic y teclado abre el lugar correcto",
+    "Alta de Lugar de práctica GetX cambia Inicio6→7 sin recarga",
+    "Mapa registra siete lugares tras el alta; marcador nuevo abre detalle correcto"
+  ],
+  "correccion": "IconButton estándar de48px e identidad estable corrigen la correspondencia de acciones accesibles tras cambiar el zoom",
+  "android": "SDK/emulador autorizados; aún no se usa esta prueba web como evidencia nativa"
+}

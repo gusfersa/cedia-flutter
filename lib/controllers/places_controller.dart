@@ -1,21 +1,32 @@
 // Estado compartido de la práctica CEDIA MOD3.
-// Referencia: Patricio-CEDIA/exploraec-app, rama sesion-04.
+// Referencia: Patricio-CEDIA/exploraec-app, ramas sesion-04 y sesion-05.
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 
 import '../models/place.dart';
+import '../services/location_service.dart';
 
 enum EstadoCarga { cargando, exito, error }
 
 class PlacesController extends GetxController {
+  PlacesController({Future<Position> Function()? obtenerPosicion})
+      : _obtenerPosicion =
+            obtenerPosicion ?? LocationService.obtenerPosicionActual;
+
+  final Future<Position> Function() _obtenerPosicion;
   final RxList<Place> lugares = <Place>[].obs;
   final Rx<EstadoCarga> estado = EstadoCarga.cargando.obs;
   final RxString mensajeError = ''.obs;
+  final Rx<Position?> posicion = Rx<Position?>(null);
+  final Rx<EstadoCarga> estadoPosicion = EstadoCarga.cargando.obs;
+  final RxString mensajeErrorPosicion = ''.obs;
   final scrollController = ScrollController();
 
   bool _modoDebugError = false;
   bool _modoDebugVacio = false;
   int _cargaActual = 0;
+  int _cargaPosicionActual = 0;
   Worker? _avisoEstado;
 
   @override
@@ -76,6 +87,35 @@ class PlacesController extends GetxController {
 
   /// Estado derivado: se calcula desde la lista reactiva, sin otro contador.
   int get total => lugares.length;
+
+  Future<void> cargarPosicion({bool forzar = false}) async {
+    if (posicion.value != null && !forzar) {
+      estadoPosicion.value = EstadoCarga.exito;
+      return;
+    }
+    final carga = ++_cargaPosicionActual;
+    estadoPosicion.value = EstadoCarga.cargando;
+    mensajeErrorPosicion.value = '';
+    try {
+      final resultado = await _obtenerPosicion();
+      if (isClosed || carga != _cargaPosicionActual) return;
+      posicion.value = resultado;
+      estadoPosicion.value = EstadoCarga.exito;
+    } on LocationException catch (error) {
+      if (isClosed || carga != _cargaPosicionActual) return;
+      mensajeErrorPosicion.value = error.mensaje;
+      estadoPosicion.value = EstadoCarga.error;
+    } catch (error) {
+      if (isClosed || carga != _cargaPosicionActual) return;
+      mensajeErrorPosicion.value = '$error';
+      estadoPosicion.value = EstadoCarga.error;
+    }
+  }
+
+  double? distanciaA(Place lugar) {
+    final origen = posicion.value;
+    return origen == null ? null : distanciaAPlaceEnMetros(origen, lugar);
+  }
 
   @override
   void onClose() {

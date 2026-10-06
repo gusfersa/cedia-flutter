@@ -1,0 +1,6 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- El permiso INTERNET permite la comunicación de desarrollo con Flutter,
+         la depuración y la recarga de código.
+    -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+</manifest>

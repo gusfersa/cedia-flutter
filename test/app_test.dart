@@ -2,22 +2,31 @@ import 'package:exploraec/main.dart';
 import 'package:exploraec/models/place.dart';
 import 'package:exploraec/screens/add_place_screen.dart';
 import 'package:exploraec/screens/detail_screen.dart';
+import 'package:exploraec/screens/map_screen.dart';
 import 'package:exploraec/widgets/place_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+
+import 'helpers/geo_fake.dart';
 
 void main() {
   final ejemplosIniciales = List<Place>.of(lugaresEjemplo);
+  final plataformaOriginal = GeolocatorPlatform.instance;
 
   setUp(() {
     Get.reset();
     Get.testMode = true;
+    GeolocatorPlatform.instance = GeoFake()..servicioActivo = false;
     lugaresEjemplo
       ..clear()
       ..addAll(ejemplosIniciales);
   });
-  tearDown(() => Get.reset());
+  tearDown(() {
+    Get.reset();
+    GeolocatorPlatform.instance = plataformaOriginal;
+  });
 
   Future<void> abrirFormulario(WidgetTester tester) async {
     await tester.pumpWidget(const ExploraEcApp());
@@ -150,7 +159,7 @@ void main() {
     await tester.pumpAndSettle();
     await tester.tap(find.text('Mapa'));
     await tester.pumpAndSettle();
-    expect(find.text('Próximamente: mapa real (Sesión 5)'), findsOneWidget);
+    expect(find.byType(MapScreen), findsOneWidget);
     expect(find.byType(PlaceCard), findsNothing);
     await tester.tap(find.text('Favoritos').last);
     await tester.pumpAndSettle();

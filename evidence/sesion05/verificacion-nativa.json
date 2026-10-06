@@ -1,0 +1,47 @@
+{
+  "actividad_moodle": 49411,
+  "plataforma": "Android API36 ARM64, Google APIs con Play Services",
+  "entrada": "lib/main.dart",
+  "sensor": "Geolocator real sobre GPS del emulador; no sensor inyectado de la demostración web",
+  "posicion_publica_de_prueba": {
+    "latitud": -0.1938,
+    "longitud": -78.4869,
+    "origen": "Coordenada pública de Café Galletti, Quito",
+    "no_ubicacion_privada": true
+  },
+  "permisos": {
+    "android.permission.ACCESS_FINE_LOCATION": true,
+    "android.permission.ACCESS_COARSE_LOCATION": true
+  },
+  "coordenada_presente_en_sensor": true,
+  "flujos_verificados": [
+    "Instalación nueva y arranque completo del APK real",
+    "Abrir Mapa presenta el diálogo nativo de ubicación",
+    "Denegar muestra error en español y Reintentar",
+    "Reintentar solicita nuevamente el permiso; precisión alta seleccionada y acceso durante el uso",
+    "GMS obtiene la posición pública; teselas reales OSM y atribución visibles",
+    "Toque en Café Galletti abre Café Galletti a 0 m",
+    "Toque en Parque El Ejido abre Parque El Ejido a 1.5 km",
+    "Alta Quito Android cambia Inicio6→7; tarjeta y aviso inmediatos",
+    "Mapa añade marcador Quito Android sin nueva carga de posición",
+    "Toque del marcador añadido abre Quito Android a1.5km"
+  ],
+  "control_interfaz": "ADB autorizado expresamente por el estudiante exclusivamente para CediaSesion05API36; la ventana oficial sin bundle no era seleccionable por el control de Codex",
+  "capturas_finales": [
+    "14-android-dialogo-permiso.png",
+    "15-android-permiso-denegado.png",
+    "19-android-mapa-verificado.png",
+    "20-android-cafe-distancia.png",
+    "21-android-ejido-distancia.png",
+    "23-android-alta-inicio-siete.png",
+    "24-android-contador-siete.png",
+    "25-android-mapa-alta.png",
+    "26-android-detalle-alta-mapa.png"
+  ],
+  "limites": [
+    "GPS emulado con coordenada pública; no prueba en teléfono físico",
+    "No se afirma TalkBack ni ejecución iOS",
+    "Paso7 opcional fuera del alcance solicitado"
+  ],
+  "verificado_utc": "2026-10-06T02:24:35.621887+00:00"
+}

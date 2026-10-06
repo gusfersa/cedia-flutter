@@ -8,18 +8,26 @@ import 'package:exploraec/widgets/error_view.dart';
 import 'package:exploraec/widgets/loading_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+
+import 'helpers/geo_fake.dart';
 
 void main() {
   final ejemplosIniciales = List<Place>.of(lugaresEjemplo);
+  final plataformaOriginal = GeolocatorPlatform.instance;
   setUp(() {
     Get.reset();
     Get.testMode = true;
+    GeolocatorPlatform.instance = GeoFake()..servicioActivo = false;
     lugaresEjemplo
       ..clear()
       ..addAll(ejemplosIniciales);
   });
-  tearDown(() => Get.reset());
+  tearDown(() {
+    Get.reset();
+    GeolocatorPlatform.instance = plataformaOriginal;
+  });
 
   Future<PlacesController> abrirApp(WidgetTester tester) async {
     await tester.pumpWidget(const ExploraEcApp());

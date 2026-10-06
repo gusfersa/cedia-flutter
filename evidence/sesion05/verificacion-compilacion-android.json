@@ -1,0 +1,81 @@
+{
+  "sesion": 5,
+  "tipo": "Compilación Android de laboratorio",
+  "comando": [
+    "flutter",
+    "build",
+    "apk",
+    "--debug",
+    "--target-platform",
+    "android-arm64"
+  ],
+  "entrada": "lib/main.dart",
+  "entrada_usa_api_ubicacion_real": true,
+  "sensor_demo_incluido_como_entrada": false,
+  "inicio_utc": "2026-10-06T02:03:03.015776+00:00",
+  "fin_utc": "2026-10-06T02:17:31.441585+00:00",
+  "codigo_salida": 0,
+  "herramientas": {
+    "flutter": "3.47.6",
+    "canal": "stable",
+    "dart": "3.13.5",
+    "revision_flutter": "5fc346839b5d0eef006ed8404392afb4dfae428d",
+    "ndk": "28.2.13676358"
+  },
+  "dependencias_resueltas": {
+    "get": "4.7.3",
+    "geolocator": "13.0.4",
+    "permission_handler": "11.4.0",
+    "flutter_map": "7.0.2",
+    "latlong2": "0.9.1"
+  },
+  "apk": {
+    "archivo": "build/app/outputs/flutter-apk/app-debug.apk",
+    "bytes": 81773922,
+    "sha256": "e7e202ffb1e798c92dc9a8cf71b526e129aa8a3ec5d9a1cc84ecf2c5ab1fd5e4",
+    "abi": "arm64-v8a",
+    "firma": "Depuración; uso académico, sin publicación en tienda",
+    "version_nombre": "1.0.0",
+    "version_codigo": 1,
+    "incluido_en_git": false
+  },
+  "configuracion_android": {
+    "identificador": "com.bto.exploraec",
+    "min_sdk": 24,
+    "target_sdk": 36,
+    "permisos_solicitados": [
+      "android.permission.ACCESS_FINE_LOCATION",
+      "android.permission.ACCESS_COARSE_LOCATION",
+      "android.permission.INTERNET"
+    ],
+    "permisos_ubicacion_concedidos_por_script": false
+  },
+  "licencias": {
+    "aceptadas_previamente_con_autorizacion": [
+      "android-sdk-license",
+      "android-sdk-arm-dbt-license"
+    ],
+    "licencias_adicionales_aceptadas_durante_compilacion": false,
+    "archivos_de_licencia_presentes_al_final": [
+      "android-sdk-arm-dbt-license",
+      "android-sdk-license"
+    ]
+  },
+  "instalacion_controlada": {
+    "entorno": "Emulador Android aislado con Google Play Services",
+    "instalacion_codigo_salida": 0,
+    "actividad": "com.bto.exploraec/.MainActivity",
+    "lanzamiento_estado": "ok",
+    "ubicacion_de_prueba": "Coordenadas públicas de Quito",
+    "verificacion_interfaz": "Se registra por separado con capturas de la práctica"
+  },
+  "avisos_compilador": [
+    "Complementos con niveles Java 8 obsoletos: advertencias sin fallo de compilación.",
+    "Compatibilidad XML del SDK: advertencia sin fallo de compilación."
+  ],
+  "fuentes_versionables": [
+    "pubspec.lock",
+    "android/app/build.gradle.kts",
+    "android/app/src/main/AndroidManifest.xml"
+  ]
+}

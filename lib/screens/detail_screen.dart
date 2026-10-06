@@ -2,10 +2,12 @@
 import 'package:flutter/material.dart';
 
 import '../models/place.dart';
+import '../services/location_service.dart';
 
 class DetailScreen extends StatelessWidget {
   final Place place;
-  const DetailScreen({super.key, required this.place});
+  final double? distanciaMetros;
+  const DetailScreen({super.key, required this.place, this.distanciaMetros});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,18 @@ class DetailScreen extends StatelessWidget {
               style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
-            Chip(label: Text(place.categoria)),
+            Wrap(
+              spacing: 8,
+              children: [
+                Chip(label: Text(place.categoria)),
+                if (distanciaMetros != null)
+                  Chip(
+                    avatar: const Icon(Icons.near_me, size: 16),
+                    label:
+                        Text('A ${formatearDistancia(distanciaMetros!)} de ti'),
+                  ),
+              ],
+            ),
             const SizedBox(height: 16),
             Text(place.descripcion, style: const TextStyle(fontSize: 16)),
           ],

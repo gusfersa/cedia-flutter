@@ -2,6 +2,7 @@ import 'dart:ui' show SemanticsAction;
 
 import 'package:exploraec/main.dart';
 import 'package:exploraec/models/place.dart';
+import 'package:exploraec/screens/map_screen.dart';
 import 'package:exploraec/theme/app_theme.dart';
 import 'package:exploraec/widgets/empty_view.dart';
 import 'package:exploraec/widgets/error_view.dart';
@@ -9,18 +10,26 @@ import 'package:exploraec/widgets/loading_view.dart';
 import 'package:exploraec/widgets/place_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+
+import 'helpers/geo_fake.dart';
 
 void main() {
   final ejemplosIniciales = List<Place>.of(lugaresEjemplo);
+  final plataformaOriginal = GeolocatorPlatform.instance;
   setUp(() {
     Get.reset();
     Get.testMode = true;
+    GeolocatorPlatform.instance = GeoFake()..servicioActivo = false;
     lugaresEjemplo
       ..clear()
       ..addAll(ejemplosIniciales);
   });
-  tearDown(() => Get.reset());
+  tearDown(() {
+    Get.reset();
+    GeolocatorPlatform.instance = plataformaOriginal;
+  });
 
   Future<void> seleccionarModo(WidgetTester tester, String modo) async {
     while (Get.isSnackbarOpen) {
@@ -253,7 +262,7 @@ void main() {
     expect(find.byType(LoadingView), findsOneWidget);
     await tester.tap(find.text('Mapa'));
     await terminarCarga(tester);
-    expect(find.text('Próximamente: mapa real (Sesión 5)'), findsOneWidget);
+    expect(find.byType(MapScreen), findsOneWidget);
     expect(tester.takeException(), isNull);
   });
 }
