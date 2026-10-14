@@ -1,0 +1,33 @@
+{
+  "fecha": "2026-10-14",
+  "pruebas_totales": 124,
+  "docentes_s8": 15,
+  "fallos": 0,
+  "analisis": "sin observaciones",
+  "formato": "sin cambios en archivos corregidos",
+  "revisiones": [
+    "guardas de sesión/401 tardío",
+    "colas compartidas entre controladores y contexto async conservado",
+    "limpieza Hive portable",
+    "navegación login fallido a registro corregida"
+  ],
+  "e2e_web": {
+    "validacion_password": true,
+    "registro_y_login": true,
+    "correo_duplicado": true,
+    "crear_201": true,
+    "editar_7_00": true,
+    "cancelar_eliminacion_conserva": true,
+    "limite_500_servidor": true,
+    "cache_offline": true,
+    "guardar_offline_error_legible": true,
+    "reintento_201": true,
+    "restaurar_sesion_al_recargar": true,
+    "401_cierra_sesion": true,
+    "logout_persiste_tras_recargar": true,
+    "favoritos_conservados": true
+  },
+  "delete_real": "API204 sobre único gasto temporal recién creado; diálogo UI cancelado y controller cubierto por tests",
+  "nativo": "tres procesos independientes con plugin real; ver almacenamiento-nativo.json",
+  "limites": "No prueba visual Android, iOS, teléfono físico ni terminación abrupta antes de completar escritura."
+}

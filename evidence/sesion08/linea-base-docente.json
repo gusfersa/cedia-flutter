@@ -1,0 +1,7 @@
+{
+  "referencia": "e66f6a3baafa5450edaca1aa74469fc5a82550fa",
+  "docentes": 15,
+  "pasan": 0,
+  "fallan": 15,
+  "observacion": "Medido ejecutando tests docentes en clon aislado, antes de implementar"
+}

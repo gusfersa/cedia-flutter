@@ -1,5 +1,5 @@
 // Práctica académica CEDIA MOD3, basada en Patricio-CEDIA/exploraec-app,
-// sesiones 02–07. Lugares locales y JWT en memoria; Gastos usa una API REST
+// sesiones 02–08. Lugares locales y JWT en almacenamiento seguro; Gastos usa una API REST
 // con caché de Hive por usuario; los favoritos de lugares son persistentes.
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';

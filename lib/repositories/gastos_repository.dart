@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:hive/hive.dart';
 
 import '../models/gasto.dart';
@@ -5,7 +7,7 @@ import '../services/api_exception.dart';
 import '../services/gastos_api_service.dart';
 
 /// Servidor primero; caché privada por usuario, solo de lectura.
-/// El JWT sigue exclusivamente en GastosApiService.
+/// El JWT pertenece a AuthController/ApiClient y nunca entra en esta caja.
 class GastosRepository {
   GastosRepository(
     this._api, {
@@ -17,7 +19,9 @@ class GastosRepository {
   Box<dynamic>? _caja;
   int _generacion = 0;
   int _versionCarga = 0;
-  Future<void> _operaciones = Future<void>.value();
+  static final _cola = <Future<void> Function()>[];
+  static bool _ocupada = false;
+  final _aperturasConservadas = <int>{};
 
   static const _claveGastos = 'gastos';
   static const _claveTotal = 'total';
@@ -25,7 +29,7 @@ class GastosRepository {
 
   /// Reserva la sesión ANTES de /me. La cola ordena apertura, escritura y
   /// borrado; una apertura cancelada nunca cierra la caja de una sesión nueva.
-  Future<void> abrirParaUsuario() async {
+  Future<void> abrirParaUsuario({int? usuarioId}) async {
     final generacion = ++_generacion;
     _versionCarga++;
     final anterior = _caja;
@@ -36,7 +40,7 @@ class GastosRepository {
       });
     }
     if (generacion != _generacion) return;
-    final id = await _api.obtenerIdUsuario();
+    final id = usuarioId ?? await _api.obtenerIdUsuario();
     if (generacion != _generacion) return;
     await _enDisco(() async {
       if (generacion != _generacion) return;
@@ -47,7 +51,11 @@ class GastosRepository {
         // Esta apertura es dueña de la caché privada, aunque ya hubiera datos
         // en disco. Una instancia que ya estaba abierta se conserva.
         if (!estabaAbierta && !identical(caja, _caja)) {
-          await _borrarCajaCapturada(caja);
+          if (_aperturasConservadas.remove(generacion)) {
+            if (caja.isOpen) await caja.close();
+          } else {
+            await _borrarCajaCapturada(caja);
+          }
         }
         return;
       }
@@ -131,6 +139,37 @@ class GastosRepository {
     });
   }
 
+  /// Dispose cierra el recurso capturado, conservando su contenido en disco.
+  /// Una apertura pendiente también se cierra sin borrar al terminar.
+  Future<void> cerrar() {
+    _aperturasConservadas.add(_generacion);
+    _generacion++;
+    _versionCarga++;
+    final caja = _caja;
+    _caja = null;
+    return _enDisco(() async {
+      if (caja != null && caja.isOpen) {
+        await caja.flush();
+        await caja.close();
+      }
+    });
+  }
+
+  /// Guarda el resultado confirmado del CRUD antes de recargar. Si la red
+  /// falla después, el fallback no vuelve a una versión anterior del gasto.
+  Future<void> confirmar({Gasto? gasto, int? eliminado, required int total}) {
+    final caja = _caja;
+    final generacion = _generacion;
+    final version = ++_versionCarga;
+    return _enDisco(() async {
+      if (!_vigente(caja, generacion, version)) return;
+      final porId = {for (final g in _leer(caja)?.gastos ?? <Gasto>[]) g.id: g};
+      if (eliminado != null) porId.remove(eliminado);
+      if (gasto != null) porId[gasto.id] = gasto;
+      await _guardar(caja!, 0, porId.values.toList(), total);
+    });
+  }
+
   /// Se llama dentro de la cola y opera solo sobre la instancia capturada.
   /// Cerrar primero libera IndexedDB antes de pedir el borrado al gestor Hive.
   Future<void> _borrarCajaCapturada(Box<dynamic> caja) async {
@@ -144,13 +183,25 @@ class GastosRepository {
   }
 
   Future<T> _enDisco<T>(Future<T> Function() operacion) {
-    final resultado = _operaciones.then((_) => operacion());
-    // Un error se entrega a su llamador sin bloquear operaciones posteriores.
-    _operaciones = resultado.then<void>(
-      (_) {},
-      onError: (Object error, StackTrace stack) {},
-    );
-    return resultado;
+    final resultado = Completer<T>();
+    _cola.add(Zone.current.bindCallback(() async {
+      try {
+        resultado.complete(await operacion());
+      } catch (error, stack) {
+        resultado.completeError(error, stack);
+      }
+    }));
+    _procesarCola();
+    return resultado.future;
+  }
+
+  Future<void> _procesarCola() async {
+    if (_ocupada) return;
+    _ocupada = true;
+    while (_cola.isNotEmpty) {
+      await _cola.removeAt(0)();
+    }
+    _ocupada = false;
   }
 
   bool _vigente(Box<dynamic>? caja, int generacion, int version) =>

@@ -9,6 +9,8 @@ import 'package:exploraec/services/api_exception.dart';
 import 'package:exploraec/services/gastos_api_service.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hive/hive.dart';
+import 'package:get/get.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 
@@ -17,9 +19,16 @@ const _unGasto = '[{"id":1,"descripcion":"Almuerzo en Quito","monto":6.5,'
 
 /// Perfil de prueba para `GET /usuarios/me` (la Sesión 7 lo usa para nombrar
 /// la caja `gastos_<id>`).
-http.Response _perfil() => http.Response('{"id":1}', 200);
+http.Response _perfil() =>
+    http.Response('{"id":1,"email":"alumno@example.test"}', 200);
 
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
+  setUp(() {
+    Get.reset();
+    Get.testMode = true;
+    FlutterSecureStorage.setMockInitialValues({});
+  });
   setUp(() async {
     await Hive.close();
     Hive.init(Directory.systemTemp.createTempSync('cedia_s07_gastos_').path);
@@ -39,7 +48,7 @@ void main() {
     final loginIniciado = Completer<void>();
     final listaIniciada = Completer<void>();
     final pasos = <String>[];
-    final api = GastosApiService(cliente: MockClient((peticion) {
+    final api = GastosApiService(cliente: _clienteS8((peticion) {
       pasos.add(peticion.url.path);
       switch (peticion.url.path) {
         case '/usuarios/':
@@ -60,6 +69,7 @@ void main() {
     addTearDown(() async {
       await controller.salir();
       controller.onClose();
+      await controller.cierrePendiente;
     });
     final entrada = controller.entrar('alumno@example.test', 'clave-prueba');
     await controller.entrar('otra@example.test', 'clave-prueba');
@@ -88,7 +98,7 @@ void main() {
       'Sin conexión con caché muestra lo guardado y al volver el servidor se va',
       () async {
     var desconectado = false;
-    final api = GastosApiService(cliente: MockClient((peticion) async {
+    final api = GastosApiService(cliente: _clienteS8((peticion) async {
       if (peticion.url.path == '/usuarios/') {
         return http.Response('{"detail":"Correo ya registrado"}', 400);
       }
@@ -100,7 +110,10 @@ void main() {
       return http.Response(_unGasto, 200, headers: {'x-total-count': '1'});
     }));
     final controller = GastosController(api: api);
-    addTearDown(controller.onClose);
+    addTearDown(() async {
+      controller.onClose();
+      await controller.cierrePendiente;
+    });
     await controller.entrar('alumno@example.test', 'clave-prueba');
     expect(controller.sesionActiva.value, isTrue);
     expect(controller.desdeCache.value, isFalse);
@@ -121,7 +134,7 @@ void main() {
   test('401 vuelve al formulario y elimina el token; 422 no inicia sesión',
       () async {
     var registro422 = false;
-    final api = GastosApiService(cliente: MockClient((peticion) async {
+    final api = GastosApiService(cliente: _clienteS8((peticion) async {
       if (peticion.url.path == '/usuarios/') {
         return registro422
             ? http.Response(
@@ -138,7 +151,10 @@ void main() {
       return http.Response('{"detail":"Credenciales rechazadas"}', 401);
     }));
     final controller = GastosController(api: api);
-    addTearDown(controller.onClose);
+    addTearDown(() async {
+      controller.onClose();
+      await controller.cierrePendiente;
+    });
     await controller.entrar('alumno@example.test', 'clave-prueba');
     expect(controller.sesionActiva.value, isFalse);
     expect(controller.mensajeAuth.value, contains('Tu sesión caducó'));
@@ -154,24 +170,31 @@ void main() {
   test('Paginación usa skip acumulado, total remoto y evita doble carga',
       () async {
     final segundaPagina = Completer<http.Response>();
+    final paginaIniciada = Completer<void>();
     final saltos = <String>[];
-    final api = GastosApiService(cliente: MockClient((peticion) async {
+    final api = GastosApiService(cliente: _clienteS8((peticion) async {
       if (peticion.url.path == '/usuarios/') return http.Response('{}', 201);
       if (peticion.url.path == '/usuarios/token') {
         return http.Response('{"access_token":"jwt-sintetico"}', 200);
       }
       if (peticion.url.path == '/usuarios/me') return _perfil();
       saltos.add(peticion.url.queryParameters['skip']!);
-      if (saltos.length > 1) return segundaPagina.future;
+      if (saltos.length > 1) {
+        paginaIniciada.complete();
+        return segundaPagina.future;
+      }
       return http.Response(_unGasto, 200, headers: {'x-total-count': '2'});
     }));
     final controller = GastosController(api: api);
-    addTearDown(controller.onClose);
+    addTearDown(() async {
+      controller.onClose();
+      await controller.cierrePendiente;
+    });
     await controller.entrar('alumno@example.test', 'clave-prueba');
     expect(controller.hayMas, isTrue);
     final carga = controller.cargarMas();
     await controller.cargarMas();
-    await Future<void>.delayed(Duration.zero);
+    await paginaIniciada.future;
     expect(saltos, ['0', '1']);
     segundaPagina.complete(http.Response(
         '[{"id":2,"descripcion":"Taxi al terminal","monto":3.25}]', 200,
@@ -188,7 +211,7 @@ void main() {
   for (final cierre in ['salir', 'onClose']) {
     test('Respuesta tardía tras $cierre no restaura datos ni sesión', () async {
       final lista = Completer<http.Response>();
-      final api = GastosApiService(cliente: MockClient((peticion) async {
+      final api = GastosApiService(cliente: _clienteS8((peticion) async {
         if (peticion.url.path == '/usuarios/') {
           return http.Response('{}', 201);
         }
@@ -206,7 +229,10 @@ void main() {
       if (cierre == 'onClose') {
         controller.onClose();
       } else {
-        addTearDown(controller.onClose);
+        addTearDown(() async {
+          controller.onClose();
+          await controller.cierrePendiente;
+        });
       }
       lista.complete(http.Response(_unGasto, 200));
       await entrada;
@@ -238,13 +264,22 @@ _ListaS7 _listaS7(List<int> ids, {int? total, String descripcion = 'Gasto'}) =>
 /// Autenticación real del servicio sobre HTTP falso; /me y la lista se pueden
 /// detener en puntos exactos mediante Completer, sin esperas temporizadas.
 class _ApiControladaS7 extends GastosApiService {
-  _ApiControladaS7()
-      : super(cliente: MockClient((request) async {
-          if (request.url.path == '/usuarios/token') {
-            return http.Response('{"access_token":"token-sintetico"}', 200);
-          }
-          return http.Response('{}', 201);
-        }));
+  factory _ApiControladaS7() {
+    late _ApiControladaS7 api;
+    api = _ApiControladaS7._(_clienteS8((request) async {
+      if (request.url.path == '/usuarios/token') {
+        return http.Response('{"access_token":"token-sintetico"}', 200);
+      }
+      if (request.url.path == '/usuarios/me') {
+        final id = await api.perfil();
+        return http.Response(
+            jsonEncode({'id': id, 'email': 'usuario-$id@example.test'}), 200);
+      }
+      return http.Response('{}', 201);
+    }));
+    return api;
+  }
+  _ApiControladaS7._(http.Client cliente) : super(cliente: cliente);
 
   Future<int> Function() perfil = () async => 11;
   Future<_ListaS7> Function(int skip, int limit) lista =
@@ -360,6 +395,7 @@ void _pruebasCarrerasS7() {
     addTearDown(() async {
       await controller.salir();
       controller.onClose();
+      await controller.cierrePendiente;
     });
     return controller;
   }
@@ -665,7 +701,7 @@ void _pruebasCarrerasS7() {
     final loginAIniciado = Completer<void>();
     final autorizaciones = <String?>[];
     var logins = 0;
-    final api = GastosApiService(cliente: MockClient((request) async {
+    final api = GastosApiService(cliente: _clienteS8((request) async {
       if (request.url.path == '/usuarios/') return http.Response('{}', 201);
       if (request.url.path == '/usuarios/token') {
         logins++;
@@ -677,7 +713,7 @@ void _pruebasCarrerasS7() {
       }
       autorizaciones.add(request.headers['Authorization']);
       if (request.url.path == '/usuarios/me') {
-        return http.Response('{"id":22}', 200);
+        return http.Response('{"id":22,"email":"b@example.test"}', 200);
       }
       return http.Response('[{"id":2}]', 200);
     }));
@@ -685,6 +721,7 @@ void _pruebasCarrerasS7() {
     addTearDown(() async {
       await controller.salir();
       controller.onClose();
+      await controller.cierrePendiente;
     });
     final entradaA = controller.entrar('a@example.test', 'clave-prueba');
     await loginAIniciado.future;
@@ -719,7 +756,7 @@ MockClient _servidorDocente({
   bool sinRed = false,
   int? falloListar,
 }) {
-  return MockClient((req) async {
+  return _clienteS8((req) async {
     if (sinRed) throw const SocketException('sin red');
     final ruta = req.url.path;
     if (ruta == '/usuarios/' && req.method == 'POST') {
@@ -786,6 +823,7 @@ void _pruebasDocentesS7() {
       addTearDown(() async {
         await g.salir();
         g.onClose();
+        await g.cierrePendiente;
       });
       await g.entrar('a@b.com', pass);
       return g;
@@ -906,3 +944,23 @@ class _ClienteDocenteS7 extends http.BaseClient {
   Future<http.StreamedResponse> send(http.BaseRequest request) =>
       actual().send(request);
 }
+
+// Categorías requeridas en S8, independientes de los escenarios S7 de lista.
+MockClient _clienteS8(Future<http.Response> Function(http.Request) responder) =>
+    MockClient((request) async {
+      if (request.url.path == '/gastos/categorias') {
+        return http.Response(
+            jsonEncode({
+              'categorias': [
+                'comida',
+                'transporte',
+                'entretenimiento',
+                'otros'
+              ],
+              'limite_por_categoria': 500.0
+            }),
+            200,
+            headers: {'content-type': 'application/json'});
+      }
+      return responder(request);
+    });

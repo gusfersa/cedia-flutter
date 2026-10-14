@@ -1,0 +1,5 @@
+{
+  "fase_invalida_rechazada": true,
+  "guardar_no_sobrescribe_marcador_existente": true,
+  "detector_rechaza_falso_positivo": true
+}

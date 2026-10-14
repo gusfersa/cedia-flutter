@@ -1,0 +1,103 @@
+{
+  "plataforma": "Emulador Android API36 ARM64",
+  "plugin": "flutter_secure_storage 11.2.0 real, namespace aislado",
+  "prueba": "FlutterEngine sin Activity, con barrera de escritura física antes de terminar la instrumentación",
+  "procesos_distintos": true,
+  "fases": [
+    {
+      "fase": "guardar",
+      "intento": "r2",
+      "pids": [
+        "5537"
+      ],
+      "resultados": {
+        "memoria_inicial_vacia": true,
+        "usuario_inicial_nulo": true,
+        "me_validado": true,
+        "usuario_presente": true,
+        "autenticado": true,
+        "token_igual_persistido": true,
+        "usuario_id_coincide": true,
+        "generacion_avanza": true,
+        "almacen_inicial_vacio": true,
+        "token_no_vacio": true,
+        "marcador_guardado": true,
+        "error_configuracion": false,
+        "error_almacen": false,
+        "error_api": false,
+        "error_timeout": false,
+        "error_interno": false,
+        "ok": true,
+        "escritura_disco_confirmada": true,
+        "sin_activity": true,
+        "plugins_registrados": true
+      },
+      "codigo_exito": true,
+      "entradas_en_disco": 2
+    },
+    {
+      "fase": "restaurar",
+      "intento": "r2",
+      "pids": [
+        "5632"
+      ],
+      "resultados": {
+        "memoria_inicial_vacia": true,
+        "usuario_inicial_nulo": true,
+        "me_validado": true,
+        "usuario_presente": true,
+        "autenticado": true,
+        "token_igual_persistido": true,
+        "usuario_id_coincide": true,
+        "generacion_avanza": true,
+        "token_previo_no_vacio": true,
+        "error_configuracion": false,
+        "error_almacen": false,
+        "error_api": false,
+        "error_timeout": false,
+        "error_interno": false,
+        "ok": true,
+        "escritura_disco_confirmada": true,
+        "sin_activity": true,
+        "plugins_registrados": true
+      },
+      "codigo_exito": true,
+      "entradas_en_disco": 2
+    },
+    {
+      "fase": "cerrar",
+      "intento": "r2",
+      "pids": [
+        "5719"
+      ],
+      "resultados": {
+        "memoria_inicial_vacia": true,
+        "usuario_inicial_nulo": true,
+        "me_validado": true,
+        "usuario_presente": true,
+        "autenticado": true,
+        "token_igual_persistido": true,
+        "usuario_id_coincide": true,
+        "generacion_avanza": true,
+        "token_previo_no_vacio": true,
+        "jwt_memoria_nulo": true,
+        "usuario_nulo": true,
+        "autenticado_falso": true,
+        "secure_token_nulo": true,
+        "generacion_cierre_avanza": true,
+        "error_configuracion": false,
+        "error_almacen": false,
+        "error_api": false,
+        "error_timeout": false,
+        "error_interno": false,
+        "ok": true,
+        "escritura_disco_confirmada": true,
+        "sin_activity": true,
+        "plugins_registrados": true
+      },
+      "codigo_exito": true,
+      "entradas_en_disco": 1
+    }
+  ],
+  "limitaciones": "Servicios nativos; no recorrido visual Android ni iOS/dispositivo físico; no prueba de terminación abrupta antes de completar escritura."
+}

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Fusionar SOLO en android/app/src/debug/AndroidManifest.xml de la COPIA lab. -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.INTERNET" />
+    <application android:usesCleartextTraffic="true" android:allowBackup="false" />
+    <instrumentation
+        android:name="com.bto.exploraec.s08lab.ServiciosInstrumentation"
+        android:targetPackage="com.bto.exploraec.s08lab"
+        android:functionalTest="true"
+        android:handleProfiling="false" />
+</manifest>

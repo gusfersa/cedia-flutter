@@ -23,3 +23,7 @@ Recursos MOD3 tras entregar Sesión 6: 19 actividades, 22 archivos Moodle (12 do
 Práctica Hive 49577 implementada y verificada: 89 pruebas, 10 docentes; análisis y formato sin incidencias. E2E Edge comprueba caché real, aislamiento A/B, logout/401 y favoritos tras recarga. Entrega y publicación autorizadas por el estudiante; se preparan PDF y ZIP. La constancia final de envío se registra en el hito de esta fecha.
 
 Entrega S7 completada en CEDIA 49577 el 13 de octubre de 2026 a las 23:05: «Enviado para calificar», todavía «Sin calificar». PDF y ZIP descargados idénticos por SHA256; GitHub público y copias locales OneDrive también verificados. [Hito de cierre](docs/hitos/2026-10-13-sesion07-entregada.md).
+
+## Estado — 2026-10-14 — Sesiones 8 y 9
+
+S8 implementada y comprobada:124 pruebas, análisis correcto, E2E web y tres fases de almacenamiento seguro real Android. Se preparan informe y ZIP para 49588. S9 está construida por módulos y pendiente de integración y recorrido real antes de entregar 49613. El Quiz1 ya figuraba finalizado con 10/10 en la consulta del 13 de octubre; no se volvió a enviar.

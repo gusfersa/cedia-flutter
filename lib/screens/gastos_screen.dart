@@ -4,6 +4,10 @@ import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
 import '../controllers/gastos_controller.dart';
+import '../controllers/auth_controller.dart';
+import '../services/api_exception.dart';
+import '../widgets/sin_sesion_view.dart';
+import 'gasto_form_screen.dart';
 import '../config/api_config.dart';
 import '../models/gasto.dart';
 import '../controllers/places_controller.dart' show EstadoCarga;
@@ -16,9 +20,11 @@ class GastosScreen extends GetView<GastosController> {
   const GastosScreen({super.key});
 
   @override
-  Widget build(BuildContext context) => Obx(() => controller.sesionActiva.value
-      ? _buildGastos(context)
-      : _FormularioEntrada(controller: controller));
+  Widget build(BuildContext context) {
+    final auth = Get.find<AuthController>();
+    return Obx(() =>
+        auth.estaAutenticado ? _buildGastos(context) : const SinSesionView());
+  }
 
   Widget _buildGastos(BuildContext context) => Scaffold(
         appBar: AppBar(
@@ -33,7 +39,7 @@ class GastosScreen extends GetView<GastosController> {
             PopupMenuButton<String>(
               tooltip: 'Opciones de gastos',
               onSelected: (valor) {
-                if (valor == 'salir') controller.salir();
+                if (valor == 'salir') Get.find<AuthController>().cerrarSesion();
                 if (valor == 'invalidar') {
                   controller.invalidarTokenParaPruebas();
                 }
@@ -50,10 +56,11 @@ class GastosScreen extends GetView<GastosController> {
               },
               itemBuilder: (context) => const [
                 PopupMenuItem(value: 'salir', child: Text('Cerrar sesión')),
-                PopupMenuItem(
-                  value: 'invalidar',
-                  child: Text('Invalidar token (solo práctica)'),
-                ),
+                if (kDebugMode && ApiConfig.labPruebas)
+                  PopupMenuItem(
+                    value: 'invalidar',
+                    child: Text('Invalidar token (solo práctica)'),
+                  ),
                 if (kDebugMode && ApiConfig.labPruebas)
                   PopupMenuItem(
                     value: 'timeout-1',
@@ -68,6 +75,13 @@ class GastosScreen extends GetView<GastosController> {
             ),
           ],
         ),
+        floatingActionButton: Obx(() => FloatingActionButton(
+              tooltip: 'Nuevo gasto',
+              onPressed: controller.categorias.isEmpty
+                  ? null
+                  : () => Get.to(() => const GastoFormScreen()),
+              child: const Icon(Icons.add),
+            )),
         body: Obx(() {
           if (controller.estado.value == EstadoCarga.cargando) {
             return const LoadingView(mensaje: 'Cargando gastos...');
@@ -75,12 +89,22 @@ class GastosScreen extends GetView<GastosController> {
           if (controller.estado.value == EstadoCarga.error) {
             return ErrorView(
               mensaje: controller.mensajeError.value,
-              onReintentar: controller.cargarGastos,
+              onReintentar: controller.iniciar,
             );
           }
           return Column(
             children: [
-              if (controller.desdeCache.value) _bannerCache(context),
+              if (controller.avisoSincronizacion.value.isNotEmpty)
+                MaterialBanner(
+                  content: Text(controller.avisoSincronizacion.value),
+                  actions: [
+                    TextButton(
+                        onPressed: controller.cargarGastos,
+                        child: const Text('Reintentar'))
+                  ],
+                )
+              else if (controller.desdeCache.value)
+                _bannerCache(context),
               Expanded(
                 child: controller.gastos.isEmpty
                     ? const EmptyView(
@@ -126,92 +150,50 @@ class GastosScreen extends GetView<GastosController> {
         return ListTile(
           key: ValueKey('gasto-${gasto.id}'),
           title: Text(gasto.descripcion),
+          onTap: () => Get.to(() => GastoFormScreen(gasto: gasto)),
           subtitle: Text('${gasto.categoria} · ${gasto.fecha}'),
-          trailing: Text(gasto.monto.toStringAsFixed(2),
-              style: Theme.of(context).textTheme.titleMedium),
+          trailing: Row(mainAxisSize: MainAxisSize.min, children: [
+            Text(gasto.monto.toStringAsFixed(2),
+                style: Theme.of(context).textTheme.titleMedium),
+            IconButton(
+                icon: const Icon(Icons.delete_outline),
+                tooltip: 'Eliminar',
+                onPressed: () => confirmarEliminar(context, gasto)),
+          ]),
         );
       },
     );
   }
-}
 
-class _FormularioEntrada extends StatefulWidget {
-  const _FormularioEntrada({required this.controller});
-  final GastosController controller;
-
-  @override
-  State<_FormularioEntrada> createState() => _FormularioEntradaState();
-}
-
-class _FormularioEntradaState extends State<_FormularioEntrada> {
-  final _email = TextEditingController();
-  final _password = TextEditingController();
-
-  @override
-  void dispose() {
-    _email.dispose();
-    _password.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final controller = widget.controller;
-    return Scaffold(
-      appBar: AppBar(title: const Text('Gastos')),
-      body: Padding(
-        padding: const EdgeInsets.all(AppSpacing.lg),
-        child: Obx(() => ListView(
-              children: [
-                const Text('Entra para ver los gastos de tu viaje. '
-                    'Si tu correo es nuevo, se crea la cuenta.'),
-                const SizedBox(height: AppSpacing.lg),
-                TextField(
-                  key: const ValueKey('gastos-correo'),
-                  controller: _email,
-                  keyboardType: TextInputType.emailAddress,
-                  textInputAction: TextInputAction.next,
-                  decoration: const InputDecoration(labelText: 'Correo'),
-                ),
-                const SizedBox(height: AppSpacing.md),
-                TextField(
-                  key: const ValueKey('gastos-password'),
-                  controller: _password,
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                      labelText: 'Contraseña (8 a 72 caracteres)'),
-                ),
-                const SizedBox(height: AppSpacing.md),
-                if (controller.mensajeAuth.value.isNotEmpty)
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: AppSpacing.md),
-                    child: Text(controller.mensajeAuth.value,
-                        style: TextStyle(
-                            color: Theme.of(context).colorScheme.error)),
-                  ),
-                FilledButton(
-                  onPressed: controller.autenticando.value
-                      ? null
-                      : () {
-                          final correo = _email.text.trim();
-                          final clave = _password.text;
-                          _password.clear();
-                          FocusScope.of(context).unfocus();
-                          controller.entrar(correo, clave);
-                        },
-                  child: controller.autenticando.value
-                      ? const SizedBox(
-                          height: 20,
-                          width: 20,
-                          child: CircularProgressIndicator(strokeWidth: 2))
-                      : const Text('Entrar'),
-                ),
-                const SizedBox(height: AppSpacing.lg),
-                Text('Servidor: ${controller.servidor}',
-                    style: Theme.of(context).textTheme.bodySmall),
-              ],
-            )),
+  Future<void> confirmarEliminar(BuildContext context, Gasto gasto) async {
+    final generacion = controller.auth.generacion;
+    final confirmado = await showDialog<bool>(
+      context: context,
+      builder: (dialogo) => AlertDialog(
+        title: Text('¿Eliminar "${gasto.descripcion}"?'),
+        content: const Text('Esta acción no se puede deshacer.'),
+        actions: [
+          TextButton(
+              onPressed: () => Navigator.pop(dialogo, false),
+              child: const Text('Cancelar')),
+          FilledButton(
+              onPressed: () => Navigator.pop(dialogo, true),
+              child: const Text('Eliminar')),
+        ],
       ),
     );
+    if (confirmado != true ||
+        generacion != controller.auth.generacion ||
+        !controller.auth.estaAutenticado) {
+      return;
+    }
+    try {
+      await controller.eliminar(gasto.id);
+    } on ApiException catch (error) {
+      if (generacion == controller.auth.generacion &&
+          controller.auth.estaAutenticado) {
+        Get.snackbar('No se pudo eliminar', error.mensaje);
+      }
+    }
   }
 }

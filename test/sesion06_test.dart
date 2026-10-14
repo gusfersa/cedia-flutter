@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:exploraec/config/api_config.dart';
+import 'package:exploraec/bindings/gastos_binding.dart';
 import 'package:exploraec/controllers/gastos_controller.dart';
 import 'package:exploraec/controllers/places_controller.dart';
 import 'package:exploraec/main.dart';
@@ -14,6 +15,7 @@ import 'package:exploraec/widgets/error_view.dart';
 import 'package:exploraec/widgets/loading_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:http/http.dart' as http;
@@ -30,6 +32,7 @@ void main() {
   final ejemplosIniciales = List<Place>.of(lugaresEjemplo);
   setUp(() {
     Get.reset();
+    FlutterSecureStorage.setMockInitialValues({});
     Get.testMode = true;
     lugaresEjemplo
       ..clear()
@@ -40,16 +43,19 @@ void main() {
     Hive.init(Directory.systemTemp.createTempSync('cedia_s07_widgets_').path);
     await Hive.openBox<Map>('favoritos');
   });
-  tearDown(() async {
-    if (Get.isRegistered<GastosController>()) {
-      await Get.find<GastosController>().salir();
-    }
-    Get.reset();
-    await Hive.close();
-  });
+  tearDown(() => TestWidgetsFlutterBinding.instance.runAsync(() async {
+        if (Get.isRegistered<GastosController>()) {
+          final g = Get.find<GastosController>();
+          await g.salir();
+        }
+        Get.reset();
+        await Hive.close();
+      }));
 
-  Future<void> mostrar(WidgetTester tester) => tester.pumpWidget(
-      GetMaterialApp(theme: AppTheme.theme, home: const GastosScreen()));
+  Future<void> mostrar(WidgetTester tester) => tester.pumpWidget(GetMaterialApp(
+      theme: AppTheme.theme,
+      initialBinding: GastosBinding(),
+      home: const GastosScreen()));
 
   // Iniciar la acción dentro de runAsync: sus Futures de Hive deben nacer
   // en el event loop real, no quedar pendientes en la zona FakeAsync.
@@ -93,6 +99,14 @@ void main() {
   }
 
   Future<void> entrar(WidgetTester tester, {bool esperarLista = true}) async {
+    if (find.byKey(const ValueKey('gastos-correo')).evaluate().isEmpty) {
+      if (Get.find<GastosController>().auth.restaurando.value) {
+        await tester.pumpAndSettle();
+      }
+      await tester.pumpAndSettle();
+      await tester.tap(find.widgetWithText(FilledButton, 'Iniciar sesión'));
+      await tester.pumpAndSettle();
+    }
     await tester.enterText(
         find.byKey(const ValueKey('gastos-correo')), 'alumno@example.test');
     await tester.enterText(
@@ -108,7 +122,12 @@ void main() {
       return http.Response('{"access_token":"jwt-sintetico"}', 200);
     }
     if (ruta == '/usuarios/me') {
-      return http.Response('{"id":1}', 200);
+      return http.Response('{"id":1,"email":"alumno@example.test"}', 200);
+    }
+    if (ruta == '/gastos/categorias') {
+      return http.Response(
+          '{"categorias":["comida","transporte","entretenimiento","otros"],"limite_por_categoria":500}',
+          200);
     }
     return http.Response('{}', 201);
   }
@@ -211,18 +230,26 @@ void main() {
     if (!ApiConfig.labPruebas) {
       expect(find.text('Probar timeout de 1 ms'), findsNothing);
     }
-    await tester.tap(find.text('Invalidar token (solo práctica)'));
+    if (ApiConfig.labPruebas) {
+      await tester.tap(find.text('Invalidar token (solo práctica)'));
+    } else {
+      expect(find.text('Invalidar token (solo práctica)'), findsNothing);
+      await tester.tapAt(const Offset(0, 0));
+      api.invalidarTokenParaPruebas();
+    }
     await tester.pumpAndSettle();
     await esperarGastos(tester,
         accion: () => tester.tap(find.byTooltip('Recargar')));
-    expect(find.text('Entrar'), findsOneWidget);
+    expect(find.widgetWithText(FilledButton, 'Iniciar sesión'), findsOneWidget);
     expect(find.textContaining('Tu sesión caducó'), findsOneWidget);
     expect(controller.sesionActiva.value, isFalse);
     expect(api.tieneToken, isFalse);
+    await tester.tap(find.widgetWithText(FilledButton, 'Iniciar sesión'));
+    await tester.pumpAndSettle();
     for (final campo in ['gastos-correo', 'gastos-password']) {
       expect(
           tester
-              .widget<TextField>(find.byKey(ValueKey(campo)))
+              .widget<TextFormField>(find.byKey(ValueKey(campo)))
               .controller!
               .text,
           isEmpty);
@@ -235,7 +262,7 @@ void main() {
     await tester.pumpAndSettle();
     await esperarGastos(tester,
         accion: () => tester.tap(find.text('Cerrar sesión')));
-    expect(find.text('Entrar'), findsOneWidget);
+    expect(find.widgetWithText(FilledButton, 'Iniciar sesión'), findsOneWidget);
     expect(api.tieneToken, isFalse);
     expect(controller.gastos, isEmpty);
   });
@@ -307,7 +334,7 @@ void main() {
       (tester) async {
     Get.put(GastosController(
         api: GastosApiService(cliente: MockClient((peticion) async {
-      if (peticion.url.path == '/usuarios/') {
+      if (peticion.url.path == '/usuarios/token') {
         return http.Response(
           '{"detail":[{"loc":["body","password"],'
           '"msg":"String should have at least 8 characters",'
@@ -315,9 +342,15 @@ void main() {
           422,
         );
       }
-      throw StateError('Un registro inválido no debe llamar login/lista');
+      throw StateError('Un login inválido no debe llamar perfil/lista');
     }))));
     await mostrar(tester);
+    if (Get.find<GastosController>().auth.restaurando.value) {
+      await tester.pumpAndSettle();
+    }
+    await tester.pumpAndSettle();
+    await tester.tap(find.widgetWithText(FilledButton, 'Iniciar sesión'));
+    await tester.pumpAndSettle();
     await tester.enterText(
         find.byKey(const ValueKey('gastos-correo')), 'nuevo@example.test');
     await tester.enterText(
@@ -330,14 +363,17 @@ void main() {
     expect(find.textContaining('String should'), findsNothing);
     expect(
         tester
-            .widget<TextField>(find.byKey(const ValueKey('gastos-password')))
+            .widget<TextFormField>(
+                find.byKey(const ValueKey('gastos-password')))
             .controller!
             .text,
         isEmpty);
     expect(tester.testTextInput.isVisible, isFalse);
     expect(
         tester
-            .widget<TextField>(find.byKey(const ValueKey('gastos-password')))
+            .widget<TextField>(find.descendant(
+                of: find.byKey(const ValueKey('gastos-password')),
+                matching: find.byType(TextField)))
             .obscureText,
         isTrue);
     expect(tester.widget<FilledButton>(find.byType(FilledButton)).onPressed,

@@ -1,86 +1,140 @@
-// Flujo académico de la Sesión 6: registro → login → listar con await.
-// Sesión 7: la lista pasa por GastosRepository (servidor primero, caché de
-// Hive por usuario), conservando paginación y las protecciones de concurrencia.
+// Basado en Patricio-CEDIA/exploraec-app, sesiones 6–8.
+// Conserva paginación 20, generaciones de carga y cola capturada Hive de S7.
 import 'package:get/get.dart';
 
 import '../models/gasto.dart';
 import '../repositories/gastos_repository.dart';
-import 'places_controller.dart' show EstadoCarga;
-import '../services/api_exception.dart';
+import '../services/api_client.dart';
 import '../services/gastos_api_service.dart';
+import 'auth_controller.dart';
+import 'places_controller.dart' show EstadoCarga;
 
 export '../repositories/gastos_repository.dart';
 
 class GastosController extends GetxController {
-  GastosController({GastosApiService? api}) : _api = api ?? GastosApiService();
+  GastosController(
+      {GastosApiService? api,
+      AuthController? auth,
+      GastosRepository? repository}) {
+    _api = api ??
+        GastosApiService(
+            api: auth?.api ??
+                (Get.isRegistered<ApiClient>()
+                    ? Get.find<ApiClient>()
+                    : ApiClient()));
+    _authPropio = auth == null && !Get.isRegistered<AuthController>();
+    _auth = auth ??
+        (Get.isRegistered<AuthController>()
+            ? Get.find<AuthController>()
+            : AuthController(api: _api.client));
+    _repository = repository ?? GastosRepository(_api);
+    _limpieza = (borrar) => limpiar(borrarCache: borrar);
+    _auth.agregarLimpieza(_limpieza);
+    _escuchaAuth = ever(_auth.usuario, (usuario) {
+      if (usuario != null && !_cerrado) _inicioPendiente = iniciar();
+    });
+  }
 
-  static const int _tamanoPagina = 20;
-  final GastosApiService _api;
-  late final GastosRepository _repository = GastosRepository(_api);
+  static const _tamanoPagina = 20;
+  late final GastosApiService _api;
+  late final AuthController _auth;
+  late final bool _authPropio;
+  late final GastosRepository _repository;
+  late final LimpiezaSesion _limpieza;
+  late final Worker _escuchaAuth;
   final RxList<Gasto> gastos = <Gasto>[].obs;
+  final RxList<String> categorias = <String>[].obs;
   final Rx<EstadoCarga> estado = EstadoCarga.exito.obs;
   final RxString mensajeError = ''.obs;
+  final RxString avisoSincronizacion = ''.obs;
   final RxInt totalEnServidor = 0.obs;
   final RxBool sesionActiva = false.obs;
-  final RxBool autenticando = false.obs;
-  final RxString mensajeAuth = ''.obs;
   final RxBool cargandoMas = false.obs;
-
-  /// `true` solo cuando la última carga exitosa vino de la caché local (el
-  /// servidor no respondió): la UI lo usa para avisar «datos guardados».
   final RxBool desdeCache = false.obs;
-
+  RxBool get autenticando => _auth.cargando;
+  RxString get mensajeAuth => _auth.mensajeError;
+  AuthController get auth => _auth;
   String get ultimaSincronizacion => _repository.ultimaSincronizacion;
+  String get servidor => _api.baseUrl;
+  bool get hayMas => !desdeCache.value && gastos.length < totalEnServidor.value;
 
   int _sesion = 0;
   int _carga = 0;
-  Future<void> _cierrePendiente = Future<void>.value();
-
-  /// Permite esperar la limpieza async iniciada por un callback o por onClose.
-  Future<void> get cierrePendiente => _cierrePendiente;
-
-  bool get hayMas => !desdeCache.value && gastos.length < totalEnServidor.value;
-  String get servidor => _api.baseUrl;
+  int? _usuarioCaja;
+  bool _cerrado = false;
+  Future<void>? _cierrePendiente;
+  Future<void>? _inicioPendiente;
+  Future<void> get cierrePendiente => Future.wait<void>([
+        if (_cierrePendiente != null) _cierrePendiente!,
+        _auth.cierrePendiente
+      ]).then<void>((_) {});
+  Future<void> get inicioPendiente => _inicioPendiente ?? Future<void>.value();
+  bool _sesionVigente(int sesion) =>
+      !_cerrado && sesion == _sesion && _auth.estaAutenticado;
   bool _vigente(int sesion, int carga) =>
-      !isClosed && sesion == _sesion && carga == _carga;
+      _sesionVigente(sesion) && carga == _carga;
 
+  @override
+  void onInit() {
+    super.onInit();
+    if (_auth.estaAutenticado) _inicioPendiente = iniciar();
+  }
+
+  /// Fachada S6/S7: delega la autenticación real, no guarda una sesión paralela.
   Future<void> entrar(String email, String password) async {
-    if (isClosed || autenticando.value) return;
+    if (_cerrado || autenticando.value) return;
+    await _auth.registrar(email, password, continuarSiExiste: true);
+    if (_auth.estaAutenticado && !_cerrado) await inicioPendiente;
+  }
+
+  Future<void> iniciar() async {
+    if (_cerrado || !_auth.estaAutenticado) return;
     final sesion = ++_sesion;
-    autenticando.value = true;
-    mensajeAuth.value = '';
+    _carga++;
+    final id = _auth.usuario.value!.id;
+    sesionActiva.value = true;
+    estado.value = EstadoCarga.cargando;
+    mensajeError.value = '';
     try {
-      // Un 400 de registro indica correo existente: continuar al login.
-      try {
-        await _api.registrar(email, password);
-      } on ApiException catch (error) {
-        if (error.statusCode != 400) rethrow;
+      if (_usuarioCaja != id) {
+        await _repository.abrirParaUsuario(usuarioId: id);
+        if (!_sesionVigente(sesion)) return;
+        _usuarioCaja = id;
       }
-      if (isClosed || sesion != _sesion) return;
-      await _api.login(email, password);
-      if (isClosed || sesion != _sesion) return;
-      // Sesión 7: abre (o crea) la caja `gastos_<id>` de este usuario.
-      await _repository.abrirParaUsuario();
-      if (isClosed || sesion != _sesion) return;
-      sesionActiva.value = true;
+      await cargarCategorias();
+      if (!_sesionVigente(sesion)) return;
       await cargarGastos();
     } on ApiException catch (error) {
-      if (!isClosed && sesion == _sesion) {
-        await _cerrarSesion(mensaje: error.mensaje);
+      if (!_sesionVigente(sesion)) {
+        await cierrePendiente;
+        return;
+      }
+      if (error.statusCode == 401) {
+        await _auth.sesionCaducada();
+      } else {
+        mensajeError.value = error.mensaje;
+        estado.value = EstadoCarga.error;
       }
     } catch (_) {
-      if (!isClosed && sesion == _sesion) {
-        await _cerrarSesion(
-          mensaje: 'No se pudo iniciar sesión. Inténtalo de nuevo.',
-        );
+      if (_sesionVigente(sesion)) {
+        mensajeError.value =
+            'No se pudieron preparar tus gastos. Inténtalo de nuevo.';
+        estado.value = EstadoCarga.error;
       }
-    } finally {
-      if (!isClosed && sesion == _sesion) autenticando.value = false;
+    }
+  }
+
+  Future<void> cargarCategorias() async {
+    if (_cerrado || !_auth.estaAutenticado) return;
+    final sesion = _sesion;
+    final resultado = await _api.listarCategorias();
+    if (_sesionVigente(sesion)) {
+      categorias.assignAll(resultado.categorias.toSet());
     }
   }
 
   Future<void> cargarGastos() async {
-    if (isClosed || !sesionActiva.value) return;
+    if (_cerrado || !sesionActiva.value || !_auth.estaAutenticado) return;
     final sesion = _sesion;
     final carga = ++_carga;
     cargandoMas.value = false;
@@ -89,18 +143,20 @@ class GastosController extends GetxController {
     try {
       final resultado = await _repository.recargar(limit: _tamanoPagina);
       if (!_vigente(sesion, carga)) return;
-      gastos.assignAll(
-          {for (final gasto in resultado.gastos) gasto.id: gasto}.values);
+      gastos.assignAll({for (final g in resultado.gastos) g.id: g}.values);
       totalEnServidor.value = resultado.total;
       desdeCache.value = resultado.desdeCache;
+      if (!resultado.desdeCache) avisoSincronizacion.value = '';
       estado.value = EstadoCarga.exito;
     } on ApiException catch (error) {
-      if (!_vigente(sesion, carga)) return;
-      if (error.statusCode == 401) {
-        await _errorSesion(error);
+      if (!_vigente(sesion, carga)) {
+        await cierrePendiente;
         return;
       }
-      // Los datos previos se conservan cuando falla la red.
+      if (error.statusCode == 401) {
+        await _auth.sesionCaducada();
+        return;
+      }
       desdeCache.value = false;
       mensajeError.value = error.mensaje;
       estado.value = EstadoCarga.error;
@@ -114,7 +170,8 @@ class GastosController extends GetxController {
   }
 
   Future<void> cargarMas() async {
-    if (isClosed ||
+    if (_cerrado ||
+        !_auth.estaAutenticado ||
         !sesionActiva.value ||
         !hayMas ||
         cargandoMas.value ||
@@ -126,72 +183,169 @@ class GastosController extends GetxController {
     cargandoMas.value = true;
     try {
       final resultado = await _repository.siguientePagina(
-        skip: gastos.length,
-        limit: _tamanoPagina,
-      );
+          skip: gastos.length, limit: _tamanoPagina);
       if (!_vigente(sesion, carga)) return;
-      final porId = {for (final gasto in gastos) gasto.id: gasto};
-      for (final gasto in resultado.gastos) {
-        porId[gasto.id] = gasto;
+      final porId = {for (final g in gastos) g.id: g};
+      for (final g in resultado.gastos) {
+        porId[g.id] = g;
       }
       gastos.assignAll(porId.values);
       totalEnServidor.value = resultado.total;
     } on ApiException catch (error) {
-      if (!_vigente(sesion, carga)) return;
-      if (error.statusCode == 401) {
-        await _errorSesion(error);
+      if (!_vigente(sesion, carga)) {
+        await cierrePendiente;
         return;
       }
-      Get.snackbar('No se pudo cargar más', error.mensaje);
+      if (error.statusCode == 401) {
+        await _auth.sesionCaducada();
+      } else {
+        mensajeError.value = error.mensaje;
+        if (Get.key.currentState != null) {
+          Get.snackbar('No se pudo cargar más', error.mensaje);
+        }
+      }
     } catch (_) {
       if (_vigente(sesion, carga)) {
-        Get.snackbar('No se pudo cargar más', 'Inténtalo de nuevo.');
+        mensajeError.value = 'No se pudo cargar más. Inténtalo de nuevo.';
       }
     } finally {
       if (_vigente(sesion, carga)) cargandoMas.value = false;
     }
   }
 
-  Future<void> _errorSesion(ApiException error) async {
-    if (error.statusCode == 401) {
-      await _cerrarSesion(mensaje: error.mensaje);
+  int _exigirSesion() {
+    if (_cerrado || !_auth.estaAutenticado || !sesionActiva.value) {
+      throw ApiException('Inicia sesión para modificar tus gastos.',
+          statusCode: 401);
+    }
+    return _sesion;
+  }
+
+  Future<void> crear(String descripcion, double monto, String categoria) async {
+    final sesion = _exigirSesion();
+    final g = await _api.crear(
+        {'descripcion': descripcion, 'monto': monto, 'categoria': categoria});
+    if (!_sesionVigente(sesion)) return;
+    await _confirmar(sesion, gasto: g);
+  }
+
+  Future<void> actualizar(int id, Map<String, dynamic> cambios) async {
+    final sesion = _exigirSesion();
+    if (cambios.isEmpty) return;
+    try {
+      final g = await _api.actualizar(id, cambios);
+      if (!_sesionVigente(sesion)) return;
+      await _confirmar(sesion, gasto: g);
+    } on ApiException catch (error) {
+      if (error.statusCode == 404 && _sesionVigente(sesion)) {
+        await _confirmar(sesion, eliminado: id);
+      }
+      rethrow;
     }
   }
 
-  Future<void> salir() => _cerrarSesion();
-
-  Future<void> _cerrarSesion({String mensaje = ''}) {
-    _sesion++;
-    _carga++;
-    _api.cerrarSesion();
-    // Invalida el repositorio antes de emitir cambios reactivos: ninguna
-    // respuesta pendiente puede leer/escribir la caja de esta sesión.
-    final borrado = _repository.vaciar();
-    _cierrePendiente = borrado;
-    // Limpia la vista de inmediato; el borrado de la caja se espera después.
-    gastos.clear();
-    totalEnServidor.value = 0;
-    desdeCache.value = false;
-    estado.value = EstadoCarga.exito;
-    sesionActiva.value = false;
-    autenticando.value = false;
-    cargandoMas.value = false;
-    mensajeAuth.value = mensaje;
-    mensajeError.value = '';
-    // Sesión 7: cierra y borra la caja de Hive de este usuario, para que otra
-    // persona que use el mismo teléfono no vea estos gastos.
-    return borrado;
+  Future<void> eliminar(int id) async {
+    final sesion = _exigirSesion();
+    try {
+      await _api.eliminar(id);
+      if (!_sesionVigente(sesion)) return;
+      await _confirmar(sesion, eliminado: id);
+    } on ApiException catch (error) {
+      if (error.statusCode == 404 && _sesionVigente(sesion)) {
+        await _confirmar(sesion, eliminado: id);
+      }
+      rethrow;
+    }
   }
 
-  void invalidarTokenParaPruebas() => _api.invalidarTokenParaPruebas();
+  Future<void> _confirmar(int sesion, {Gasto? gasto, int? eliminado}) async {
+    if (!_sesionVigente(sesion)) return;
+    _carga++; // Una lista iniciada antes del CRUD no puede pisar su resultado.
+    cargandoMas.value = false;
+    final porId = {for (final g in gastos) g.id: g};
+    if (eliminado != null && porId.remove(eliminado) != null) {
+      totalEnServidor.value--;
+    }
+    if (gasto != null) {
+      if (!porId.containsKey(gasto.id)) totalEnServidor.value++;
+      porId[gasto.id] = gasto;
+    }
+    gastos.assignAll(porId.values);
+    desdeCache.value = false;
+    estado.value = EstadoCarga.exito;
+    mensajeError.value = '';
+    avisoSincronizacion.value = '';
+    try {
+      await _repository.confirmar(
+          gasto: gasto, eliminado: eliminado, total: totalEnServidor.value);
+    } catch (_) {
+      if (_sesionVigente(sesion)) {
+        avisoSincronizacion.value =
+            'El cambio se guardó en el servidor, pero no se pudo actualizar la copia local.';
+      }
+    }
+    if (!_sesionVigente(sesion)) return;
+    final carga = ++_carga;
+    try {
+      final resultado = await _repository.recargar(limit: _tamanoPagina);
+      if (!_vigente(sesion, carga)) return;
+      if (resultado.desdeCache) {
+        desdeCache.value = true;
+        avisoSincronizacion.value =
+            'El cambio se guardó en el servidor. No se pudo sincronizar la lista; puedes reintentar.';
+      } else {
+        gastos.assignAll({for (final g in resultado.gastos) g.id: g}.values);
+        totalEnServidor.value = resultado.total;
+      }
+    } catch (error) {
+      if (!_vigente(sesion, carga)) {
+        await cierrePendiente;
+        return;
+      }
+      if (error is ApiException && error.statusCode == 401) {
+        await _auth.sesionCaducada();
+      } else {
+        // POST/PATCH/DELETE ya se confirmó: no se informa «falló guardar».
+        avisoSincronizacion.value =
+            'El cambio se guardó en el servidor. No se pudo sincronizar la lista; puedes reintentar.';
+      }
+    }
+  }
 
+  Future<void> limpiar({bool borrarCache = true}) {
+    _sesion++;
+    _carga++;
+    _usuarioCaja = null;
+    final cierre = borrarCache ? _repository.vaciar() : _repository.cerrar();
+    _cierrePendiente = cierre;
+    gastos.clear();
+    categorias.clear();
+    totalEnServidor.value = 0;
+    desdeCache.value = false;
+    cargandoMas.value = false;
+    mensajeError.value = '';
+    avisoSincronizacion.value = '';
+    estado.value = EstadoCarga.exito;
+    sesionActiva.value = false;
+    return cierre;
+  }
+
+  Future<void> salir() => _auth.cerrarSesion();
+  void invalidarTokenParaPruebas() => _auth.invalidarTokenParaPruebas();
   void configurarTimeoutParaPruebas(Duration plazo) =>
       _api.configurarTimeoutParaPruebas(plazo);
 
   @override
   void onClose() {
-    _cerrarSesion();
-    _api.dispose();
+    if (_cerrado) return;
+    _cerrado = true;
+    _escuchaAuth.dispose();
+    _auth.quitarLimpieza(_limpieza);
+    limpiar(borrarCache: false);
+    if (_authPropio) {
+      _auth.onClose();
+      _api.dispose();
+    }
     super.onClose();
   }
 }

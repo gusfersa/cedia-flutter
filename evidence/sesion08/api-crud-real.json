@@ -1,0 +1,16 @@
+{
+  "lista_inicial_vacia": true,
+  "categorias_http": 200,
+  "categorias": [
+    "comida",
+    "entretenimiento",
+    "otros",
+    "transporte"
+  ],
+  "crear_http": 201,
+  "editar_http": 200,
+  "monto_editado": 7.0,
+  "edicion_persistida": true,
+  "eliminar_http": 204,
+  "lista_final_vacia": true
+}
