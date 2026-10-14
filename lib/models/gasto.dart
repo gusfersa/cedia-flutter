@@ -25,4 +25,19 @@ class Gasto {
             json['categoria'] is String ? json['categoria'] as String : 'otros',
         fecha: json['fecha'] is String ? json['fecha'] as String : '',
       );
+
+  /// Serialización manual para la caché de Hive — Sesión 7. Los 5 campos son
+  /// primitivos; no hace falta un `TypeAdapter` generado. Mismos nombres que
+  /// el JSON del backend.
+  Map<String, dynamic> toMap() => {
+        'id': id,
+        'descripcion': descripcion,
+        'monto': monto,
+        'categoria': categoria,
+        'fecha': fecha,
+      };
+
+  /// Hive devuelve mapas con claves dinámicas; se copian a `Map<String, dynamic>`.
+  factory Gasto.fromMap(Map<dynamic, dynamic> mapa) =>
+      Gasto.fromJson(Map<String, dynamic>.from(mapa));
 }

@@ -43,12 +43,12 @@ Lista bajo 600; cuadrícula de dos columnas desde 600 y tres desde 900.
 
 ## Alcance
 
-Los lugares son ejemplos públicos en memoria. Sesión 5 incorpora el mapa; Favoritos continúa como pantalla provisional del curso.
+Los lugares son ejemplos públicos en memoria. Sesión 5 incorpora el mapa; Sesión 7 añade favoritos persistentes y caché de gastos por usuario.
 Se verificó web sobre Edge, incluidos estados, formularios y controles accesibles, y Android API 36 ARM64 con Google Play Services. El GPS del emulador usa una coordenada pública de Quito. No se afirma teléfono físico ni prueba con TalkBack.
 
 ## Fuente académica
 
-Basado en el material de [Patricio-CEDIA/exploraec-app](https://github.com/Patricio-CEDIA/exploraec-app), ramas `sesion-02` a `sesion-06`, y sus instructivos de práctica. Se conserva la atribución del curso. Las referencias docentes consultadas no declaran licencia; no se les asigna una licencia inventada.
+Basado en el material de [Patricio-CEDIA/exploraec-app](https://github.com/Patricio-CEDIA/exploraec-app), ramas `sesion-02` a `sesion-07`, y sus instructivos de práctica. Se conserva la atribución del curso. Las referencias docentes consultadas no declaran licencia; no se les asigna una licencia inventada.
 
 ## Sesión 4
 
@@ -77,3 +77,7 @@ Gastos añade registro, login mediante formulario y listado paginado contra el b
 El backend, sus accesos y el agrupador de soporte no se incluyen en Git ni en el ZIP.
 
 Entregables finales: [ZIP de 71 fuentes](entregas/sesion06/exploraec-sesion06.zip) e [informe de diez páginas](entregas/sesion06/informe-practica-sesion06-entrega-v3.pdf). El informe enlaza el commit exacto. Tras aprobar ambos archivos, se entregaron en Moodle, actividad 49556, el 5 de octubre de 2026 a las 22:21. El aula muestra «Enviado para calificar» y «Sin calificar»; las dos descargas son idénticas a los originales por SHA-256. La interfaz confirmó nombres, fecha y estado. [Constancia saneada](evidence/sesion06/verificacion-moodle-entrega.json).
+
+## Sesión 7
+
+[Versión fija sesion-07](https://github.com/btoaldas/BtoCediaFlutter/tree/sesion-07). Persistencia con Hive: favoritos del dispositivo y caché privada de gastos por usuario, servidor primero, aviso offline con fecha, reintento y limpieza al salir/401. JWT solo en memoria. [Requisitos y explicación](docs/practica-sesion07.md). Verificación final: 89 pruebas, incluidos 10 casos docentes; análisis/formato correctos y E2E Edge con API/PostgreSQL reales. No hay escritura offline, cifrado ni login sin red; idioma opcional no implementado. Informe y ZIP en `entregas/sesion07/`.

@@ -30,3 +30,24 @@ de la Sesión 2 se preserva en su archivo histórico y ya no se usa en la navega
 
 Referencia académica: `Patricio-CEDIA/exploraec-app`, rama `sesion-05`,
 commit `39b5f23b50364181bccd001bcb1dcccfd4be221c`.
+
+## Avance de la Sesión 7 — Hive
+
+El avance S7 añade cache privada de gastos por usuario, respaldo offline,
+banner de sincronización y favoritos persistentes. La navegación ahora usa
+`FavoritesScreen`, situada en `lib/screens/favorites_screen.dart`; la clase
+provisional sigue conservada en `lib/screens/favorites_placeholder_screen.dart`.
+`GastosRepository` está en `lib/repositories/gastos_repository.dart`, importado
+y reexportado por `lib/controllers/gastos_controller.dart`.
+
+Logout y 401 invalidan sesión/cargas, vacían la vista y esperan borrar solo la
+caja de gastos de esa operación. Favoritos permanece en su caja independiente.
+Los tests montan Hive explícitamente, incluyendo cerrar/reabrir desde disco.
+La demo pública del mapa también inicializa Hive antes de crear PlacesController.
+No se implementa idioma persistente ni escritura de gastos sin red.
+
+Requisitos, respuestas de privacidad/offline, adaptación de los diez casos
+docentes y verificación final: `docs/practica-sesion07.md`.
+Evidencia final: `evidence/sesion07/web-portable-final.json` y `evidence/sesion07/e2e-web.json`.
+
+Separación de módulos y fixture 401: `evidence/sesion07/modulos.json`.

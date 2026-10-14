@@ -2,7 +2,7 @@
 
 Proyecto personal de formación del curso CEDIA MOD3 Flutter, en laboratorio local.
 Objetivo: completar las prácticas indicadas por sus instructivos y comprobar sus flujos reales.
-Tecnología: Flutter, Dart y Material. Los datos de demostración son públicos y permanecen en memoria.
+Tecnología: Flutter, Dart y Material. Los lugares de ejemplo son públicos; favoritos se guardan en Hive y los gastos usan API y caché privada por usuario.
 
 El código de referencia corresponde al repositorio Patricio-CEDIA/exploraec-app, por sesión.
 Conservar su atribución y verificar su licencia antes de publicar derivados.

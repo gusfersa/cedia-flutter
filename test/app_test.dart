@@ -1,3 +1,7 @@
+import 'dart:io';
+
+import 'package:exploraec/controllers/gastos_controller.dart';
+import 'package:exploraec/controllers/places_controller.dart';
 import 'package:exploraec/main.dart';
 import 'package:exploraec/models/place.dart';
 import 'package:exploraec/screens/add_place_screen.dart';
@@ -8,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:hive/hive.dart';
 
 import 'helpers/geo_fake.dart';
 
@@ -15,6 +20,13 @@ void main() {
   final ejemplosIniciales = List<Place>.of(lugaresEjemplo);
   final plataformaOriginal = GeolocatorPlatform.instance;
 
+  // Montaje real de persistencia, separado por prueba; no se borran carpetas.
+  setUp(() async {
+    await Hive.close();
+    Hive.init(Directory.systemTemp.createTempSync('cedia_s07_favoritos_').path);
+    await Hive.openBox<Map>('favoritos');
+  });
+  tearDown(() async => Hive.close());
   setUp(() {
     Get.reset();
     Get.testMode = true;
@@ -163,7 +175,8 @@ void main() {
     expect(find.byType(PlaceCard), findsNothing);
     await tester.tap(find.text('Favoritos').last);
     await tester.pumpAndSettle();
-    expect(find.text('Próximamente: favoritos (Sesión 7)'), findsOneWidget);
+    expect(find.textContaining('Todavía no marcaste ningún lugar'),
+        findsOneWidget);
     await tester.tap(find.text('Inicio'));
     await tester.pumpAndSettle();
     expect(find.text('ExploraEC (6)'), findsOneWidget);
@@ -196,5 +209,85 @@ void main() {
     expect(tester.takeException(), isNull);
     await tester.pump(const Duration(seconds: 4));
     await tester.pumpAndSettle();
+  });
+
+  testWidgets(
+      'S7 favoritos en disco sobreviven reinicio; alta manual solo queda en Favoritos y logout los conserva',
+      (tester) async {
+    await abrirFormulario(tester);
+    await tester.enterText(
+        find.byKey(const ValueKey('nombre')), 'Mi lugar de prueba S7');
+    await tester.enterText(find.byKey(const ValueKey('categoria')), 'Parques');
+    await tester.enterText(find.byKey(const ValueKey('descripcion')),
+        'Lugar manual para comprobar la persistencia en disco.');
+    await tester.tap(find.text('Guardar'));
+    await tester.pumpAndSettle();
+    final anterior = Get.find<PlacesController>();
+    final manual = anterior.lugares.last;
+    expect(manual.nombre, 'Mi lugar de prueba S7');
+    expect(anterior.total, 7);
+
+    await tester.runAsync(() async {
+      await anterior.alternarFavorito(ejemplosIniciales.first);
+      await anterior.alternarFavorito(manual);
+      await Hive.box<Map>('favoritos').flush();
+    });
+    await tester.tap(find.text('Favoritos').last);
+    await tester.pumpAndSettle();
+    expect(find.byType(PlaceCard), findsNWidgets(2));
+    expect(find.text(manual.nombre), findsOneWidget);
+    expect(anterior.totalFavoritos, 2);
+    expect(Hive.box<Map>('favoritos').get(manual.id), manual.toMap());
+
+    await tester.runAsync(() => Get.find<GastosController>().salir());
+    expect(anterior.totalFavoritos, 2);
+    expect(Hive.box<Map>('favoritos').get(manual.id), manual.toMap());
+
+    // Simular un proceso nuevo: desmontar widgets/controllers, cerrar TODAS
+    // las cajas y reabrir desde la misma ruta. Solo se reinicia el catálogo de
+    // demostración en memoria; los favoritos no se inyectan ni se restauran.
+    await tester.pumpWidget(const SizedBox());
+    await tester.pumpAndSettle();
+    Get.reset();
+    lugaresEjemplo
+      ..clear()
+      ..addAll(ejemplosIniciales);
+    await tester.runAsync(() async {
+      await Hive.close();
+      expect(Hive.isBoxOpen('favoritos'), isFalse);
+      expect(await Hive.boxExists('favoritos'), isTrue);
+      final reabierta = await Hive.openBox<Map>('favoritos');
+      expect(reabierta.get(manual.id), manual.toMap());
+      expect(reabierta.length, 2);
+    });
+    await tester.pumpWidget(const ExploraEcApp());
+    await tester.pumpAndSettle();
+    final nuevo = Get.find<PlacesController>();
+    expect(nuevo, isNot(same(anterior)));
+    expect(nuevo.total, 6);
+    expect(nuevo.lugares.any((lugar) => lugar.id == manual.id), isFalse);
+    expect(
+        nuevo.favoritos.singleWhere((lugar) => lugar.id == manual.id).toMap(),
+        manual.toMap());
+    expect(nuevo.totalFavoritos, 2);
+    expect(Get.find<GastosController>().sesionActiva.value, isFalse);
+    await tester.tap(find.text('Favoritos').last);
+    await tester.pumpAndSettle();
+    expect(find.text(manual.nombre), findsOneWidget);
+    expect(find.byType(PlaceCard), findsNWidgets(2));
+
+    // Comprobar también que desmarcar modifica el disco, no solo el RxList.
+    await tester.runAsync(() async {
+      await nuevo.alternarFavorito(manual);
+      await Hive.box<Map>('favoritos').close();
+      final reabierta = await Hive.openBox<Map>('favoritos');
+      expect(reabierta.containsKey(manual.id), isFalse);
+      expect(reabierta.containsKey(ejemplosIniciales.first.id), isTrue);
+      expect(reabierta.length, 1);
+    });
+    await tester.pumpAndSettle();
+    expect(find.text(manual.nombre), findsNothing);
+    expect(nuevo.totalFavoritos, 1);
+    expect(tester.takeException(), isNull);
   });
 }

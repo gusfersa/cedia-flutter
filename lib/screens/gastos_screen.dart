@@ -78,12 +78,32 @@ class GastosScreen extends GetView<GastosController> {
               onReintentar: controller.cargarGastos,
             );
           }
-          if (controller.gastos.isEmpty) {
-            return const EmptyView(
-                mensaje: 'Aún no registras gastos en este viaje');
-          }
-          return _buildLista(controller.gastos.toList(), context);
+          return Column(
+            children: [
+              if (controller.desdeCache.value) _bannerCache(context),
+              Expanded(
+                child: controller.gastos.isEmpty
+                    ? const EmptyView(
+                        mensaje: 'Aún no registras gastos en este viaje')
+                    : _buildLista(controller.gastos.toList(), context),
+              ),
+            ],
+          );
         }),
+      );
+
+  Widget _bannerCache(BuildContext context) => MaterialBanner(
+        content: Text(
+          'Sin conexión — mostrando tus gastos guardados '
+          '(última sincronización: ${controller.ultimaSincronizacion})',
+        ),
+        leading: const Icon(Icons.cloud_off),
+        actions: [
+          TextButton(
+            onPressed: controller.cargarGastos,
+            child: const Text('Reintentar'),
+          ),
+        ],
       );
 
   Widget _buildLista(List<Gasto> gastos, BuildContext context) {
@@ -172,8 +192,13 @@ class _FormularioEntradaState extends State<_FormularioEntrada> {
                 FilledButton(
                   onPressed: controller.autenticando.value
                       ? null
-                      : () =>
-                          controller.entrar(_email.text.trim(), _password.text),
+                      : () {
+                          final correo = _email.text.trim();
+                          final clave = _password.text;
+                          _password.clear();
+                          FocusScope.of(context).unfocus();
+                          controller.entrar(correo, clave);
+                        },
                   child: controller.autenticando.value
                       ? const SizedBox(
                           height: 20,

@@ -1,0 +1,13 @@
+{
+  "momento_utc": "2026-10-14T02:18:06.473614+00:00",
+  "version_anterior": "2b667136e84f24c4b4ed9d2282f1a9734b3127d1",
+  "plataforma": "Edge, Flutter web en loopback",
+  "api_real": true,
+  "usuarios_sinteticos": true,
+  "lista_con_servidor": 3,
+  "desconexion": "Network.emulateNetworkConditions offline=true exclusivamente en la pestaña local de pruebas",
+  "observado_sin_red": "Error de conexión visible, sin lista de gastos mostrada ni aviso de caché",
+  "conectividad_restaurada": true,
+  "lista_tras_reintentar": 3,
+  "interpretacion": "Prueba anterior a S7; la solución final debe mostrar gastos desde Hive ante el mismo corte."
+}

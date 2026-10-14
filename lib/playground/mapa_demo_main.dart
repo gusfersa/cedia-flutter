@@ -3,12 +3,15 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 import '../controllers/places_controller.dart';
 import '../main.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  await Hive.openBox<Map>('favoritos');
   Get.put(PlacesController(obtenerPosicion: () async {
     return Position(
       latitude: -0.1938,

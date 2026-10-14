@@ -98,6 +98,26 @@ class GastosApiService {
     return (gastos: gastos, total: total);
   }
 
+  /// GET /usuarios/me — la Sesión 7 usa el `id` para dar a la caja de Hive de
+  /// cada usuario su propio nombre (`gastos_<id>`).
+  Future<int> obtenerIdUsuario() async {
+    final token = _token;
+    if (token == null) {
+      throw ApiException('Inicia sesión para ver tus gastos.', statusCode: 401);
+    }
+    final respuesta = await _enviar(() => _cliente.get(
+          Uri.parse('$baseUrl/usuarios/me'),
+          headers: {'Authorization': 'Bearer $token'},
+        ));
+    final json = _decodificar(respuesta);
+    final id = json is Map ? json['id'] : null;
+    if (id is! int) {
+      throw ApiException(
+          'Respuesta inesperada del servidor al leer tu perfil.');
+    }
+    return id;
+  }
+
   dynamic _decodificar(http.Response respuesta) {
     try {
       return jsonDecode(utf8.decode(respuesta.bodyBytes));

@@ -1,0 +1,559 @@
+{
+  "schema": "cedia-sesion07-modulos/1",
+  "fecha_utc": "2026-10-14T03:29:25.055Z",
+  "entorno": "Worktree local aislado del encargo; SDK y PUB_CACHE indicados mediante variables externas.",
+  "objetivo": "Separar literalmente módulos S7 y reparar el montaje FakeAsync/Hive del widget 401.",
+  "archivos": {
+    "creados": [
+      "lib/repositories/gastos_repository.dart",
+      "lib/screens/favorites_screen.dart",
+      "evidence/sesion07/modulos.json"
+    ],
+    "modificados": [
+      "PLACEHOLDERS.md",
+      "docs/practica-sesion07.md",
+      "lib/controllers/gastos_controller.dart",
+      "lib/main.dart",
+      "lib/screens/favorites_placeholder_screen.dart",
+      "lib/screens/gastos_screen.dart",
+      "lib/services/gastos_api_service.dart",
+      "test/app_test.dart",
+      "test/gastos_controller_test.dart",
+      "test/sesion06_test.dart"
+    ],
+    "solo_formato": [
+      "lib/screens/gastos_screen.dart",
+      "lib/services/gastos_api_service.dart",
+      "test/app_test.dart"
+    ],
+    "estilo_adicional": "test/gastos_controller_test.dart: llaves en tres condiciones, sin cambiar expectativas.",
+    "sha256": {
+      "PLACEHOLDERS.md": {
+        "antes": "5c8acf7b1aba50233c101808f94ffcf5893fc454fe68b6344ff5698e437bd741",
+        "despues": "663dbb90a6d1d1b27474aa2e51f32a463c37f40277140a85e6ef4cd0ba781bfb"
+      },
+      "docs/practica-sesion07.md": {
+        "antes": "6974119c0ef2049bc53415d1879e4226e9f3d6a884c77a8efa92358e98fef293",
+        "despues": "4a69b147be0a824602cb20fdc9cb664b1bbd0a4212d573fe35814bddeb02bf23"
+      },
+      "lib/controllers/gastos_controller.dart": {
+        "antes": "3fe47edca83e2f1a5a9b50325bb4e2d1af234245319a43c14ce6e7bd686bd4f3",
+        "despues": "83d2c66addd92ac4a179911c031725caf2412a977307c1044fd2320fa7cf214c"
+      },
+      "lib/main.dart": {
+        "antes": "6f1804ebbd8f755336d2b417356561a59c34c81bd43cbd50b48aaed1f881a1f8",
+        "despues": "5013d23b5792c1893531dfc643093ea1ef6e7d8cdbd2cc9b3cb96df32ca81c70"
+      },
+      "lib/screens/favorites_placeholder_screen.dart": {
+        "antes": "4b80a674bd121ee2d5a5d2045c211f6f20097b4762ae2eb697a5a4239eaa17e1",
+        "despues": "0484a4d525f05aca568654fac0e68c56e1f25c8375ecc4ecf813af332a828ee8"
+      },
+      "lib/screens/gastos_screen.dart": {
+        "antes": "b27fb38af3ee1983ac06d0d6a241fa5b5888838c8f84ecaa21017a0d2acc019a",
+        "despues": "cb5c6fc8835451f97330ff82ca47e37e96a2861bd8a4a09c88c99c61c0b5fe2a"
+      },
+      "lib/services/gastos_api_service.dart": {
+        "antes": "c668f6b80078f12b7a029c3a5cf6e19f07e2114e4fc40d993b7bfeff2814cfc6",
+        "despues": "472e7e73dc9ff3cec7c5925f6576406df010fe534c2faeac1018499926f8983a"
+      },
+      "test/app_test.dart": {
+        "antes": "0d1a6f79f4f4100fa82827938fb21ae9faa5fbdb7e86c682b8d6525486c4727e",
+        "despues": "fdb00abd21d4f53bb2d0c364a53d4710063a68317eeadb8c3dd35ab29519adda"
+      },
+      "test/gastos_controller_test.dart": {
+        "antes": "8bb07568f7810e07d8bf21ec8f6b05e815ee76f1b7851925fb8a9465c0100730",
+        "despues": "c49cef29164a523fc46ede6e20f53f9269ab169777b80e2c581ad47ae63c1ddd"
+      },
+      "test/sesion06_test.dart": {
+        "antes": "eaf7effad3e76c415e5e110907f9401c7cab24ebdd4121d7193c751b701e36ba",
+        "despues": "0626253064f4edaf72c17500491410d51fbb3dea403d190b3c06e2dff5b9d64f"
+      },
+      "lib/repositories/gastos_repository.dart": {
+        "antes": null,
+        "despues": "c6913d70f27cb9766ebacd24f875ea7d8ac534308bcc680e488a188f1a6cb098"
+      },
+      "lib/screens/favorites_screen.dart": {
+        "antes": null,
+        "despues": "cafdfffeca24ee86a6c9a444f6b703ced6ce89725c66122dd2742e7f13527e8d"
+      }
+    }
+  },
+  "modulos": {
+    "gastos_repository": "lib/repositories/gastos_repository.dart",
+    "controller_importa_y_exporta": "lib/controllers/gastos_controller.dart",
+    "favorites_screen": "lib/screens/favorites_screen.dart",
+    "main_importa_directamente": true,
+    "placeholder_historico": "lib/screens/favorites_placeholder_screen.dart",
+    "clase_placeholder": "FavoritesPlaceholderScreen",
+    "comparacion_cuerpos_formateados": {
+      "repository_body_unchanged_after_format": true,
+      "favorites_body_unchanged_after_format": true,
+      "placeholder_class_unchanged_after_format": true,
+      "case_401_only_changes_menu_creation_zone": true,
+      "whole_sesion06_only_menu_zone_comment_and_format": true
+    },
+    "clases_duplicadas": 0,
+    "nuevos_ciclos_de_importacion": false
+  },
+  "fixture_401": {
+    "archivo": "test/sesion06_test.dart",
+    "caso": "Menú invalida token real; 401 devuelve formulario vacío",
+    "diagnostico": "La instrumentación temporal completó las cuatro esperas (entrada, 401, reingreso y logout) y se detuvo en el inicio del teardown al esperar salir. PopupMenuButton registra el callback onSelected al abrirse; la apertura en FakeAsync originaba la cola de cierre de Hive en esa zona.",
+    "cambio_minimo": "Las dos aperturas del menú del caso se ejecutan mediante tester.runAsync. La selección y cierre se esperan con el helper existente.",
+    "aserciones_401_reingreso_logout_conservadas": true,
+    "helper_esperarGastos_sin_cambios_logicos": true,
+    "logica_aplicacion_sin_cambios": true,
+    "sleeps_agregados": 0,
+    "instrumentacion_temporal_retirada": true,
+    "reproduccion_previa": "El caso aislado quedó bloqueado; se interrumpió la ejecución. La instrumentación posterior ubicó el bloqueo en el teardown, sin fallos de aserción.",
+    "resultado_posterior": "00:02 +1: All tests passed!"
+  },
+  "verificaciones": [
+    {
+      "comando": "$S7_FLUTTER pub get",
+      "salida_resumida": "Got dependencies! Sin cambios adicionales en pubspec.yaml ni pubspec.lock.",
+      "exit_code": 0,
+      "duracion_segundos": 0.55,
+      "medicion": "Duración de la llamada de ejecución."
+    },
+    {
+      "comando": "$S7_DART format lib test",
+      "salida_resumida": "Formatted 40 files (8 changed) in 0.05 seconds; ejecución final: 40 files (0 changed) in 0.04 seconds.",
+      "exit_code": 0
+    },
+    {
+      "comando": "$S7_FLUTTER test test/sesion06_test.dart --plain-name 'Menú invalida token real; 401 devuelve formulario vacío' --reporter expanded",
+      "salida_resumida": "00:02 +1: All tests passed!",
+      "exit_code": 0,
+      "aprobadas": 1,
+      "duracion_reporter_segundos": 2
+    },
+    {
+      "comando": "$S7_FLUTTER test --reporter expanded",
+      "salida_resumida": "00:06 +88: All tests passed!",
+      "exit_code": 0,
+      "aprobadas": 88,
+      "fallidas": 0,
+      "duracion_reporter_segundos": 6
+    },
+    {
+      "comando": "$S7_FLUTTER analyze",
+      "salida_resumida": "No issues found! (ran in 1.5s)",
+      "exit_code": 0,
+      "duracion_real_segundos": 2.17,
+      "medicion": "/usr/bin/time -p"
+    },
+    {
+      "comando": "$S7_FLUTTER test --reporter expanded --concurrency=1",
+      "salida_resumida": "00:12 +88: All tests passed!",
+      "exit_code": 0,
+      "aprobadas": 88,
+      "fallidas": 0,
+      "duracion_real_segundos": 14.55,
+      "medicion": "/usr/bin/time -p"
+    },
+    {
+      "comando": "$S7_DART format --output=none --set-exit-if-changed lib test",
+      "salida_resumida": "Formatted 40 files (0 changed) in 0.04 seconds.",
+      "exit_code": 0
+    },
+    {
+      "comando": "git diff --check",
+      "salida_resumida": "Sin salida ni errores.",
+      "exit_code": 0
+    }
+  ],
+  "cobertura": {
+    "pruebas_totales": 88,
+    "por_archivo": {
+      "test/sesion06_test.dart": 7,
+      "test/contador_demo_test.dart": 1,
+      "test/app_test.dart": 9,
+      "test/gastos_api_service_test.dart": 13,
+      "test/sesion04_test.dart": 8,
+      "test/location_service_test.dart": 6,
+      "test/sesion05_test.dart": 5,
+      "test/sesion03_test.dart": 8,
+      "test/gastos_controller_test.dart": 31
+    },
+    "api_y_controller": 44,
+    "casos_docentes": 10,
+    "favoritos_cerrar_reabrir_hive": {
+      "archivo": "test/app_test.dart",
+      "caso": "S7 favoritos en disco sobreviven reinicio; alta manual solo queda en Favoritos y logout los conserva",
+      "resultado": "aprobado",
+      "efectos_verificados": [
+        "Cerrar todas las cajas y reabrir desde el mismo disco recupera los dos favoritos.",
+        "Un lugar manual aparece solo en Favoritos tras reiniciar el catálogo.",
+        "Logout conserva la caja pública de favoritos.",
+        "Desmarcar y volver a abrir conserva la ausencia del favorito en disco."
+      ]
+    },
+    "cache_vacia": {
+      "archivo": "test/sesion06_test.dart",
+      "caso": "S7 caché vacía offline muestra banner y vacío; recuperar red quita el banner",
+      "resultado": "aprobado",
+      "nueva_suite": false,
+      "comportamiento_conservado": true
+    },
+    "casos_ejecutados": [
+      {
+        "archivo": "test/sesion06_test.dart",
+        "nombre": "Cuarta pestaña conserva Places y registra Gastos una sola vez"
+      },
+      {
+        "archivo": "test/sesion06_test.dart",
+        "nombre": "Gastos muestra carga, vacío, lista, error de red y reintento"
+      },
+      {
+        "archivo": "test/sesion06_test.dart",
+        "nombre": "Menú invalida token real; 401 devuelve formulario vacío"
+      },
+      {
+        "archivo": "test/sesion06_test.dart",
+        "nombre": "S7 caché vacía offline muestra banner y vacío; recuperar red quita el banner"
+      },
+      {
+        "archivo": "test/sesion06_test.dart",
+        "nombre": "Cargar más usa paginación y el título muestra el total remoto"
+      },
+      {
+        "archivo": "test/sesion06_test.dart",
+        "nombre": "422 muestra campo traducido y permite corregir el formulario"
+      },
+      {
+        "archivo": "test/sesion06_test.dart",
+        "nombre": "Gastos mantiene formulario y lista usables a 320×568"
+      },
+      {
+        "archivo": "test/contador_demo_test.dart",
+        "nombre": "Contador incrementa, conserva estado y libera el ciclo de vida"
+      },
+      {
+        "archivo": "test/app_test.dart",
+        "nombre": "Inicio lista los seis lugares y permite desplazarse"
+      },
+      {
+        "archivo": "test/app_test.dart",
+        "nombre": "Cada tarjeta abre su detalle y vuelve a Inicio"
+      },
+      {
+        "archivo": "test/app_test.dart",
+        "nombre": "Formulario vacío muestra tres errores y no agrega datos"
+      },
+      {
+        "archivo": "test/app_test.dart",
+        "nombre": "Los espacios y una descripción corta no pasan validación"
+      },
+      {
+        "archivo": "test/app_test.dart",
+        "nombre": "Guardar agrega el lugar limpio y visible inmediatamente"
+      },
+      {
+        "archivo": "test/app_test.dart",
+        "nombre": "Cancelar el formulario conserva los seis lugares"
+      },
+      {
+        "archivo": "test/app_test.dart",
+        "nombre": "Inicio, Mapa y Favoritos cambian el contenido"
+      },
+      {
+        "archivo": "test/app_test.dart",
+        "nombre": "Tarjeta larga y formulario caben en una pantalla móvil pequeña"
+      },
+      {
+        "archivo": "test/app_test.dart",
+        "nombre": "S7 favoritos en disco sobreviven reinicio; alta manual solo queda en Favoritos y logout los conserva"
+      },
+      {
+        "archivo": "test/gastos_api_service_test.dart",
+        "nombre": "Contrato real: registro JSON, login formulario y lista Bearer paginada"
+      },
+      {
+        "archivo": "test/gastos_api_service_test.dart",
+        "nombre": "Gasto acepta entero/decimal y campos ausentes o incompatibles"
+      },
+      {
+        "archivo": "test/gastos_api_service_test.dart",
+        "nombre": "HTTP 400 conserva el detail legible del servidor"
+      },
+      {
+        "archivo": "test/gastos_api_service_test.dart",
+        "nombre": "HTTP 403 conserva el detail legible del servidor"
+      },
+      {
+        "archivo": "test/gastos_api_service_test.dart",
+        "nombre": "HTTP 404 conserva el detail legible del servidor"
+      },
+      {
+        "archivo": "test/gastos_api_service_test.dart",
+        "nombre": "HTTP 401 y 500 tienen mensajes distintos y legibles"
+      },
+      {
+        "archivo": "test/gastos_api_service_test.dart",
+        "nombre": "HTTP 422 señala el campo sin mostrar JSON crudo"
+      },
+      {
+        "archivo": "test/gastos_api_service_test.dart",
+        "nombre": "Validaciones traducen contexto, correo, números y tipos desconocidos"
+      },
+      {
+        "archivo": "test/gastos_api_service_test.dart",
+        "nombre": "SocketException se traduce a mensaje de conexión"
+      },
+      {
+        "archivo": "test/gastos_api_service_test.dart",
+        "nombre": "ClientException se traduce a mensaje de conexión"
+      },
+      {
+        "archivo": "test/gastos_api_service_test.dart",
+        "nombre": "Timeout real de 1 ms se traduce y puede restaurarse a 15 s"
+      },
+      {
+        "archivo": "test/gastos_api_service_test.dart",
+        "nombre": "Respuestas JSON inválidas o token ausente fallan con mensaje legible"
+      },
+      {
+        "archivo": "test/gastos_api_service_test.dart",
+        "nombre": "Cerrar sesión impide que un login tardío restaure el token"
+      },
+      {
+        "archivo": "test/sesion04_test.dart",
+        "nombre": "El binding registra una única instancia compartida al navegar"
+      },
+      {
+        "archivo": "test/sesion04_test.dart",
+        "nombre": "Alta reactiva actualiza 6 a 7 sin carga ni duplicación"
+      },
+      {
+        "archivo": "test/sesion04_test.dart",
+        "nombre": "Guardar con un aviso previo activo vuelve a Inicio una sola vez"
+      },
+      {
+        "archivo": "test/sesion04_test.dart",
+        "nombre": "Worker de error muestra un aviso real en GetMaterialApp"
+      },
+      {
+        "archivo": "test/sesion04_test.dart",
+        "nombre": "Una respuesta anterior no pisa la simulación más reciente"
+      },
+      {
+        "archivo": "test/sesion04_test.dart",
+        "nombre": "Alta durante carga vacio conserva el lugar y el estado"
+      },
+      {
+        "archivo": "test/sesion04_test.dart",
+        "nombre": "Alta durante carga error conserva el lugar y el estado"
+      },
+      {
+        "archivo": "test/sesion04_test.dart",
+        "nombre": "onClose libera worker e ignora un error tardío sin avisos"
+      },
+      {
+        "archivo": "test/location_service_test.dart",
+        "nombre": "Permiso concedido obtiene posición high sin volver a pedir permiso"
+      },
+      {
+        "archivo": "test/location_service_test.dart",
+        "nombre": "Permiso denegado se solicita y continúa cuando se concede"
+      },
+      {
+        "archivo": "test/location_service_test.dart",
+        "nombre": "Rechazo del permiso explica el error y no lee la posición"
+      },
+      {
+        "archivo": "test/location_service_test.dart",
+        "nombre": "Bloqueo permanente indica Ajustes y no vuelve a solicitar permiso"
+      },
+      {
+        "archivo": "test/location_service_test.dart",
+        "nombre": "Servicio apagado se detecta antes del permiso y de leer el sensor"
+      },
+      {
+        "archivo": "test/location_service_test.dart",
+        "nombre": "Distancias públicas coherentes y formato en metros o kilómetros"
+      },
+      {
+        "archivo": "test/sesion05_test.dart",
+        "nombre": "Mapa muestra carga, error y reintento con el mismo controller"
+      },
+      {
+        "archivo": "test/sesion05_test.dart",
+        "nombre": "Dos marcadores abren su detalle con distancias públicas distintas"
+      },
+      {
+        "archivo": "test/sesion05_test.dart",
+        "nombre": "Alta desde Inicio actualiza Mapa y el marcador nuevo abre detalle"
+      },
+      {
+        "archivo": "test/sesion05_test.dart",
+        "nombre": "Ubicación tardía no modifica un controller cerrado"
+      },
+      {
+        "archivo": "test/sesion05_test.dart",
+        "nombre": "Fallo del sensor muestra error y conserva los lugares"
+      },
+      {
+        "archivo": "test/sesion03_test.dart",
+        "nombre": "Carga inicial dura un segundo y luego muestra los lugares"
+      },
+      {
+        "archivo": "test/sesion03_test.dart",
+        "nombre": "Modo vacío tiene mensaje e icono y vuelve a la lista"
+      },
+      {
+        "archivo": "test/sesion03_test.dart",
+        "nombre": "Reintentar carga de nuevo, mantiene error y normal lo resuelve"
+      },
+      {
+        "archivo": "test/sesion03_test.dart",
+        "nombre": "Responde a rotación y límites 600 y 900 sin desbordes"
+      },
+      {
+        "archivo": "test/sesion03_test.dart",
+        "nombre": "Tema de marca aplica navy, blanco y teal a los componentes"
+      },
+      {
+        "archivo": "test/sesion03_test.dart",
+        "nombre": "Tarjeta expone un solo anuncio semántico con acción de detalle"
+      },
+      {
+        "archivo": "test/sesion03_test.dart",
+        "nombre": "Las seis tarjetas usan espaciado centralizado y tipografía"
+      },
+      {
+        "archivo": "test/sesion03_test.dart",
+        "nombre": "Salir de Inicio durante la espera evita setState tras dispose"
+      },
+      {
+        "archivo": "test/gastos_controller_test.dart",
+        "nombre": "S7 A: logout durante /me no crea gastos_11 después de salir"
+      },
+      {
+        "archivo": "test/gastos_controller_test.dart",
+        "nombre": "S7 B: R1 lenta no pisa Hive de R2 ni reaparece al quedar offline"
+      },
+      {
+        "archivo": "test/gastos_controller_test.dart",
+        "nombre": "S7 C: 401 al recargar vacía memoria/disco y conserva favoritos"
+      },
+      {
+        "archivo": "test/gastos_controller_test.dart",
+        "nombre": "S7 C: 401 al paginar vacía memoria/disco y conserva favoritos"
+      },
+      {
+        "archivo": "test/gastos_controller_test.dart",
+        "nombre": "S7 HTTP 400 con caché válida informa error sin fallback"
+      },
+      {
+        "archivo": "test/gastos_controller_test.dart",
+        "nombre": "S7 HTTP 403 con caché válida informa error sin fallback"
+      },
+      {
+        "archivo": "test/gastos_controller_test.dart",
+        "nombre": "S7 HTTP 404 con caché válida informa error sin fallback"
+      },
+      {
+        "archivo": "test/gastos_controller_test.dart",
+        "nombre": "S7 HTTP 422 con caché válida informa error sin fallback"
+      },
+      {
+        "archivo": "test/gastos_controller_test.dart",
+        "nombre": "S7 D: cargarMas pendiente no mezcla páginas tras una nueva recarga"
+      },
+      {
+        "archivo": "test/gastos_controller_test.dart",
+        "nombre": "S7 D: /me tardío de A no toca la sesión ni la caja de B"
+      },
+      {
+        "archivo": "test/gastos_controller_test.dart",
+        "nombre": "S7 apertura tardía de A preserva la caja de la nueva sesión 11"
+      },
+      {
+        "archivo": "test/gastos_controller_test.dart",
+        "nombre": "S7 apertura tardía de A preserva la caja de la nueva sesión 22"
+      },
+      {
+        "archivo": "test/gastos_controller_test.dart",
+        "nombre": "S7 escrituras en curso se ordenan; cerrar/reabrir Hive conserva R2"
+      },
+      {
+        "archivo": "test/gastos_controller_test.dart",
+        "nombre": "S7 páginas acumuladas actualizan IDs repetidos sin duplicarlos"
+      },
+      {
+        "archivo": "test/gastos_controller_test.dart",
+        "nombre": "S7 login tardío tras logout no repone token ni reemplaza token B"
+      },
+      {
+        "archivo": "test/gastos_controller_test.dart",
+        "nombre": "Diez casos docentes S7 usuario nuevo: registro -> login -> lista vacía"
+      },
+      {
+        "archivo": "test/gastos_controller_test.dart",
+        "nombre": "Diez casos docentes S7 éxito: carga gastos y total (monto entero o decimal), sin banner"
+      },
+      {
+        "archivo": "test/gastos_controller_test.dart",
+        "nombre": "Diez casos docentes S7 400 al registrar (correo existente) se ignora y sigue al login"
+      },
+      {
+        "archivo": "test/gastos_controller_test.dart",
+        "nombre": "Diez casos docentes S7 422 al registrar: mensaje legible con el campo, sin sesión"
+      },
+      {
+        "archivo": "test/gastos_controller_test.dart",
+        "nombre": "Diez casos docentes S7 5xx sin nada en caché: error legible"
+      },
+      {
+        "archivo": "test/gastos_controller_test.dart",
+        "nombre": "Diez casos docentes S7 Paso 2 — sin conexión con caché: muestra lo guardado y marca desdeCache"
+      },
+      {
+        "archivo": "test/gastos_controller_test.dart",
+        "nombre": "Diez casos docentes S7 Paso 2 — 5xx con caché: también cae a la caché"
+      },
+      {
+        "archivo": "test/gastos_controller_test.dart",
+        "nombre": "Diez casos docentes S7 Paso 2 — al volver el servidor, el banner desaparece"
+      },
+      {
+        "archivo": "test/gastos_controller_test.dart",
+        "nombre": "Diez casos docentes S7 Paso 2 — un 401 NO usa la caché: vuelve al formulario"
+      },
+      {
+        "archivo": "test/gastos_controller_test.dart",
+        "nombre": "Diez casos docentes S7 Paso 5 — cerrar sesión borra la caja del usuario"
+      },
+      {
+        "archivo": "test/gastos_controller_test.dart",
+        "nombre": "Await encadena registro, login, perfil, lista y rechaza doble entrada"
+      },
+      {
+        "archivo": "test/gastos_controller_test.dart",
+        "nombre": "Sin conexión con caché muestra lo guardado y al volver el servidor se va"
+      },
+      {
+        "archivo": "test/gastos_controller_test.dart",
+        "nombre": "401 vuelve al formulario y elimina el token; 422 no inicia sesión"
+      },
+      {
+        "archivo": "test/gastos_controller_test.dart",
+        "nombre": "Paginación usa skip acumulado, total remoto y evita doble carga"
+      },
+      {
+        "archivo": "test/gastos_controller_test.dart",
+        "nombre": "Respuesta tardía tras salir no restaura datos ni sesión"
+      },
+      {
+        "archivo": "test/gastos_controller_test.dart",
+        "nombre": "Respuesta tardía tras onClose no restaura datos ni sesión"
+      }
+    ]
+  },
+  "limitaciones": [
+    "Backend externo y navegación manual Android/web no ejecutados.",
+    "El caso de laboratorio condicionado a LAB_PRUEBAS=true no está habilitado en la configuración predeterminada de esta ejecución."
+  ],
+  "prueba_para_orquestador": "Repetir los comandos canónicos y comprobar en la app Inicio → favorito → Favoritos → reinicio, remoto → offline → Reintentar y usuario A → logout → usuario B."
+}

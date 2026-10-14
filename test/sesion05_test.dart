@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'dart:async';
 import 'dart:ui' show SemanticsAction;
 
@@ -16,6 +18,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:hive/hive.dart';
 
 import 'helpers/geo_fake.dart';
 
@@ -28,6 +31,13 @@ class TilesDePrueba extends TileProvider {
 
 void main() {
   final ejemplosIniciales = List<Place>.of(lugaresEjemplo);
+  // Montaje real de persistencia, separado por prueba; no se borran carpetas.
+  setUp(() async {
+    await Hive.close();
+    Hive.init(Directory.systemTemp.createTempSync('cedia_s07_favoritos_').path);
+    await Hive.openBox<Map>('favoritos');
+  });
+  tearDown(() async => Hive.close());
   setUp(() {
     Get.reset();
     Get.testMode = true;

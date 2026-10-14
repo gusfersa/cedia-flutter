@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:exploraec/bindings/places_binding.dart';
 import 'package:exploraec/controllers/places_controller.dart';
 import 'package:exploraec/main.dart';
@@ -10,12 +12,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:hive/hive.dart';
 
 import 'helpers/geo_fake.dart';
 
 void main() {
   final ejemplosIniciales = List<Place>.of(lugaresEjemplo);
   final plataformaOriginal = GeolocatorPlatform.instance;
+  // Montaje real de persistencia, separado por prueba; no se borran carpetas.
+  setUp(() async {
+    await Hive.close();
+    Hive.init(Directory.systemTemp.createTempSync('cedia_s07_favoritos_').path);
+    await Hive.openBox<Map>('favoritos');
+  });
+  tearDown(() async => Hive.close());
   setUp(() {
     Get.reset();
     Get.testMode = true;

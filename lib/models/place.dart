@@ -16,6 +16,27 @@ class Place {
     required this.lat,
     required this.lng,
   });
+
+  /// Serialización manual para guardar un favorito en Hive — Sesión 7. Todos
+  /// los campos son primitivos (`String`/`double`), así que un
+  /// `Map<String, dynamic>` alcanza sin necesitar un `TypeAdapter` generado.
+  Map<String, dynamic> toMap() => {
+        'id': id,
+        'nombre': nombre,
+        'categoria': categoria,
+        'descripcion': descripcion,
+        'lat': lat,
+        'lng': lng,
+      };
+
+  factory Place.fromMap(Map<dynamic, dynamic> mapa) => Place(
+        id: mapa['id'] as String,
+        nombre: mapa['nombre'] as String,
+        categoria: mapa['categoria'] as String,
+        descripcion: mapa['descripcion'] as String,
+        lat: (mapa['lat'] as num).toDouble(),
+        lng: (mapa['lng'] as num).toDouble(),
+      );
 }
 
 // Esta sesión practica datos en memoria; se reinician al abrir la app.

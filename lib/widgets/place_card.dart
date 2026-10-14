@@ -1,7 +1,10 @@
 // Tarjeta de la práctica CEDIA MOD3; referencia: ExploraEC, sesion-02.
+// Sesión 7: añade el corazón de favorito, que lee/escribe PlacesController y
+// se repinta con `Obx`; el favorito queda guardado en Hive.
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../controllers/places_controller.dart';
 import '../models/place.dart';
 import '../screens/detail_screen.dart';
 import '../theme/app_theme.dart';
@@ -12,20 +15,44 @@ class PlaceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<PlacesController>();
     return Card(
       margin: const EdgeInsets.symmetric(
         horizontal: AppSpacing.md,
         vertical: AppSpacing.sm,
       ),
-      child: InkWell(
-        onTap: () => Get.to<void>(() => DetailScreen(place: place)),
-        child: Semantics(
-          label: '${place.nombre}, categoría ${place.categoria}',
-          hint: 'Toca dos veces para ver el detalle',
-          button: true,
-          excludeSemantics: true,
-          child: _buildContenido(context),
-        ),
+      child: Stack(
+        children: [
+          InkWell(
+            onTap: () => Get.to<void>(() => DetailScreen(place: place)),
+            child: Semantics(
+              label: '${place.nombre}, categoría ${place.categoria}',
+              hint: 'Toca dos veces para ver el detalle',
+              button: true,
+              excludeSemantics: true,
+              child: _buildContenido(context),
+            ),
+          ),
+          Positioned(
+            right: AppSpacing.xs,
+            top: AppSpacing.xs,
+            child: Obx(
+              () => IconButton(
+                icon: Icon(
+                  controller.esFavorito(place)
+                      ? Icons.favorite
+                      : Icons.favorite_border,
+                  color:
+                      controller.esFavorito(place) ? Colors.red : Colors.grey,
+                ),
+                tooltip: controller.esFavorito(place)
+                    ? 'Quitar de favoritos'
+                    : 'Agregar a favoritos',
+                onPressed: () => controller.alternarFavorito(place),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -44,11 +71,14 @@ class PlaceCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  place.nombre,
-                  style: estilos.titleMedium,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
+                Padding(
+                  padding: const EdgeInsets.only(right: 40),
+                  child: Text(
+                    place.nombre,
+                    style: estilos.titleMedium,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
                 const SizedBox(height: AppSpacing.xs),
                 Text(

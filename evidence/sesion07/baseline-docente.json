@@ -1,0 +1,21 @@
+{
+  "verificado_utc": "2026-10-14T02:13:01.677437+00:00",
+  "referencia_docente": "266d7330fc62eecffcb66789c2cb483cb01b0ece",
+  "prueba": "flutter test --reporter expanded sobre copia independiente de la referencia S7",
+  "resultado_esperado_del_instructivo": {
+    "aprobadas": 7,
+    "fallidas": 3
+  },
+  "resultado_observado": {
+    "aprobadas": 7,
+    "fallidas": 3,
+    "codigo_salida": 1
+  },
+  "fallos_pendientes_en_referencia": [
+    "Paso 2 — sin conexión con caché",
+    "Paso 2 — 5xx con caché",
+    "Paso 5 — cerrar sesión borra la caja del usuario"
+  ],
+  "interpretacion": "La base docente reproduce exactamente los tres puntos que deben implementarse; este resultado no acredita la solución final.",
+  "sha256_test_docente": "a48dc029acc8d6e81d66c70da80db17a4c9feee958f03c3ced02d1f7d7c4658b"
+}

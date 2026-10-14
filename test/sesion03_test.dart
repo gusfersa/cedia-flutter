@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'dart:ui' show SemanticsAction;
 
+import 'package:exploraec/controllers/places_controller.dart';
 import 'package:exploraec/main.dart';
 import 'package:exploraec/models/place.dart';
 import 'package:exploraec/screens/map_screen.dart';
@@ -12,12 +15,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:hive/hive.dart';
 
 import 'helpers/geo_fake.dart';
 
 void main() {
   final ejemplosIniciales = List<Place>.of(lugaresEjemplo);
   final plataformaOriginal = GeolocatorPlatform.instance;
+  // Montaje real de persistencia, separado por prueba; no se borran carpetas.
+  setUp(() async {
+    await Hive.close();
+    Hive.init(Directory.systemTemp.createTempSync('cedia_s07_favoritos_').path);
+    await Hive.openBox<Map>('favoritos');
+  });
+  tearDown(() async => Hive.close());
   setUp(() {
     Get.reset();
     Get.testMode = true;
@@ -182,12 +193,15 @@ void main() {
     final semantica = tester.ensureSemantics();
     try {
       final lugar = ejemplosIniciales.first;
+      Get.put(PlacesController());
       await tester.pumpWidget(
         GetMaterialApp(
           theme: AppTheme.theme,
           home: Scaffold(body: PlaceCard(place: lugar)),
         ),
       );
+      // Drena la carga simulada que arranca el controller al registrarse.
+      await tester.pump(const Duration(seconds: 1));
       final etiqueta = '${lugar.nombre}, categoría ${lugar.categoria}';
       final nodo = tester.getSemantics(find.bySemanticsLabel(etiqueta));
       final datos = nodo.getSemanticsData();
@@ -221,6 +235,7 @@ void main() {
     tester.view.devicePixelRatio = 1;
     addTearDown(tester.view.resetPhysicalSize);
     addTearDown(tester.view.resetDevicePixelRatio);
+    Get.put(PlacesController());
     await tester.pumpWidget(
       MaterialApp(
         theme: AppTheme.theme,
@@ -235,6 +250,8 @@ void main() {
         ),
       ),
     );
+    // Drena la carga simulada que arranca el controller al registrarse.
+    await tester.pump(const Duration(seconds: 1));
     expect(find.byType(PlaceCard), findsNWidgets(6));
     for (final elemento in find.byType(PlaceCard).evaluate()) {
       final tarjeta = find.byWidget(elemento.widget);
