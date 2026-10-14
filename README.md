@@ -81,3 +81,5 @@ Entregables finales: [ZIP de 71 fuentes](entregas/sesion06/exploraec-sesion06.zi
 ## Sesión 7
 
 [Versión fija sesion-07](https://github.com/btoaldas/BtoCediaFlutter/tree/sesion-07). Persistencia con Hive: favoritos del dispositivo y caché privada de gastos por usuario, servidor primero, aviso offline con fecha, reintento y limpieza al salir/401. JWT solo en memoria. [Requisitos y explicación](docs/practica-sesion07.md). Verificación final: 89 pruebas, incluidos 10 casos docentes; análisis/formato correctos y E2E Edge con API/PostgreSQL reales. No hay escritura offline, cifrado ni login sin red; idioma opcional no implementado. Informe y ZIP en `entregas/sesion07/`.
+
+Entrega S7 completada en CEDIA 49577 el 13 de octubre de 2026 a las 23:05: «Enviado para calificar», todavía «Sin calificar». PDF y ZIP descargados idénticos por SHA256; GitHub público y copias locales OneDrive también verificados. [Hito de cierre](docs/hitos/2026-10-13-sesion07-entregada.md).

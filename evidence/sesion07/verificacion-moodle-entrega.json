@@ -1,0 +1,26 @@
+{
+  "verificado_utc": "2026-10-14T04:09:21.087939+00:00",
+  "actividad": 49577,
+  "titulo": "Práctica Sesión 7 - Persistencia local con Hive",
+  "url": "https://cursos.cedia.org.ec/mod/assign/view.php?id=49577",
+  "estado": "Enviado para calificar",
+  "calificacion": "Sin calificar",
+  "ultima_modificacion_local": "2026-10-13 23:05 America/Guayaquil",
+  "anticipacion_observada": "54 minutos 59 segundos antes de la fecha límite",
+  "commit_fuentes": "17afbf8ec474d4e0485f81cf91ce9949a171c64f",
+  "archivos": {
+    "exploraec-sesion07.zip": {
+      "bytes": 303135,
+      "sha256": "62bab7b827f5069c142af67d92d3b920a155257c8d5a7b345197ad1ea97b7a8b",
+      "descarga_identica": true
+    },
+    "informe-practica-sesion07.pdf": {
+      "bytes": 224192,
+      "sha256": "7e7e78b21c8f4bd13fceb48bbe682f0886899d67b7e2890b8c528c0db300a0fe",
+      "descarga_identica": true
+    }
+  },
+  "verificacion_estado": "Interfaz autenticada del aula: estado, hora y nombres visibles",
+  "verificacion_bytes": "Descargas desde los enlaces visibles de la entrega, comparadas con originales distintos por SHA256",
+  "limite": "La entrega confirmada no acredita calificación académica."
+}
