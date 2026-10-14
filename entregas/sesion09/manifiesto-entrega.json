@@ -1,0 +1,25 @@
+{
+  "sesion": 9,
+  "actividad_cedia": 49613,
+  "fuente_commit": "d616cacb189abd2d64d21462fae8c0f327b0289a",
+  "fecha": "2026-10-14",
+  "pdf": {
+    "nombre": "informe-practica-sesion09-v3.pdf",
+    "bytes": 333382,
+    "sha256": "3f543e97cd11ca4e9577d6f850e61aab9cdf0f10d5c287ae30093e0a25538b15",
+    "paginas": 11,
+    "revision_independiente": "APTO;11/11 páginas visualizadas, texto/enlaces/cifras/reflexiones/privacidad comprobados"
+  },
+  "zip": {
+    "nombre": "exploraec-sesion09.zip",
+    "archivos": 149,
+    "bytes": 496145,
+    "sha256": "1b1ed4db4c677045f2e783c004a296aa8dd2cce43e2704bf01b0c6af08d9b7c8",
+    "crc_correcto": true,
+    "fuentes_identicas_git": true
+  },
+  "autorizacion": "Completar y publicar las tareas restantes: autorización expresa del estudiante",
+  "modo": "REGLAS; sin modelo externo ni clave de proveedor",
+  "asistencia_ia": "Declarada en el informe",
+  "moodle": "Pendiente de envío y comparación de descargas"
+}
