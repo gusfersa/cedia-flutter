@@ -1,0 +1,20 @@
+{
+  "fecha_utc": "2026-10-14T04:02:12.093672+00:00",
+  "commit_fuentes": "17afbf8ec474d4e0485f81cf91ce9949a171c64f",
+  "tag": "sesion-07",
+  "actividad_cedia": 49577,
+  "pdf_paginas": 9,
+  "zip_archivos": 92,
+  "zip_crc": "correcto",
+  "zip_contra_commit": "92 archivos idénticos byte por byte",
+  "archivos": {
+    "exploraec-sesion07.zip": {
+      "bytes": 303135,
+      "sha256": "62bab7b827f5069c142af67d92d3b920a155257c8d5a7b345197ad1ea97b7a8b"
+    },
+    "informe-practica-sesion07.pdf": {
+      "bytes": 224192,
+      "sha256": "7e7e78b21c8f4bd13fceb48bbe682f0886899d67b7e2890b8c528c0db300a0fe"
+    }
+  }
+}

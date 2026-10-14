@@ -1,0 +1,7 @@
+{
+  "veredicto": "APTO",
+  "revision": "independiente; visual9p y extracción de texto/enlaces",
+  "paginas": 9,
+  "observaciones": "Sin cortes, solapes, caracteres dañados ni capturas ilegibles. Fecha, commit,89pruebas y límites coherentes; cuatro líneas de diseño offline completas.",
+  "sha256_pdf": "7e7e78b21c8f4bd13fceb48bbe682f0886899d67b7e2890b8c528c0db300a0fe"
+}
