@@ -1,0 +1,14 @@
+[
+  {
+    "ruta": "/gastos/",
+    "codigo": 200
+  },
+  {
+    "ruta": "/gastos/",
+    "codigo": 201
+  },
+  {
+    "ruta": "/gastos/",
+    "codigo": 200
+  }
+]

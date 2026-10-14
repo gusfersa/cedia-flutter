@@ -1,0 +1,24 @@
+[
+  {
+    "ruta": "/asistente",
+    "bytes": 376,
+    "claves": [
+      "consulta",
+      "resumen"
+    ],
+    "clavesResumen": [
+      "categorias",
+      "total_general"
+    ],
+    "categorias": 4,
+    "clavesCategoria": [
+      "categoria",
+      "total",
+      "cantidad",
+      "disponible"
+    ],
+    "historialPresente": false,
+    "correoPresente": false,
+    "tokenEnCuerpo": false
+  }
+]

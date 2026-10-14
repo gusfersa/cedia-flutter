@@ -1,5 +1,5 @@
 // Práctica académica CEDIA MOD3, basada en Patricio-CEDIA/exploraec-app,
-// sesiones 02–08. Lugares locales y JWT en almacenamiento seguro; Gastos usa una API REST
+// sesiones 02–09. Lugares locales y JWT en almacenamiento seguro; Gastos usa una API REST
 // con caché de Hive por usuario; los favoritos de lugares son persistentes.
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import 'bindings/app_binding.dart';
+import 'screens/assistant_screen.dart';
 import 'screens/favorites_screen.dart';
 import 'screens/gastos_screen.dart';
 import 'screens/home_screen.dart';
@@ -59,7 +60,8 @@ class _RootShellState extends State<RootShell> {
         0 => const HomeScreen(),
         1 => const MapScreen(),
         2 => const FavoritesScreen(),
-        _ => const GastosScreen(),
+        3 => const GastosScreen(),
+        _ => const AssistantScreen(),
       },
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
@@ -75,6 +77,10 @@ class _RootShellState extends State<RootShell> {
           BottomNavigationBarItem(
             icon: Icon(Icons.receipt_long),
             label: 'Gastos',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.chat_bubble_outline),
+            label: 'Asistente',
           ),
         ],
       ),

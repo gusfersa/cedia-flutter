@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 
 import '../models/gasto.dart';
+import '../models/resumen_gastos.dart';
 import 'api_client.dart';
 
 /// API de gastos sobre el mismo Dio que usa AuthController. La inyección de
@@ -111,6 +112,20 @@ class GastosApiService {
           'Respuesta inesperada del servidor al guardar el gasto.');
     }
     return Gasto.fromJson(Map<String, dynamic>.from(json));
+  }
+
+  Future<ResumenGastos> obtenerResumen() async {
+    _exigirToken();
+    final r = await client.get('/gastos/resumen');
+    if (r.data is! Map) {
+      throw ApiException(
+          'Respuesta inesperada del servidor al leer el resumen.');
+    }
+    try {
+      return ResumenGastos.fromJson(Map<String, dynamic>.from(r.data as Map));
+    } on FormatException {
+      throw ApiException('El backend devolvió un resumen de gastos inválido.');
+    }
   }
 
   Future<Gasto> crear(Map<String, dynamic> datos) async {

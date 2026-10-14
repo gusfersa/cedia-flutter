@@ -1,0 +1,33 @@
+{
+  "sesion": 8,
+  "actividad_cedia": 49588,
+  "fuente_commit": "a010cbc581691b857ce6aa9f5a6529e21b323dc2",
+  "fecha": "2026-10-14",
+  "pdf": {
+    "nombre": "informe-practica-sesion08.pdf",
+    "bytes": 161979,
+    "sha256": "3257fc23adbe37437cfb94604b6bb2a237949877603353bb2a3a90047fbbdd1c",
+    "paginas": 8,
+    "revision_independiente": "APTO; ocho páginas visualizadas, texto/enlaces/coherencia/privacidad comprobados"
+  },
+  "zip": {
+    "nombre": "exploraec-sesion08.zip",
+    "archivos": 138,
+    "bytes": 447138,
+    "sha256": "b527167b02c504eb56760988d72b0774c8d1fac554d1f72de51febfd2e1ae74e",
+    "crc_correcto": true,
+    "fuentes_identicas_git": true
+  },
+  "estado": "Enviado para calificar",
+  "calificacion": "Sin calificar",
+  "ultima_modificacion_plataforma": "2026-10-14 00:28 America/Guayaquil",
+  "anticipacion": "23 horas 31 minutos",
+  "descargas": {
+    "pdf_identico": true,
+    "zip_identico": true,
+    "metodo": "Descarga por navegador de los archivos de la entrega y comparación de bytes y SHA256"
+  },
+  "repositorio": "https://github.com/btoaldas/BtoCediaFlutter",
+  "github_bytes_verificados": true,
+  "onedrive": "Copias locales verificadas; sincronización remota no comprobada"
+}

@@ -148,7 +148,7 @@ void main() {
     final barra =
         tester.widget<BottomNavigationBar>(find.byType(BottomNavigationBar));
     expect(barra.items.map((item) => item.label),
-        ['Inicio', 'Mapa', 'Favoritos', 'Gastos']);
+        ['Inicio', 'Mapa', 'Favoritos', 'Gastos', 'Asistente']);
     await tester.tap(find.text('Gastos'));
     await tester.pumpAndSettle();
     expect(find.byType(GastosScreen), findsOneWidget);

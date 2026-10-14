@@ -1,0 +1,4 @@
+OK 1/4: contenido de health válido.
+OK 2/4: login válido; token conservado solo en memoria.
+OK 3/4: resumen MCP validado; categorías=4.
+OK 4/4: REGLAS coincide con los datos MCP aunque el cliente envió un resumen vacío.

@@ -1,0 +1,9 @@
+{
+  "consulta": "Registra un almuerzo de 6.50 en comida",
+  "resumen": {
+    "categorias": [
+      {"categoria": "comida", "total": 20, "cantidad": 2, "disponible": 480}
+    ],
+    "total_general": 20
+  }
+}

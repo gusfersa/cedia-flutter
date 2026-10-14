@@ -1,0 +1,9 @@
+{
+  "consulta": "¿En qué categoría gasto más?",
+  "resumen": {
+    "categorias": [
+      {"categoria": "comida", "total": 20, "cantidad": 2, "disponible": 480}
+    ],
+    "total_general": 20
+  }
+}

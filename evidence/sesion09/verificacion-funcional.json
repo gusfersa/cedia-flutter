@@ -1,0 +1,57 @@
+{
+  "fecha": "2026-10-14",
+  "flutter": {
+    "pruebas": 145,
+    "docentesS8S9": 22,
+    "fallos": 0,
+    "analisis": "Sin incidencias",
+    "formato": "56 archivos; cero cambios"
+  },
+  "node": {
+    "pruebas": 38,
+    "fallos": 0
+  },
+  "e2eReal": {
+    "eslabones": 4,
+    "aprobados": 4,
+    "origen": "mcp",
+    "resumenClienteFalsoIgnorado": true
+  },
+  "navegador": {
+    "cancelar": {
+      "gastosAntes": 5,
+      "gastosDespues": 5,
+      "posts": 0
+    },
+    "confirmar": {
+      "posts201": 1,
+      "gastosDespues": 6
+    },
+    "monto600": {
+      "codigo": 400,
+      "gastosDespues": 6
+    },
+    "proxyInaccesible": "Error legible, controles recuperados",
+    "mcpInaccesible": "Error MCP legible; sin respuesta alternativa",
+    "recuperacion": "Consulta correcta después de restablecer MCP",
+    "usuarios": "A nueve gastos; B vacío; sesión A restablecida"
+  },
+  "privacidad": {
+    "bytesIniciales": 374,
+    "bytesFinales": 376,
+    "gastosIniciales": 5,
+    "gastosFinales": 9,
+    "categorias": 4,
+    "claves": [
+      "consulta",
+      "resumen"
+    ],
+    "sinHistorialCorreoTokenEnCuerpo": true
+  },
+  "limites": [
+    "Modo REGLAS; sin Gemini/Ollama ni llamadas a un modelo externo",
+    "Las carreras en vuelo se verifican con pruebas controladas; el cambio A/B se comprueba además en navegador",
+    "S9 probada en web; no se afirma ejecución nativa de la interfaz S9",
+    "Tres gastos adicionales sintéticos creados por API para comparar tamaño; todos se conservan"
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "metodo": "API real; tres datos sintéticos nuevos para comparar tamaño del resumen",
+  "cantidadAntes": 6,
+  "cantidadDespues": 9,
+  "creados": [
+    {
+      "id": 17,
+      "categoria": "transporte",
+      "monto": 1.0,
+      "codigo": 201
+    },
+    {
+      "id": 18,
+      "categoria": "otros",
+      "monto": 1.0,
+      "codigo": 201
+    },
+    {
+      "id": 19,
+      "categoria": "entretenimiento",
+      "monto": 1.0,
+      "codigo": 201
+    }
+  ],
+  "resumenFinal": {
+    "categorias": [
+      {
+        "categoria": "comida",
+        "total": 463.5,
+        "cantidad": 3,
+        "disponible": 36.5
+      },
+      {
+        "categoria": "entretenimiento",
+        "total": 13.0,
+        "cantidad": 2,
+        "disponible": 487.0
+      },
+      {
+        "categoria": "otros",
+        "total": 2.25,
+        "cantidad": 2,
+        "disponible": 497.75
+      },
+      {
+        "categoria": "transporte",
+        "total": 4.25,
+        "cantidad": 2,
+        "disponible": 495.75
+      }
+    ],
+    "total_general": 483.0
+  }
+}

@@ -48,7 +48,7 @@ Se verificó web sobre Edge, incluidos estados, formularios y controles accesibl
 
 ## Fuente académica
 
-Basado en el material de [Patricio-CEDIA/exploraec-app](https://github.com/Patricio-CEDIA/exploraec-app), ramas `sesion-02` a `sesion-07`, y sus instructivos de práctica. Se conserva la atribución del curso. Las referencias docentes consultadas no declaran licencia; no se les asigna una licencia inventada.
+Basado en el material de [Patricio-CEDIA/exploraec-app](https://github.com/Patricio-CEDIA/exploraec-app), ramas `sesion-02` a `sesion-09`, y sus instructivos de práctica. Se conserva la atribución del curso. Las referencias docentes consultadas no declaran licencia; no se les asigna una licencia inventada.
 
 ## Sesión 4
 
@@ -86,4 +86,8 @@ Entrega S7 completada en CEDIA 49577 el 13 de octubre de 2026 a las 23:05: «Env
 
 ## Sesión 8
 
-Autenticación segura con Dio/AuthController y CRUD completo; 124 pruebas, quince docentes, E2E web y almacenamiento seguro real Android entre procesos. [Requisitos, resultados y límites](docs/practica-sesion08.md). Versión fija prevista: sesion-08. Informe y ZIP se preparan para CEDIA 49588.
+Autenticación segura con Dio/AuthController y CRUD completo; 124 pruebas, quince docentes, E2E web y almacenamiento seguro real Android entre procesos. [Requisitos, resultados y límites](docs/practica-sesion08.md). [Versión fija sesion-08](https://github.com/btoaldas/BtoCediaFlutter/tree/sesion-08). PDF y ZIP entregados en CEDIA 49588 el 14 de octubre a las 00:28: Enviado para calificar, Sin calificar; ambas descargas idénticas por bytes y SHA256. [Constancia](entregas/sesion08/constancia-entrega-20261014.json).
+
+## Sesión 9
+
+Quinta pestaña Asistente, modo **REGLAS** explícito, resumen real por MCP y confirmación antes de crear gastos. [Integración y ejecución](docs/sesion09-integracion.md). 145 pruebas Flutter (22 docentes S8/S9), 38 Node, análisis/formato correctos y cadena real de cuatro eslabones aprobada. Edge comprueba consultas, cancelación sin POST, alta 201, rechazo 600, errores diferenciados y aislamiento A/B. La petición solo lleva consulta y resumen; no historial ni credenciales. [Evidencia saneada](evidence/sesion09/verificacion-funcional.json). Se prepara PDF y ZIP para CEDIA 49613.

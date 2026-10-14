@@ -1,0 +1,77 @@
+[
+  {
+    "tipo": "peticion",
+    "ruta": "/gastos/resumen",
+    "metodo": "GET",
+    "bytes": 0,
+    "claves": [],
+    "categorias": null,
+    "clavesResumen": [],
+    "clavesCategoria": []
+  },
+  {
+    "tipo": "peticion",
+    "ruta": "/gastos/resumen",
+    "metodo": "OPTIONS",
+    "bytes": 0,
+    "claves": [],
+    "categorias": null,
+    "clavesResumen": [],
+    "clavesCategoria": []
+  },
+  {
+    "tipo": "respuesta",
+    "ruta": "/gastos/resumen",
+    "codigo": 200,
+    "origen": null
+  },
+  {
+    "tipo": "respuesta",
+    "ruta": "/gastos/resumen",
+    "codigo": 200,
+    "origen": null
+  },
+  {
+    "tipo": "peticion",
+    "ruta": "/asistente",
+    "metodo": "POST",
+    "bytes": 374,
+    "claves": [
+      "consulta",
+      "resumen"
+    ],
+    "categorias": 4,
+    "clavesResumen": [
+      "categorias",
+      "total_general"
+    ],
+    "clavesCategoria": [
+      "categoria",
+      "total",
+      "cantidad",
+      "disponible"
+    ]
+  },
+  {
+    "tipo": "peticion",
+    "ruta": "/asistente",
+    "metodo": "OPTIONS",
+    "bytes": 0,
+    "claves": [],
+    "categorias": null,
+    "clavesResumen": [],
+    "clavesCategoria": []
+  },
+  {
+    "tipo": "respuesta",
+    "ruta": "/asistente",
+    "codigo": 204,
+    "origen": null
+  },
+  {
+    "tipo": "respuesta",
+    "ruta": "/asistente",
+    "codigo": 200,
+    "origen": "mcp"
+  }
+]

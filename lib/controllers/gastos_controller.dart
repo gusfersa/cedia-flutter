@@ -3,6 +3,7 @@
 import 'package:get/get.dart';
 
 import '../models/gasto.dart';
+import '../models/resumen_gastos.dart';
 import '../repositories/gastos_repository.dart';
 import '../services/api_client.dart';
 import '../services/gastos_api_service.dart';
@@ -131,6 +132,15 @@ class GastosController extends GetxController {
     if (_sesionVigente(sesion)) {
       categorias.assignAll(resultado.categorias.toSet());
     }
+  }
+
+  Future<ResumenGastos> obtenerResumen() async {
+    final sesion = _exigirSesion();
+    final resumen = await _api.obtenerResumen();
+    if (!_sesionVigente(sesion)) {
+      throw ApiException('La sesión cambió. Vuelve a realizar la consulta.');
+    }
+    return resumen;
   }
 
   Future<void> cargarGastos() async {
