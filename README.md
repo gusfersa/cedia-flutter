@@ -1,6 +1,6 @@
 # ExploraEC — prácticas CEDIA MOD3
 
-Aplicación de formación en Flutter y Dart para las prácticas de widgets, tema, estados y accesibilidad del curso CEDIA MOD3.
+Aplicación de formación en Flutter y Dart: widgets, accesibilidad, mapas, persistencia, autenticación segura, gastos y asistente del curso CEDIA MOD3.
 
 ## Versiones verificadas
 
@@ -90,4 +90,4 @@ Autenticación segura con Dio/AuthController y CRUD completo; 124 pruebas, quinc
 
 ## Sesión 9
 
-Quinta pestaña Asistente, modo **REGLAS** explícito, resumen real por MCP y confirmación antes de crear gastos. [Integración y ejecución](docs/sesion09-integracion.md). 145 pruebas Flutter (22 docentes S8/S9), 38 Node, análisis/formato correctos y cadena real de cuatro eslabones aprobada. Edge comprueba consultas, cancelación sin POST, alta 201, rechazo 600, errores diferenciados y aislamiento A/B. La petición solo lleva consulta y resumen; no historial ni credenciales. [Evidencia saneada](evidence/sesion09/verificacion-funcional.json). Se prepara PDF y ZIP para CEDIA 49613.
+Quinta pestaña Asistente, modo **REGLAS** explícito, resumen real por MCP y confirmación antes de crear gastos. [Integración y ejecución](docs/sesion09-integracion.md). 145 pruebas Flutter (22 docentes S8/S9), 38 Node, análisis/formato correctos y cadena real de cuatro eslabones aprobada. Edge comprueba consultas, cancelación sin POST, alta 201, rechazo 600, errores diferenciados y aislamiento A/B. La petición solo lleva consulta y resumen; no historial ni credenciales. [Evidencia saneada](evidence/sesion09/verificacion-funcional.json). PDFv3 y ZIP entregados en CEDIA 49613 el 14 de octubre a las 00:49: Enviado para calificar, Sin calificar. Ambas descargas idénticas por bytes y SHA256; publicación pública y copias locales OneDrive comprobadas. [Hito final](docs/hitos/2026-10-14-sesion09-entregada.md).

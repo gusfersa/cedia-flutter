@@ -27,3 +27,7 @@ Entrega S7 completada en CEDIA 49577 el 13 de octubre de 2026 a las 23:05: «Env
 ## Estado — 2026-10-14 — Sesiones 8 y 9
 
 S8 implementada y comprobada:124 pruebas, análisis correcto, E2E web y tres fases de almacenamiento seguro real Android. PDF y ZIP entregados en 49588 a las 00:28 del 14 de octubre; descargas idénticas. S9 integrada y comprobada:145 Flutter,38 Node, análisis sin incidencias, cadena real4/4 y navegación completa; se preparan PDF/ZIP para 49613. El Quiz1 ya figuraba finalizado con 10/10 en la consulta del 13 de octubre; no se volvió a enviar.
+
+## Cierre — 2026-10-14 — Sesiones 8 y 9 entregadas
+
+S8: CEDIA49588 a las00:28. S9: CEDIA49613 a las00:49. Ambas Enviado para calificar/Sin calificar; cuatro archivos descargados idénticos a los originales por bytes y SHA256. GitHub público y copias locales OneDrive verificados; no se afirma sincronización remota. 145 Flutter,38 Node, análisis/formato correctos, cadena MCP real4/4 y PDFv3 S9 APTO11/11. Solo queda la evaluación docente; no se identificaron otras tareas de entrega pendientes en el curso revisado. Quiz1 ya figuraba10/10, no se volvió a enviar.
