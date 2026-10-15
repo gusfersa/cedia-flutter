@@ -44,6 +44,7 @@ class GastosController extends GetxController {
   late final LimpiezaSesion _limpieza;
   late final Worker _escuchaAuth;
   final RxList<Gasto> gastos = <Gasto>[].obs;
+  final RxnString filtroCategoria = RxnString();
   final RxList<String> categorias = <String>[].obs;
   final Rx<EstadoCarga> estado = EstadoCarga.exito.obs;
   final RxString mensajeError = ''.obs;
@@ -58,6 +59,30 @@ class GastosController extends GetxController {
   String get ultimaSincronizacion => _repository.ultimaSincronizacion;
   String get servidor => _api.baseUrl;
   bool get hayMas => !desdeCache.value && gastos.length < totalEnServidor.value;
+
+  /// Solo categorías de páginas cargadas; no modifica las del formulario.
+  List<String> get categoriasDisponibles => List.unmodifiable(
+      gastos.map((g) => g.categoria).toSet().toList()..sort());
+
+  /// Vista derivada: nunca filtra la lista original ni modifica Hive/totales.
+  List<Gasto> get gastosFiltrados {
+    final filtro = filtroCategoria.value;
+    return List.unmodifiable(
+        gastos.where((g) => filtro == null || g.categoria == filtro));
+  }
+
+  void seleccionarCategoria(String? categoria) {
+    filtroCategoria.value =
+        categoriasDisponibles.contains(categoria) ? categoria : null;
+  }
+
+  void _resolverFiltro() {
+    // Validar DESPUÉS de assignAll: RxList emite también el vacío intermedio.
+    final filtro = filtroCategoria.value;
+    if (filtro != null && !categoriasDisponibles.contains(filtro)) {
+      filtroCategoria.value = null;
+    }
+  }
 
   int _sesion = 0;
   int _carga = 0;
@@ -98,6 +123,7 @@ class GastosController extends GetxController {
     mensajeError.value = '';
     try {
       if (_usuarioCaja != id) {
+        filtroCategoria.value = null;
         await _repository.abrirParaUsuario(usuarioId: id);
         if (!_sesionVigente(sesion)) return;
         _usuarioCaja = id;
@@ -154,6 +180,7 @@ class GastosController extends GetxController {
       final resultado = await _repository.recargar(limit: _tamanoPagina);
       if (!_vigente(sesion, carga)) return;
       gastos.assignAll({for (final g in resultado.gastos) g.id: g}.values);
+      _resolverFiltro();
       totalEnServidor.value = resultado.total;
       desdeCache.value = resultado.desdeCache;
       if (!resultado.desdeCache) avisoSincronizacion.value = '';
@@ -200,6 +227,7 @@ class GastosController extends GetxController {
         porId[g.id] = g;
       }
       gastos.assignAll(porId.values);
+      _resolverFiltro();
       totalEnServidor.value = resultado.total;
     } on ApiException catch (error) {
       if (!_vigente(sesion, carga)) {
@@ -281,6 +309,7 @@ class GastosController extends GetxController {
       porId[gasto.id] = gasto;
     }
     gastos.assignAll(porId.values);
+    _resolverFiltro();
     desdeCache.value = false;
     estado.value = EstadoCarga.exito;
     mensajeError.value = '';
@@ -305,6 +334,7 @@ class GastosController extends GetxController {
             'El cambio se guardó en el servidor. No se pudo sincronizar la lista; puedes reintentar.';
       } else {
         gastos.assignAll({for (final g in resultado.gastos) g.id: g}.values);
+        _resolverFiltro();
         totalEnServidor.value = resultado.total;
       }
     } catch (error) {
@@ -328,6 +358,7 @@ class GastosController extends GetxController {
     _usuarioCaja = null;
     final cierre = borrarCache ? _repository.vaciar() : _repository.cerrar();
     _cierrePendiente = cierre;
+    filtroCategoria.value = null;
     gastos.clear();
     categorias.clear();
     totalEnServidor.value = 0;

@@ -1,0 +1,80 @@
+name: Release APK
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  CI: 'true'
+  FLUTTER_SUPPRESS_ANALYTICS: 'true'
+  DART_SUPPRESS_ANALYTICS: 'true'
+
+jobs:
+  calidad:
+    uses: ./.github/workflows/ci.yml
+    permissions:
+      contents: read
+
+  construir:
+    needs: calidad
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.47.6'
+          channel: stable
+          cache: false
+      - name: Dependencias bloqueadas
+        run: flutter pub get --enforce-lockfile
+      - name: Construir APK de laboratorio
+        env:
+          API_BASE_URL: ${{ vars.API_BASE_URL || 'http://10.0.2.2:8000' }}
+          LLM_BACKEND_URL: ${{ vars.LLM_BACKEND_URL || 'http://10.0.2.2:3801' }}
+        run: >-
+          flutter build apk --release --no-pub
+          --dart-define="API_BASE_URL=$API_BASE_URL"
+          --dart-define="LLM_BACKEND_URL=$LLM_BACKEND_URL"
+      - name: Conservar artefacto APK
+        uses: actions/upload-artifact@v7
+        with:
+          name: exploraec-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
+          if-no-files-found: error
+          retention-days: 14
+
+  publicar:
+    needs: construir
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          name: exploraec-apk
+          path: apk
+      - name: Publicar Release con APK
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: >-
+          gh release create "$RELEASE_TAG" apk/app-release.apk
+          --verify-tag
+          --title "ExploraEC $RELEASE_TAG"
+          --notes "APK de laboratorio académico; firma de depuración. Requiere los servicios configurados para el emulador."

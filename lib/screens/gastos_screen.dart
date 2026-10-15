@@ -53,6 +53,16 @@ class GastosScreen extends GetView<GastosController> {
                       const Duration(seconds: 15));
                   controller.cargarGastos();
                 }
+                if (kDebugMode && ApiConfig.labPruebas) {
+                  if (valor == 'error-pantalla') {
+                    Get.to(() => const _PantallaErrorDePractica());
+                  }
+                  if (valor == 'error-asincrono') {
+                    Future<void>.delayed(Duration.zero, () {
+                      throw StateError('Fallo asíncrono de práctica.');
+                    });
+                  }
+                }
               },
               itemBuilder: (context) => const [
                 PopupMenuItem(value: 'salir', child: Text('Cerrar sesión')),
@@ -70,6 +80,16 @@ class GastosScreen extends GetView<GastosController> {
                   PopupMenuItem(
                     value: 'timeout-15',
                     child: Text('Restaurar timeout de 15 s'),
+                  ),
+                if (kDebugMode && ApiConfig.labPruebas)
+                  PopupMenuItem(
+                    value: 'error-pantalla',
+                    child: Text('Error de pantalla (solo práctica)'),
+                  ),
+                if (kDebugMode && ApiConfig.labPruebas)
+                  PopupMenuItem(
+                    value: 'error-asincrono',
+                    child: Text('Error asíncrono (solo práctica)'),
                   ),
               ],
             ),
@@ -105,15 +125,41 @@ class GastosScreen extends GetView<GastosController> {
                 )
               else if (controller.desdeCache.value)
                 _bannerCache(context),
+              _buildFiltros(),
               Expanded(
-                child: controller.gastos.isEmpty
+                child: controller.gastos.isEmpty && !controller.hayMas
                     ? const EmptyView(
                         mensaje: 'Aún no registras gastos en este viaje')
-                    : _buildLista(controller.gastos.toList(), context),
+                    : _buildLista(controller.gastosFiltrados, context),
               ),
             ],
           );
         }),
+      );
+
+  Widget _buildFiltros() => SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        padding: const EdgeInsets.all(AppSpacing.md),
+        child: Row(
+          children: [
+            ChoiceChip(
+              key: const ValueKey('filtro-todas'),
+              label: const Text('Todas'),
+              selected: controller.filtroCategoria.value == null,
+              onSelected: (_) => controller.seleccionarCategoria(null),
+            ),
+            for (final categoria in controller.categoriasDisponibles)
+              Padding(
+                padding: const EdgeInsets.only(left: AppSpacing.sm),
+                child: ChoiceChip(
+                  key: ValueKey('filtro-$categoria'),
+                  label: Text(categoria),
+                  selected: controller.filtroCategoria.value == categoria,
+                  onSelected: (_) => controller.seleccionarCategoria(categoria),
+                ),
+              ),
+          ],
+        ),
       );
 
   Widget _bannerCache(BuildContext context) => MaterialBanner(
@@ -133,17 +179,26 @@ class GastosScreen extends GetView<GastosController> {
   Widget _buildLista(List<Gasto> gastos, BuildContext context) {
     final conBoton = controller.hayMas;
     final cargandoMas = controller.cargandoMas.value;
+    final filas = gastos.isEmpty ? 1 : gastos.length;
     return ListView.builder(
       physics: const AlwaysScrollableScrollPhysics(),
-      itemCount: gastos.length + (conBoton ? 1 : 0),
+      itemCount: filas + (conBoton ? 1 : 0),
       itemBuilder: (context, indice) {
-        if (indice == gastos.length) {
+        if (indice == filas) {
           return Padding(
             padding: const EdgeInsets.all(AppSpacing.md),
             child: OutlinedButton(
               onPressed: cargandoMas ? null : controller.cargarMas,
               child: Text(cargandoMas ? 'Cargando...' : 'Cargar más'),
             ),
+          );
+        }
+        if (gastos.isEmpty) {
+          return const Padding(
+            padding: EdgeInsets.all(AppSpacing.md),
+            child: Text(
+                'No hay gastos de esta categoría en las páginas cargadas.',
+                textAlign: TextAlign.center),
           );
         }
         final gasto = gastos[indice];
@@ -196,4 +251,16 @@ class GastosScreen extends GetView<GastosController> {
       }
     }
   }
+}
+
+class _PantallaErrorDePractica extends StatelessWidget {
+  const _PantallaErrorDePractica();
+
+  @override
+  Widget build(BuildContext context) => Scaffold(
+        appBar: AppBar(title: const Text('Práctica de errores')),
+        body: Builder(builder: (_) {
+          throw StateError('Fallo de widget de práctica.');
+        }),
+      );
 }

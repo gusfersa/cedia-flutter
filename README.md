@@ -91,3 +91,14 @@ Autenticación segura con Dio/AuthController y CRUD completo; 124 pruebas, quinc
 ## Sesión 9
 
 Quinta pestaña Asistente, modo **REGLAS** explícito, resumen real por MCP y confirmación antes de crear gastos. [Integración y ejecución](docs/sesion09-integracion.md). 145 pruebas Flutter (22 docentes S8/S9), 38 Node, análisis/formato correctos y cadena real de cuatro eslabones aprobada. Edge comprueba consultas, cancelación sin POST, alta 201, rechazo 600, errores diferenciados y aislamiento A/B. La petición solo lleva consulta y resumen; no historial ni credenciales. [Evidencia saneada](evidence/sesion09/verificacion-funcional.json). PDFv3 y ZIP entregados en CEDIA 49613 el 14 de octubre a las 00:49: Enviado para calificar, Sin calificar. Ambas descargas idénticas por bytes y SHA256; publicación pública y copias locales OneDrive comprobadas. [Hito final](docs/hitos/2026-10-14-sesion09-entregada.md).
+
+
+## Sesión 10 — calidad, CI/CD y código con agentes
+
+La rama de trabajo S10 añade captura central de errores inesperados, una vista amistosa y filtro de Gastos por categoría con GetX. «Todas» restaura las tarjetas; filtrar conserva los datos originales, totales, caché y paginación. Las categorías proceden de las páginas cargadas.
+
+Verificación independiente del 15 de octubre de 2026: **159 pruebas Flutter**, **14 controles S10 con LAB_PRUEBAS=true**, **38 pruebas Node**, análisis sin incidencias y formato correcto. La base anterior de 145 pruebas y los 38 casos Node se conservan; no se añadieron dependencias. [Comandos y resultados](docs/sesion10/verificacion.json), [decisiones y atribución](docs/sesion10/decisiones.md), [reglas propuestas y permisos](docs/sesion10/arneses.md).
+
+Los controles que provocan fallos requieren modo debug y `--dart-define=LAB_PRUEBAS=true`. El registro conserva hasta 20 mensajes controlados sin serializar excepciones, trazas ni credenciales. Se utilizó asistencia de IA; el diff y las pruebas se revisaron de forma independiente.
+
+**Estado de publicación:** PR y sus enlaces pendientes de registrar; CI remota, ejecución roja de control, Release/APK e instalación todavía requieren comprobación. El destino es el [repositorio académico existente](https://github.com/btoaldas/BtoCediaFlutter). [Manifiesto de publicación S10](docs/manifiestos/2026-10-15-sesion10-publicacion.md). La actividad CEDIA 49761 cierra el 21 de octubre de 2026 a las 00:00; la entrega prevista es el enlace al repositorio, cuando el recorrido de calidad y APK esté verificado.

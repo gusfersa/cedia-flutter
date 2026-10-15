@@ -1,0 +1,57 @@
+{
+  "fecha": "2026-10-15",
+  "base_commit": "0204ba336eff948f1df2d86a15f4fd359b8ecd1a",
+  "verificacion": "Independiente del constructor",
+  "sdk": {
+    "flutter": "3.47.6",
+    "dart": "3.13.5"
+  },
+  "basal": {
+    "flutter": 145,
+    "node": 38,
+    "analyze_incidencias": 0
+  },
+  "verde": {
+    "flutter": 159,
+    "s10_lab_pruebas": 14,
+    "node": 38,
+    "analyze_incidencias": 0,
+    "git_diff_check_exit": 0,
+    "pub_get_enforce_lockfile_exit": 0
+  },
+  "comandos": [
+    "flutter pub get --enforce-lockfile",
+    "flutter analyze --no-pub",
+    "flutter test --no-pub --reporter expanded",
+    "flutter test --no-pub --reporter expanded --dart-define=LAB_PRUEBAS=true test/sesion_10_test.dart test/filtro_gastos_test.dart",
+    "node --test mock-server/test/*.test.js",
+    "git diff --check"
+  ],
+  "fuentes_finales_coinciden_con_verde": true,
+  "gobernanza_dependencias_y_node_preservados": true,
+  "fuentes_sha256": {
+    ".claude/settings.json": "df87bbb2c169d86320154c6fdbde6d0b07a22ec5ff5d79eeef7a7f23365feab5",
+    ".github/workflows/ci.yml": "5a29e85424ae9d716e6fb20bcbc190e54ad2dcaeff8338ff89ef924e4f4fbf5c",
+    ".github/workflows/release-apk.yml": "05d181c79f6d8cf45cba0ec53b3058ca9e5a0902df32b3cfcbd3d12b9837b9ab",
+    ".gitignore": "ab72589d939c0f7a44cf0fae341efc61694795db57cc1d1b758e3022cf71af79",
+    "docs/sesion10/arneses.md": "df9a52c6df3638a54b0d9a4161b55c54554985b4a2b729ddb6d5c2ee78b2332f",
+    "docs/sesion10/comandos.md": "eec75286b68a32f83a1ebbc235f97c726dc798ec826805e8f6f0c557ece95141",
+    "docs/sesion10/decisiones.md": "27c6dae20eb627965d5e5c4b7ff316169b2378b7f2c196cc0b0c1ab9b07a0558",
+    "docs/sesion10/errores-secretos.md": "af3f0496829b9ee8aa34f7da443e7a6e9d68cc2b658c2b08cd32c92ceb003ef6",
+    "docs/sesion10/plan.md": "866ba344ab687ccd5bca6fcaf401f9ecccf70eb0e5b6737e75d58e63e069c16f",
+    "lib/controllers/gastos_controller.dart": "f75d4ad04497401a5a2ccef47838b8ed072e2f0e9f2aacddf6993d84c6d16f8d",
+    "lib/main.dart": "fd4b2c9f43468a69d661147d51e2c97d42b64f31c0ac807d9c099dad24bb4af1",
+    "lib/screens/gastos_screen.dart": "cd94515affc26df5d1fab595f0a17172570fca9d0bdd55c6af0ffdcc2db15ba5",
+    "lib/utils/reporte_errores.dart": "6a7b39920673c82b5306925e4a1623c316b4cf878600cfe778021b7c769000e1",
+    "lib/widgets/error_pantalla_view.dart": "a1049f95ca73360a09fecf05a58b6dc167ab2df0726a4992c41436f9ad2d243a",
+    "test/filtro_gastos_test.dart": "a5d120df05deac0ea95ef486c323ed708573a3cc78f1c1ed3018296c17b96204",
+    "test/helpers/sesion10_fake.dart": "845577d46ef79ffb21527b42d8590829e05f5ccebf6dfdc28b1ea62f8382df6e",
+    "test/sesion_10_test.dart": "74161c5243f6cb36c1e789092f866f3f9c178c2b32759100c8ed67e9b2f1abf5"
+  },
+  "limites": [
+    "Constructor agotó 1200 segundos sin respuesta final; fuentes recuperadas y verificadas independientemente.",
+    "CI remota, Release, APK instalado y Moodle pendientes del principal.",
+    "Configuración Claude no cargada en una sesión para probar permisos."
+  ],
+  "integracion_principal_coincide_con_area_verificada": true
+}

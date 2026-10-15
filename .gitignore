@@ -12,3 +12,4 @@ CLAUDE.local.md
 .env.*
 *.p12
 *.key
+.claude/settings.local.json
