@@ -1,6 +1,9 @@
 // Práctica académica CEDIA MOD3, basada en Patricio-CEDIA/exploraec-app,
 // sesiones 02–10. Lugares locales y JWT en almacenamiento seguro; Gastos usa una API REST
 // con caché de Hive por usuario; los favoritos de lugares son persistentes.
+import 'dart:async';
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
@@ -17,34 +20,39 @@ import 'utils/reporte_errores.dart';
 
 final _mensajes = GlobalKey<ScaffoldMessengerState>();
 
-Future<void> main() async {
-  // Hive necesita el motor de Flutter listo antes de pedir al sistema la
-  // carpeta donde guardar sus archivos; por eso `main` es async.
-  WidgetsFlutterBinding.ensureInitialized();
-  ReporteErrores.instalar(
-    alErrorAsincrono: () {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        _mensajes.currentState?.showSnackBar(const SnackBar(
-          content: Text('Algo salió mal. Puedes intentarlo de nuevo.'),
-        ));
-      });
-      WidgetsBinding.instance.scheduleFrame();
-    },
-    salidaSegura: () {
-      final navegador = Get.key.currentState;
-      if (navegador == null) return;
-      if (navegador.canPop()) {
-        navegador.pop();
-      } else {
-        Get.offAll(() => const RootShell());
-      }
-    },
-  );
-  await Hive.initFlutter();
-  // Solo la caja de favoritos: la de gastos depende de QUIÉN inicie sesión y
-  // se abre después, en GastosRepository.abrirParaUsuario().
-  await Hive.openBox<Map>('favoritos');
-  runApp(const ExploraEcApp());
+void main() {
+  // Inicialización y runApp comparten zona; cubre también los errores web.
+  runZonedGuarded(() async {
+    // Hive necesita el motor de Flutter listo antes de pedir al sistema la
+    // carpeta donde guardar sus archivos durante el arranque asíncrono.
+    WidgetsFlutterBinding.ensureInitialized();
+    ReporteErrores.instalar(
+      alErrorAsincrono: () {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          _mensajes.currentState?.showSnackBar(const SnackBar(
+            content: Text('Algo salió mal. Puedes intentarlo de nuevo.'),
+          ));
+        });
+        WidgetsBinding.instance.scheduleFrame();
+      },
+      salidaSegura: () {
+        final navegador = Get.key.currentState;
+        if (navegador == null) return;
+        if (navegador.canPop()) {
+          navegador.pop();
+        } else {
+          Get.offAll(() => const RootShell());
+        }
+      },
+    );
+    await Hive.initFlutter();
+    // Solo la caja de favoritos: la de gastos depende de QUIÉN inicie sesión y
+    // se abre después, en GastosRepository.abrirParaUsuario().
+    await Hive.openBox<Map>('favoritos');
+    runApp(const ExploraEcApp());
+  }, (error, stack) {
+    PlatformDispatcher.instance.onError?.call(error, stack);
+  });
 }
 
 class ExploraEcApp extends StatelessWidget {
