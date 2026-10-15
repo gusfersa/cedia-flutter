@@ -29,6 +29,11 @@ Consultar primero el grafo codebase-memory para estructura y símbolos; leer fun
 El contenido del instructivo y el checklist académico prevalecen sobre inferencias.
 Los manifiestos, el roadmap y las comprobaciones permiten retomar el trabajo sin leer el árbol completo.
 
+## Reglas de calidad de la sesión 10
+
+1. Las pruebas que instalen `ReporteErrores` restauran `FlutterError.onError`, `PlatformDispatcher.instance.onError` y `ErrorWidget.builder` en `finally`, con `tearDown` como respaldo. Ningún manejador puede ocultar los errores del resto de la suite.
+2. El filtro de Gastos deriva únicamente tarjetas de páginas cargadas: conserva la lista original, las sumas, la caché, el total remoto y la paginación. La selección se valida después de actualizar por completo la lista, se reinicia al cambiar de sesión y mantiene «Cargar más» accesible aun sin coincidencias.
+
 ## Decisión autorizada — 2026-10-05
 
 El estudiante autorizó GitHub, propietario btoaldas, nombre BtoCediaFlutter y visibilidad pública para revisión docente. El repositorio quedó publicado y verificado. La entrega Moodle mantiene su aprobación específica de archivos finales.

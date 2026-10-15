@@ -31,3 +31,16 @@ S8 implementada y comprobada:124 pruebas, análisis correcto, E2E web y tres fas
 ## Cierre — 2026-10-14 — Sesiones 8 y 9 entregadas
 
 S8: CEDIA49588 a las00:28. S9: CEDIA49613 a las00:49. Ambas Enviado para calificar/Sin calificar; cuatro archivos descargados idénticos a los originales por bytes y SHA256. GitHub público y copias locales OneDrive verificados; no se afirma sincronización remota. 145 Flutter,38 Node, análisis/formato correctos, cadena MCP real4/4 y PDFv3 S9 APTO11/11. Solo queda la evaluación docente; no se identificaron otras tareas de entrega pendientes en el curso revisado. Quiz1 ya figuraba10/10, no se volvió a enviar.
+
+
+## Estado — 2026-10-15 — cierre S10 en progreso
+
+**Ahora:** S10 integrada en la rama de trabajo para revisión y publicación. Verificación local independiente: 159 Flutter, 14 controles de práctica, 38 Node, análisis sin incidencias, formato y diferencias sin errores. Las fuentes integradas coinciden por SHA-256 con las verificadas. Se preservaron gobernanza, dependencias y servidor S9.
+
+**Siguiente:** publicar el PR, comprobar CI verde y una ejecución roja intencional en rama aislada conservada; integrar con la puerta en verde, publicar la etiqueta y el Release generado por Actions, descargar e instalar el APK en emulador, verificar navegación y entregar el enlace en CEDIA 49761. PR, CI remota, Release, APK y envío siguen pendientes de evidencia final.
+
+**S9:** CEDIA49613 permanece Enviado para calificar/Sin calificar desde el 14 de octubre a las 00:49; PDFv3 y ZIP ya entregados y descargados idénticos. No necesita reenviarse.
+
+**Proyecto Final:** actividad 49762, cierre 26 de octubre de 2026 a las08:00. Requiere una aplicación propia aparte de ExploraEC; pendiente de especificación SDD y construcción. La entrega será el enlace del repositorio propio con README y Release/APK comprobados. No se presenta S10 como Proyecto Final.
+
+[Verificación local S10](docs/sesion10/verificacion.json) · [Manifiesto de publicación](docs/manifiestos/2026-10-15-sesion10-publicacion.md).
