@@ -102,3 +102,36 @@ Verificación independiente del 15 de octubre de 2026: **159 pruebas Flutter**, 
 Los controles que provocan fallos requieren modo debug y `--dart-define=LAB_PRUEBAS=true`. El registro conserva hasta 20 mensajes controlados sin serializar excepciones, trazas ni credenciales. Se utilizó asistencia de IA; el diff y las pruebas se revisaron de forma independiente.
 
 **Estado de publicación:** PR y sus enlaces pendientes de registrar; CI remota, ejecución roja de control, Release/APK e instalación todavía requieren comprobación. El destino es el [repositorio académico existente](https://github.com/btoaldas/BtoCediaFlutter). [Manifiesto de publicación S10](docs/manifiestos/2026-10-15-sesion10-publicacion.md). La actividad CEDIA 49761 cierra el 21 de octubre de 2026 a las 00:00; la entrega prevista es el enlace al repositorio, cuando el recorrido de calidad y APK esté verificado.
+
+
+### Cierre técnico comprobado el 15 de octubre de 2026
+
+Esta actualización sustituye el estado preliminar de comprobaciones pendiente
+descrito arriba. El [PR 1](https://github.com/btoaldas/BtoCediaFlutter/pull/1)
+quedó integrado con CI verde. La prueba real de navegador encontró un error
+asíncrono que escapaba de la zona de captura; se corrigió con runZonedGuarded en
+el [PR 2](https://github.com/btoaldas/BtoCediaFlutter/pull/2), integrado en
+[5d35375](https://github.com/btoaldas/BtoCediaFlutter/commit/5d35375fa0edd7a45a72ef36f9582e116fba39b9).
+La [CI de la corrección](https://github.com/btoaldas/BtoCediaFlutter/actions/runs/38825354017)
+y GitGuardian terminaron correctamente. La
+[CI roja deliberada](https://github.com/btoaldas/BtoCediaFlutter/actions/runs/38823929127)
+falló por una expectativa 3 frente a resultado 2; su rama se conserva sin integrar.
+
+El [Release v1.0.1](https://github.com/btoaldas/BtoCediaFlutter/releases/tag/v1.0.1)
+contiene el APK generado por
+[Actions 38825739636](https://github.com/btoaldas/BtoCediaFlutter/actions/runs/38825739636).
+La descarga coincide con el digest SHA-256 de GitHub. Se instaló como aplicación
+nueva en Android 16 API 36 y se comprobó login y filtro Todas 9 → comida 3 → Todas 9,
+repetido tras relanzar el proceso con sesión persistente. La versión interna del
+APK sigue siendo 1.0.0+1 y la firma es Android Debug de laboratorio.
+
+**Entrega académica confirmada:**
+[CEDIA 49761](https://cursos.cedia.org.ec/mod/assign/view.php?id=49761) muestra
+«Enviado para calificar» y «Sin calificar», con última modificación del 15 de
+octubre de 2026 a las 19:31 de Ecuador. El texto en línea contiene el enlace
+exacto `https://github.com/btoaldas/BtoCediaFlutter`; se verificó tras recargar.
+La calificación docente sigue pendiente.
+[Constancia saneada](evidence/sesion10/verificacion-moodle-entrega.json).
+[Resultados, límites y enlaces de cierre](docs/sesion10/cierre.md),
+[registro estructurado](docs/sesion10/cierre-publicacion.json) y
+[evidencias con hashes](evidence/sesion10/manifiesto.json).

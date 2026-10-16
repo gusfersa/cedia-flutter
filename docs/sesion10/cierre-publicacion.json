@@ -1,0 +1,239 @@
+{
+  "fecha": "2026-10-15",
+  "estado_tecnico": "VERIFICADO",
+  "estado_entrega_academica": "ENVIADO_PARA_CALIFICAR",
+  "repositorio": "https://github.com/btoaldas/BtoCediaFlutter",
+  "implementacion": {
+    "commit": "84cd7c4a49f92f9ea0002262e65f0908925f7b63",
+    "pr": "https://github.com/btoaldas/BtoCediaFlutter/pull/1",
+    "merge_commit": "ee4ebd7f335ec37065cb4001e5ad0c944a53d888",
+    "merged_at_utc": "2026-10-15T23:32:17Z"
+  },
+  "correccion_async_web": {
+    "pr": "https://github.com/btoaldas/BtoCediaFlutter/pull/2",
+    "commit_fuentes": "aa1ec853c1de8f32f44585e24d067e910a459e5e",
+    "merge_commit": "5d35375fa0edd7a45a72ef36f9582e116fba39b9",
+    "merged_at_utc": "2026-10-15T23:48:05Z",
+    "causa": "Future sin catch escapaba de la zona de captura",
+    "cambio": "runZonedGuarded conserva la captura del error asíncrono",
+    "rojo": {
+      "aviso_amistoso": false,
+      "error_crudo_en_consola": true
+    },
+    "verde": {
+      "aviso_amistoso": true,
+      "errores_crudos_en_consola": 0,
+      "error_pantalla_amistoso": true,
+      "retorno_seguro": true
+    },
+    "mutaciones_gastos": 0
+  },
+  "verificacion_local": {
+    "flutter": 159,
+    "controles_lab_pruebas": 14,
+    "node": 38,
+    "analyze_incidencias": 0,
+    "nota": "Los 14 controles LAB son otra ejecución de casos S10, no 14 casos adicionales al total de 159"
+  },
+  "ci": [
+    {
+      "tipo": "push_pr1",
+      "id": 38822740020,
+      "resultado": "SUCCESS",
+      "url": "https://github.com/btoaldas/BtoCediaFlutter/actions/runs/38822740020"
+    },
+    {
+      "tipo": "pr1",
+      "id": 38822780126,
+      "resultado": "SUCCESS",
+      "url": "https://github.com/btoaldas/BtoCediaFlutter/actions/runs/38822780126"
+    },
+    {
+      "tipo": "push_correccion",
+      "id": 38825349016,
+      "resultado": "SUCCESS",
+      "url": "https://github.com/btoaldas/BtoCediaFlutter/actions/runs/38825349016"
+    },
+    {
+      "tipo": "pr2",
+      "id": 38825354017,
+      "resultado": "SUCCESS",
+      "url": "https://github.com/btoaldas/BtoCediaFlutter/actions/runs/38825354017"
+    }
+  ],
+  "ci_rojo": {
+    "id": 38823929127,
+    "url": "https://github.com/btoaldas/BtoCediaFlutter/actions/runs/38823929127",
+    "resultado": "FAILURE_INTENCIONAL",
+    "rama": "prueba/ci-rojo-s10-20261015",
+    "expected": 3,
+    "actual": 2,
+    "pruebas_correctas": 159,
+    "fallos_intencionales": 1,
+    "rama_preservada": true,
+    "integrada": false
+  },
+  "gitguardian": {
+    "pr1": {
+      "caso": 38262660,
+      "clasificacion": "FALSE_POSITIVE",
+      "motivo": "Cadena de adaptador de pruebas en memoria; no credencial externa",
+      "check_id": 116723117178,
+      "check_resultado": "SKIPPED"
+    },
+    "pr2_resultado": "SUCCESS",
+    "escaner_desactivado": false
+  },
+  "release": {
+    "tag": "v1.0.1",
+    "url": "https://github.com/btoaldas/BtoCediaFlutter/releases/tag/v1.0.1",
+    "actions_url": "https://github.com/btoaldas/BtoCediaFlutter/actions/runs/38825739636",
+    "actions_resultado": "SUCCESS",
+    "commit": "5d35375fa0edd7a45a72ef36f9582e116fba39b9",
+    "asset": {
+      "id": 645552101,
+      "nombre": "app-release.apk",
+      "url": "https://github.com/btoaldas/BtoCediaFlutter/releases/download/v1.0.1/app-release.apk",
+      "bytes": 55780417,
+      "sha256": "f70c3ec7b131f0645888357ad721eea0868ef63ae10380f70fb06922372671c3",
+      "digest_github_coincide": true
+    },
+    "version_interna": "1.0.0+1",
+    "paquete": "com.bto.exploraec",
+    "firma": "Android Debug para laboratorio",
+    "apk_incluido_en_git": false
+  },
+  "android": {
+    "estado": "PASS",
+    "android": "16",
+    "api": 36,
+    "abi": "arm64-v8a",
+    "instalacion": "Nueva, paquete previamente ausente, sin reemplazo",
+    "login": true,
+    "tarjetas_primera_pasada": [
+      9,
+      3,
+      9
+    ],
+    "tarjetas_tras_relanzar_proceso": [
+      9,
+      3,
+      9
+    ],
+    "sesion_persistente": true,
+    "total_remoto": 9,
+    "menu_release": [
+      "Cerrar sesión"
+    ],
+    "controles_de_errores_practica_visibles": false,
+    "mutaciones_gastos": 0,
+    "incidente_observado": "Una captura inicial mostró Asistente tras tocar comida; causa no determinada. No se reprodujo con nodo exacto y árbol UI actual; las dos pasadas siguientes fueron correctas."
+  },
+  "moodle": {
+    "actividad": 49761,
+    "url": "https://cursos.cedia.org.ec/mod/assign/view.php?id=49761",
+    "estado": "Enviado para calificar",
+    "observacion": "Envío confirmado en interfaz tras guardado con texto simple y recarga de la actividad",
+    "constancia_de_entrega_disponible": true,
+    "calificacion": "Sin calificar",
+    "ultima_modificacion": "2026-10-15T19:31:00-05:00",
+    "zona_horaria": "America/Guayaquil",
+    "texto_en_linea": "https://github.com/btoaldas/BtoCediaFlutter",
+    "recibo_saneado": "evidence/sesion10/verificacion-moodle-entrega.json"
+  },
+  "examen_final": {
+    "actividad": 49763,
+    "url": "https://cursos.cedia.org.ec/mod/quiz/view.php?id=49763",
+    "enviado": true,
+    "respuestas_correctas": 15,
+    "preguntas": 15,
+    "nota": 10,
+    "sobre": 10,
+    "independiente_de_proyecto_final_49762": true
+  },
+  "limites": [
+    "Configuración de permisos de Claude revisada como archivo, sin cargarla en una sesión para verificar permisos efectivos",
+    "Errores de práctica comprobados en web de depuración; el APK release omite sus controles",
+    "Android verificado en emulador; no teléfono físico ni firma de tienda",
+    "El APK requiere backend de laboratorio disponible",
+    "La práctica está enviada para calificar y la calificación docente sigue pendiente"
+  ],
+  "evidencias": {
+    "manifiesto": "evidence/sesion10/manifiesto.json",
+    "capturas": [
+      {
+        "archivo": "evidence/sesion10/android-comida-3.png",
+        "descripcion": "APK release con comida seleccionada y tres tarjetas",
+        "dimensiones": [
+          1080,
+          2400
+        ],
+        "bytes": 119782,
+        "sha256": "22c80e3305b8f1bb4b64a5d01fce942fce296fd829d22866fe81e8489590d73d",
+        "copia_identica": true,
+        "revision_visual_privacidad": "Solo aplicación y datos sintéticos de gastos; sin cuenta, direcciones de red ni aula"
+      },
+      {
+        "archivo": "evidence/sesion10/android-todas-9.png",
+        "descripcion": "APK release con Todas y nueve tarjetas comprobadas en el árbol UI",
+        "dimensiones": [
+          1080,
+          2400
+        ],
+        "bytes": 217489,
+        "sha256": "5cef268e96ece10e5d9eb42503aaade6c5af817f7cf658c17b935643841c7bec",
+        "copia_identica": true,
+        "revision_visual_privacidad": "Solo aplicación y datos sintéticos de gastos; sin cuenta, direcciones de red ni aula"
+      },
+      {
+        "archivo": "evidence/sesion10/android-menu-release.png",
+        "descripcion": "Menú del APK release sin controles para provocar errores de práctica",
+        "dimensiones": [
+          1080,
+          2400
+        ],
+        "bytes": 222811,
+        "sha256": "f2b977ed2e4b25a0c892c53ce15b413ae871ae88a22f3b216670f8854ff483aa",
+        "copia_identica": true,
+        "revision_visual_privacidad": "Solo aplicación y datos sintéticos de gastos; sin cuenta, direcciones de red ni aula"
+      },
+      {
+        "archivo": "evidence/sesion10/web-comida-3.png",
+        "descripcion": "Filtro comida con tres tarjetas en web",
+        "dimensiones": [
+          1434,
+          728
+        ],
+        "bytes": 25874,
+        "sha256": "39c929d4a90f948524749a32397ae4a2b2fe992eec6d59e23e74b890ba2cc0bd",
+        "copia_identica": true,
+        "revision_visual_privacidad": "Solo aplicación y datos sintéticos de gastos; sin cuenta, direcciones de red ni aula"
+      },
+      {
+        "archivo": "evidence/sesion10/web-error-asincrono-corregido.png",
+        "descripcion": "Aviso amistoso después de corregir la captura del error asíncrono",
+        "dimensiones": [
+          1434,
+          728
+        ],
+        "bytes": 45193,
+        "sha256": "dee01c7a85bfe4f582bcc762650377751e4d03d447e8e22bf9b8c3902ccbf3c1",
+        "copia_identica": true,
+        "revision_visual_privacidad": "Solo aplicación y datos sintéticos de gastos; sin cuenta, direcciones de red ni aula"
+      },
+      {
+        "archivo": "evidence/sesion10/web-error-pantalla.png",
+        "descripcion": "Vista amistosa de recuperación de pantalla en web de depuración",
+        "dimensiones": [
+          1434,
+          728
+        ],
+        "bytes": 16033,
+        "sha256": "d7d925fc0d5313f052c5ee649e6bb1a23a0864a8fc9bef26191365d6f2515c1c",
+        "copia_identica": true,
+        "revision_visual_privacidad": "Solo aplicación y datos sintéticos de gastos; sin cuenta, direcciones de red ni aula"
+      }
+    ],
+    "firma_publica": "evidence/sesion10/apk-firma-publica.txt"
+  }
+}

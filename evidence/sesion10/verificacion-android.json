@@ -1,0 +1,45 @@
+{
+  "estado": "PASS",
+  "android": "16",
+  "api": 36,
+  "abi": "arm64-v8a",
+  "instalacion": "Nueva, paquete previamente ausente, sin reemplazo",
+  "login": true,
+  "tarjetas_primera_pasada": [
+    9,
+    3,
+    9
+  ],
+  "tarjetas_tras_relanzar_proceso": [
+    9,
+    3,
+    9
+  ],
+  "sesion_persistente": true,
+  "total_remoto": 9,
+  "menu_release": [
+    "Cerrar sesión"
+  ],
+  "controles_de_errores_practica_visibles": false,
+  "mutaciones_gastos": 0,
+  "incidente_observado": "Una captura inicial mostró Asistente tras tocar comida; causa no determinada. No se reprodujo con nodo exacto y árbol UI actual; las dos pasadas siguientes fueron correctas.",
+  "release": {
+    "tag": "v1.0.1",
+    "url": "https://github.com/btoaldas/BtoCediaFlutter/releases/tag/v1.0.1",
+    "actions_url": "https://github.com/btoaldas/BtoCediaFlutter/actions/runs/38825739636",
+    "actions_resultado": "SUCCESS",
+    "commit": "5d35375fa0edd7a45a72ef36f9582e116fba39b9",
+    "asset": {
+      "id": 645552101,
+      "nombre": "app-release.apk",
+      "url": "https://github.com/btoaldas/BtoCediaFlutter/releases/download/v1.0.1/app-release.apk",
+      "bytes": 55780417,
+      "sha256": "f70c3ec7b131f0645888357ad721eea0868ef63ae10380f70fb06922372671c3",
+      "digest_github_coincide": true
+    },
+    "version_interna": "1.0.0+1",
+    "paquete": "com.bto.exploraec",
+    "firma": "Android Debug para laboratorio",
+    "apk_incluido_en_git": false
+  }
+}

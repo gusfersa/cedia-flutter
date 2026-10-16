@@ -1,0 +1,25 @@
+{
+  "pr": "https://github.com/btoaldas/BtoCediaFlutter/pull/2",
+  "commit_fuentes": "aa1ec853c1de8f32f44585e24d067e910a459e5e",
+  "merge_commit": "5d35375fa0edd7a45a72ef36f9582e116fba39b9",
+  "merged_at_utc": "2026-10-15T23:48:05Z",
+  "causa": "Future sin catch escapaba de la zona de captura",
+  "cambio": "runZonedGuarded conserva la captura del error asíncrono",
+  "rojo": {
+    "aviso_amistoso": false,
+    "error_crudo_en_consola": true
+  },
+  "verde": {
+    "aviso_amistoso": true,
+    "errores_crudos_en_consola": 0,
+    "error_pantalla_amistoso": true,
+    "retorno_seguro": true
+  },
+  "mutaciones_gastos": 0,
+  "filtro": {
+    "todas": 9,
+    "comida": 3,
+    "login": true,
+    "mutaciones_gastos": 0
+  }
+}

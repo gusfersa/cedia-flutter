@@ -1,0 +1,79 @@
+{
+  "fecha": "2026-10-15",
+  "estado_academico": "ENVIADO_PARA_CALIFICAR",
+  "archivos": [
+    {
+      "archivo": "docs/sesion10/cierre.md",
+      "bytes": 6070,
+      "sha256": "ffbdf2b1ab60775ca17b08ae33b1a9fd8a33205cdb03b23a5d00a03047732a98"
+    },
+    {
+      "archivo": "docs/sesion10/cierre-publicacion.json",
+      "bytes": 8792,
+      "sha256": "55750589ac288246c4ccec57f8b5ce6b114fa3c82b1d1119afc3f81ef8387b85"
+    },
+    {
+      "archivo": "evidence/sesion10/android-comida-3.png",
+      "bytes": 119782,
+      "sha256": "22c80e3305b8f1bb4b64a5d01fce942fce296fd829d22866fe81e8489590d73d"
+    },
+    {
+      "archivo": "evidence/sesion10/android-menu-release.png",
+      "bytes": 222811,
+      "sha256": "f2b977ed2e4b25a0c892c53ce15b413ae871ae88a22f3b216670f8854ff483aa"
+    },
+    {
+      "archivo": "evidence/sesion10/android-todas-9.png",
+      "bytes": 217489,
+      "sha256": "5cef268e96ece10e5d9eb42503aaade6c5af817f7cf658c17b935643841c7bec"
+    },
+    {
+      "archivo": "evidence/sesion10/apk-firma-publica.txt",
+      "bytes": 307,
+      "sha256": "564391cf17bfb75ae18d5218313b7093730647711380fb5430307a9625491888"
+    },
+    {
+      "archivo": "evidence/sesion10/verificacion-android.json",
+      "bytes": 1442,
+      "sha256": "3cbc870d77bfe4568505b4054ed41f6228e4d6f0e6ff347cc895292f7ebbd57e"
+    },
+    {
+      "archivo": "evidence/sesion10/verificacion-moodle-entrega.json",
+      "bytes": 708,
+      "sha256": "b125ef8864dd62c166c2175949112cb72e74afc1b8f51432e1897540138b2d61"
+    },
+    {
+      "archivo": "evidence/sesion10/verificacion-web.json",
+      "bytes": 719,
+      "sha256": "4e46e6f0f851e9bb9d0b4aa0b0dd11a5cadca05c3e80904510c8c9958210b7be"
+    },
+    {
+      "archivo": "evidence/sesion10/web-comida-3.png",
+      "bytes": 25874,
+      "sha256": "39c929d4a90f948524749a32397ae4a2b2fe992eec6d59e23e74b890ba2cc0bd"
+    },
+    {
+      "archivo": "evidence/sesion10/web-error-asincrono-corregido.png",
+      "bytes": 45193,
+      "sha256": "dee01c7a85bfe4f582bcc762650377751e4d03d447e8e22bf9b8c3902ccbf3c1"
+    },
+    {
+      "archivo": "evidence/sesion10/web-error-pantalla.png",
+      "bytes": 16033,
+      "sha256": "d7d925fc0d5313f052c5ee649e6bb1a23a0864a8fc9bef26191365d6f2515c1c"
+    }
+  ],
+  "privacidad": {
+    "revision_visual_capturas": true,
+    "capturas_copiadas_sin_alteracion": true,
+    "rutas_privadas": false,
+    "cuentas": false,
+    "direcciones_red": false,
+    "credenciales": false,
+    "pantallas_moodle_o_bloqueo": false,
+    "apk_en_git": false
+  },
+  "escaneo_texto_hallazgos": [],
+  "alcance": "Lista cerrada S10; no certifica archivos anteriores o ignorados",
+  "calificacion": "Sin calificar"
+}
