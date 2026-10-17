@@ -6,11 +6,11 @@ Aplicación de formación en Flutter y Dart: widgets, accesibilidad, mapas, pers
 
 | Práctica | Versión fija | Comprobación |
 |---|---|---|
-| Sesión 2: widgets básicos y avanzados | [19ff031](https://github.com/btoaldas/BtoCediaFlutter/tree/19ff031d586437d69fbc6350079e1cf51c0d3616) | 9 pruebas; lista/detalle/formulario/pestañas y hot reload/restart real |
-| Sesión 3: tema, estados y accesibilidad | [78d2076](https://github.com/btoaldas/BtoCediaFlutter/tree/78d2076b7c9f03f5e64c209dc26f7054a86ffb77) | 17 pruebas; carga/vacío/error/reintento, lista/grilla y Semantics |
-| Sesión 4: estado compartido con GetX | [5372f57](https://github.com/btoaldas/BtoCediaFlutter/tree/5372f57a7b4f0d5bec0008d5c1ec58510e450bf6) | 25 pruebas; instancia única, alta inmediata, contador, avisos, worker y concurrencia |
-| Sesión 5: mapas y geolocalización | [d79f3b9](https://github.com/btoaldas/BtoCediaFlutter/tree/d79f3b94a8bada236060390318c64e83a03b5be3) | 36 pruebas; permisos Android reales, GPS emulado público, OSM, distancias y alta compartida |
-| Sesión 6: gastos desde el backend | [0c35a2b](https://github.com/btoaldas/BtoCediaFlutter/tree/0c35a2b5a6e4e19b38b6443cc56363cd18716b7b) | 61 pruebas normales y 1 adicional; API/PostgreSQL reales, vacío/tres gastos, conexión, 401/422 y timeout autenticado 1 ms→15 s |
+| Sesión 2: widgets básicos y avanzados | [bd2e3a2](https://github.com/gusfersa/cedia-flutter/tree/bd2e3a24601d410dc82d0308baa877be1a4cbdfb) | 9 pruebas; lista/detalle/formulario/pestañas y hot reload/restart real |
+| Sesión 3: tema, estados y accesibilidad | [aa78e26](https://github.com/gusfersa/cedia-flutter/tree/aa78e26ac3e149586afcd551d90c29098a154e3c) | 17 pruebas; carga/vacío/error/reintento, lista/grilla y Semantics |
+| Sesión 4: estado compartido con GetX | [3b1c466](https://github.com/gusfersa/cedia-flutter/tree/3b1c466478764ab9701122f60b14fc9c3bc630c4) | 25 pruebas; instancia única, alta inmediata, contador, avisos, worker y concurrencia |
+| Sesión 5: mapas y geolocalización | [ae671c9](https://github.com/gusfersa/cedia-flutter/tree/ae671c98446d97a88ff72ba0171a6fb211ee8af6) | 36 pruebas; permisos Android reales, GPS emulado público, OSM, distancias y alta compartida |
+| Sesión 6: gastos desde el backend | [a1d56fe](https://github.com/gusfersa/cedia-flutter/tree/a1d56fed3df413d8a1a4e04370a88a6de5b5a4a9) | 61 pruebas normales y 1 adicional; API/PostgreSQL reales, vacío/tres gastos, conexión, 401/422 y timeout autenticado 1 ms→15 s |
 
 Los informes y los ZIP de fuentes están organizados por práctica en `entregas/`.
 Cada informe contiene un enlace clicable al commit exacto de su práctica.
@@ -80,13 +80,13 @@ Entregables finales: [ZIP de 71 fuentes](entregas/sesion06/exploraec-sesion06.zi
 
 ## Sesión 7
 
-[Versión fija sesion-07](https://github.com/btoaldas/BtoCediaFlutter/tree/sesion-07). Persistencia con Hive: favoritos del dispositivo y caché privada de gastos por usuario, servidor primero, aviso offline con fecha, reintento y limpieza al salir/401. JWT solo en memoria. [Requisitos y explicación](docs/practica-sesion07.md). Verificación final: 89 pruebas, incluidos 10 casos docentes; análisis/formato correctos y E2E Edge con API/PostgreSQL reales. No hay escritura offline, cifrado ni login sin red; idioma opcional no implementado. Informe y ZIP en `entregas/sesion07/`.
+[Versión fija sesion-07](https://github.com/gusfersa/cedia-flutter/tree/sesion-07). Persistencia con Hive: favoritos del dispositivo y caché privada de gastos por usuario, servidor primero, aviso offline con fecha, reintento y limpieza al salir/401. JWT solo en memoria. [Requisitos y explicación](docs/practica-sesion07.md). Verificación final: 89 pruebas, incluidos 10 casos docentes; análisis/formato correctos y E2E Edge con API/PostgreSQL reales. No hay escritura offline, cifrado ni login sin red; idioma opcional no implementado. Informe y ZIP en `entregas/sesion07/`.
 
 Entrega S7 completada en CEDIA 49577 el 13 de octubre de 2026 a las 23:05: «Enviado para calificar», todavía «Sin calificar». PDF y ZIP descargados idénticos por SHA256; GitHub público y copias locales OneDrive también verificados. [Hito de cierre](docs/hitos/2026-10-13-sesion07-entregada.md).
 
 ## Sesión 8
 
-Autenticación segura con Dio/AuthController y CRUD completo; 124 pruebas, quince docentes, E2E web y almacenamiento seguro real Android entre procesos. [Requisitos, resultados y límites](docs/practica-sesion08.md). [Versión fija sesion-08](https://github.com/btoaldas/BtoCediaFlutter/tree/sesion-08). PDF y ZIP entregados en CEDIA 49588 el 14 de octubre a las 00:28: Enviado para calificar, Sin calificar; ambas descargas idénticas por bytes y SHA256. [Constancia](entregas/sesion08/constancia-entrega-20261014.json).
+Autenticación segura con Dio/AuthController y CRUD completo; 124 pruebas, quince docentes, E2E web y almacenamiento seguro real Android entre procesos. [Requisitos, resultados y límites](docs/practica-sesion08.md). [Versión fija sesion-08](https://github.com/gusfersa/cedia-flutter/tree/sesion-08). PDF y ZIP entregados en CEDIA 49588 el 14 de octubre a las 00:28: Enviado para calificar, Sin calificar; ambas descargas idénticas por bytes y SHA256. [Constancia](entregas/sesion08/constancia-entrega-20261014.json).
 
 ## Sesión 9
 
@@ -101,25 +101,20 @@ Verificación independiente del 15 de octubre de 2026: **159 pruebas Flutter**, 
 
 Los controles que provocan fallos requieren modo debug y `--dart-define=LAB_PRUEBAS=true`. El registro conserva hasta 20 mensajes controlados sin serializar excepciones, trazas ni credenciales. Se utilizó asistencia de IA; el diff y las pruebas se revisaron de forma independiente.
 
-**Estado de publicación:** PR y sus enlaces pendientes de registrar; CI remota, ejecución roja de control, Release/APK e instalación todavía requieren comprobación. El destino es el [repositorio académico existente](https://github.com/btoaldas/BtoCediaFlutter). [Manifiesto de publicación S10](docs/manifiestos/2026-10-15-sesion10-publicacion.md). La actividad CEDIA 49761 cierra el 21 de octubre de 2026 a las 00:00; la entrega prevista es el enlace al repositorio, cuando el recorrido de calidad y APK esté verificado.
+**Estado de publicación:** PR y sus enlaces pendientes de registrar; CI remota, ejecución roja de control, Release/APK e instalación todavía requieren comprobación. El destino es el [repositorio académico existente](https://github.com/gusfersa/cedia-flutter). [Manifiesto de publicación S10](docs/manifiestos/2026-10-15-sesion10-publicacion.md). La actividad CEDIA 49761 cierra el 21 de octubre de 2026 a las 00:00; la entrega prevista es el enlace al repositorio, cuando el recorrido de calidad y APK esté verificado.
 
 
 ### Cierre técnico comprobado el 15 de octubre de 2026
 
 Esta actualización sustituye el estado preliminar de comprobaciones pendiente
-descrito arriba. El [PR 1](https://github.com/btoaldas/BtoCediaFlutter/pull/1)
-quedó integrado con CI verde. La prueba real de navegador encontró un error
+descrito arriba. El PR 1 quedó integrado con CI verde. La prueba real de navegador encontró un error
 asíncrono que escapaba de la zona de captura; se corrigió con runZonedGuarded en
-el [PR 2](https://github.com/btoaldas/BtoCediaFlutter/pull/2), integrado en
-[5d35375](https://github.com/btoaldas/BtoCediaFlutter/commit/5d35375fa0edd7a45a72ef36f9582e116fba39b9).
-La [CI de la corrección](https://github.com/btoaldas/BtoCediaFlutter/actions/runs/38825354017)
-y GitGuardian terminaron correctamente. La
-[CI roja deliberada](https://github.com/btoaldas/BtoCediaFlutter/actions/runs/38823929127)
-falló por una expectativa 3 frente a resultado 2; su rama se conserva sin integrar.
+el PR 2, integrado en
+[f7106ac](https://github.com/gusfersa/cedia-flutter/commit/f7106ac0b1c002245b958c2da650228d8ae31eb5).
+La CI de la corrección y los controles de calidad terminaron correctamente.
 
-El [Release v1.0.1](https://github.com/btoaldas/BtoCediaFlutter/releases/tag/v1.0.1)
-contiene el APK generado por
-[Actions 38825739636](https://github.com/btoaldas/BtoCediaFlutter/actions/runs/38825739636).
+El [Release v1.0.0](https://github.com/gusfersa/cedia-flutter/releases/tag/v1.0.0)
+contiene el APK generado por GitHub Actions.
 La descarga coincide con el digest SHA-256 de GitHub. Se instaló como aplicación
 nueva en Android 16 API 36 y se comprobó login y filtro Todas 9 → comida 3 → Todas 9,
 repetido tras relanzar el proceso con sesión persistente. La versión interna del
@@ -129,7 +124,7 @@ APK sigue siendo 1.0.0+1 y la firma es Android Debug de laboratorio.
 [CEDIA 49761](https://cursos.cedia.org.ec/mod/assign/view.php?id=49761) muestra
 «Enviado para calificar» y «Sin calificar», con última modificación del 15 de
 octubre de 2026 a las 19:31 de Ecuador. El texto en línea contiene el enlace
-exacto `https://github.com/btoaldas/BtoCediaFlutter`; se verificó tras recargar.
+exacto `https://github.com/gusfersa/cedia-flutter`; se verificó tras recargar.
 La calificación docente sigue pendiente.
 [Constancia saneada](evidence/sesion10/verificacion-moodle-entrega.json).
 [Resultados, límites y enlaces de cierre](docs/sesion10/cierre.md),
