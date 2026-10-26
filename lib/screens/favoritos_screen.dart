@@ -22,9 +22,9 @@ class FavoritosScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
             margin: const EdgeInsets.only(right: 16),
             decoration: BoxDecoration(
-              color: AppTheme.primary.withOpacity(0.2),
+              color: const Color(0x33E05A47),
               borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: AppTheme.primary.withOpacity(0.4)),
+              border: Border.all(color: const Color(0x66E05A47)),
             ),
             child: const Row(
               mainAxisSize: MainAxisSize.min,
@@ -46,7 +46,7 @@ class FavoritosScreen extends StatelessWidget {
         }
 
         if (favController.favoritos.isEmpty) {
-          return EmptyView(
+          return const EmptyView(
             icono: Icons.favorite_border_rounded,
             titulo: 'No tienes recetas favoritas',
             mensaje: 'Guarda tus recetas preferidas pulsando el icono de corazón en cualquier tarjeta para cocinarlas incluso sin internet.',

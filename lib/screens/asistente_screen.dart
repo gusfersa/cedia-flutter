@@ -139,9 +139,9 @@ class _AsistenteScreenState extends State<AsistenteScreen> {
             // Barra de entrada de texto
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white,
-                boxShadow: const [
+                boxShadow: [
                   BoxShadow(
                     color: Color(0x0D000000),
                     offset: Offset(0, -2),
