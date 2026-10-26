@@ -42,7 +42,7 @@ class AppBinding extends Bindings {
     // 4. Dependencias y controladores de compatibilidad con pruebas previas
     PlacesBinding().dependencies();
     if (!Get.isRegistered<GastosController>()) {
-      Get.put<GastosController>(GastosController(auth: auth, api: apiClient), permanent: true);
+      Get.put<GastosController>(GastosController(auth: auth), permanent: true);
     }
   }
 }
