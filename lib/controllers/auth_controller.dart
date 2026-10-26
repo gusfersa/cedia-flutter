@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import '../models/usuario.dart';
 import '../services/api_client.dart';
 import '../services/auth_service.dart';
+import '../services/secure_token_storage.dart';
 
 typedef LimpiezaSesion = Future<void> Function(bool definitivo);
 
