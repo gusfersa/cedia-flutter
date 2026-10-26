@@ -167,7 +167,7 @@ void main() {
     });
 
     test('Usuario serializa y deserializa correctamente', () {
-      final u = const Usuario(id: 'u-1', nombre: 'Chef María', email: 'maria@chef.ec', token: 'jwt-123');
+      const u = Usuario(id: 'u-1', nombre: 'Chef María', email: 'maria@chef.ec', token: 'jwt-123');
       final json = u.toJson();
       final u2 = Usuario.fromJson(json);
 
