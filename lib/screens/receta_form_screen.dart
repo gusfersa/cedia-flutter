@@ -62,13 +62,13 @@ class _RecetaFormScreenState extends State<RecetaFormScreen> {
     final ingredientes = _ingredientesController.text
         .split('\n')
         .map((s) => s.trim())
-        .filter((s) => s.isNotEmpty)
+        .where((s) => s.isNotEmpty)
         .toList();
 
     final instrucciones = _instruccionesController.text
         .split('\n')
         .map((s) => s.trim())
-        .filter((s) => s.isNotEmpty)
+        .where((s) => s.isNotEmpty)
         .toList();
 
     final nuevaReceta = Receta(
@@ -285,13 +285,5 @@ class _RecetaFormScreenState extends State<RecetaFormScreen> {
         );
       }),
     );
-  }
-}
-
-extension _IterableExt<T> on Iterable<T> {
-  Iterable<T> filter(bool Function(T) test) sync* {
-    for (var element in this) {
-      if (test(element)) yield element;
-    }
   }
 }

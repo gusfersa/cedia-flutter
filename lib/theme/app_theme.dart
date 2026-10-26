@@ -17,7 +17,6 @@ class AppTheme {
       secondary: secondary,
       tertiary: accent,
       surface: surface,
-      background: background,
       brightness: Brightness.light,
     );
 

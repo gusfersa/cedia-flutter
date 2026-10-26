@@ -76,7 +76,7 @@ class _RecetaDetailScreenState extends State<RecetaDetailScreen> {
                 style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
-                  shadows: [Shadow(color: Colors.black800, blurRadius: 4)],
+                  shadows: [Shadow(color: Colors.black87, blurRadius: 4)],
                 ),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
