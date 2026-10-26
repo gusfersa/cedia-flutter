@@ -72,7 +72,7 @@ flutter test test/chefcraft_test.dart
 2. Abre tu emulador Android.
 3. Si tenías una versión previa instalada:
    ```bash
-   adb uninstall com.example.exploraec
+   adb uninstall com.bto.exploraec
    ```
 4. Instala el APK compilado:
    ```bash

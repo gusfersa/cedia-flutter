@@ -1,7 +1,7 @@
 name: exploraec
-description: "Prácticas académicas de ExploraEC del curso CEDIA MOD3."
+description: "ChefCraft: recetario inteligente y asistente culinario para el proyecto final CEDIA MOD3."
 publish_to: "none"
-version: 1.0.0+1
+version: 2.0.0+1
 
 environment:
   sdk: ">=3.5.0 <4.0.0"

@@ -2,6 +2,8 @@ name: CI
 
 on:
   push:
+    branches:
+      - '**'
   pull_request:
   workflow_dispatch:
   workflow_call:
@@ -44,9 +46,7 @@ jobs:
         run: flutter pub get --enforce-lockfile
       - name: Análisis estático
         run: flutter analyze --no-pub
-      - name: Suite Flutter completa
-        run: flutter test --no-pub --reporter expanded
-      - name: Controles de práctica S10
-        run: flutter test --no-pub --reporter expanded --dart-define=LAB_PRUEBAS=true test/sesion_10_test.dart test/filtro_gastos_test.dart
-      - name: Suite Node S9
-        run: node --test mock-server/test/*.test.js
+      - name: Suite Flutter ChefCraft
+        run: flutter test --no-pub --reporter expanded test/chefcraft_test.dart
+      - name: Suite Node ChefCraft
+        run: node --test server/test/server.test.js

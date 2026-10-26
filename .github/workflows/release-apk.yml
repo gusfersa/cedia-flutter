@@ -51,7 +51,7 @@ jobs:
       - name: Conservar artefacto APK
         uses: actions/upload-artifact@v7
         with:
-          name: exploraec-apk
+          name: chefcraft-apk
           path: build/app/outputs/flutter-apk/app-release.apk
           if-no-files-found: error
           retention-days: 14
@@ -66,7 +66,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@v8
         with:
-          name: exploraec-apk
+          name: chefcraft-apk
           path: apk
       - name: Publicar Release con APK
         env:
@@ -76,5 +76,5 @@ jobs:
         run: >-
           gh release create "$RELEASE_TAG" apk/app-release.apk
           --verify-tag
-          --title "ExploraEC $RELEASE_TAG"
-          --notes "APK de laboratorio académico; firma de depuración. Requiere los servicios configurados para el emulador."
+          --title "ChefCraft $RELEASE_TAG"
+          --notes "APK del proyecto final académico; firma de depuración. Configura la URL del backend para el emulador o dispositivo que uses."
