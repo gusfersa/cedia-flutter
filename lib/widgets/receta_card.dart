@@ -65,7 +65,7 @@ class RecetaCard extends StatelessWidget {
                   child: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                     decoration: BoxDecoration(
-                      color: AppTheme.dark.withOpacity(0.85),
+                      color: const Color(0xD91E293B),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Text(
@@ -85,7 +85,7 @@ class RecetaCard extends StatelessWidget {
                   child: Obx(() {
                     final esFav = favController.esFavorito(receta.id);
                     return Material(
-                      color: Colors.white.withOpacity(0.9),
+                      color: const Color(0xE6FFFFFF),
                       shape: const CircleBorder(),
                       child: IconButton(
                         icon: Icon(

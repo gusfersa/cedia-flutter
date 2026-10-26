@@ -63,8 +63,8 @@ class ErrorView extends StatelessWidget {
           children: [
             Container(
               padding: const EdgeInsets.all(AppSpacing.lg),
-              decoration: BoxDecoration(
-                color: Colors.red.withOpacity(0.08),
+              decoration: const BoxDecoration(
+                color: Color(0x14F44336),
                 shape: BoxShape.circle,
               ),
               child: Icon(icono, size: 52, color: Colors.red.shade700),

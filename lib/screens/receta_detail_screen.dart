@@ -171,7 +171,7 @@ class _RecetaDetailScreenState extends State<RecetaDetailScreen> {
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                         decoration: BoxDecoration(
-                          color: AppTheme.primary.withOpacity(0.12),
+                          color: const Color(0x1FE05A47),
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: Text(
@@ -249,11 +249,11 @@ class _RecetaDetailScreenState extends State<RecetaDetailScreen> {
                   }),
                   const Divider(height: 36),
                   // Sección Instrucciones
-                  Row(
+                  const Row(
                     children: [
-                      const Icon(Icons.format_list_numbered_rounded, color: AppTheme.primary),
-                      const SizedBox(width: AppSpacing.sm),
-                      const Text(
+                      Icon(Icons.format_list_numbered_rounded, color: AppTheme.primary),
+                      SizedBox(width: AppSpacing.sm),
+                      Text(
                         'Instrucciones de Preparación',
                         style: TextStyle(
                           fontSize: 18,
@@ -277,8 +277,8 @@ class _RecetaDetailScreenState extends State<RecetaDetailScreen> {
                             width: 28,
                             height: 28,
                             alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              color: AppTheme.primary.withOpacity(0.12),
+                            decoration: const BoxDecoration(
+                              color: Color(0x1FE05A47),
                               shape: BoxShape.circle,
                             ),
                             child: Text(
@@ -334,9 +334,9 @@ class _InfoPill extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(AppSpacing.sm),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.08),
+        color: color.withAlpha(20),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: color.withOpacity(0.2)),
+        border: Border.all(color: color.withAlpha(51)),
       ),
       child: Column(
         children: [

@@ -22,8 +22,8 @@ class SinSesionView extends StatelessWidget {
           children: [
             Container(
               padding: const EdgeInsets.all(AppSpacing.lg),
-              decoration: BoxDecoration(
-                color: AppTheme.secondary.withOpacity(0.12),
+              decoration: const BoxDecoration(
+                color: Color(0x1FFF9F1C),
                 shape: BoxShape.circle,
               ),
               child: const Icon(

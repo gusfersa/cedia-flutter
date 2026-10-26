@@ -10,6 +10,12 @@ class AppTheme {
   static const Color background = Color(0xFFFBF9F6); // Blanco Cálido
   static const Color surface = Colors.white;
 
+  // Colores de compatibilidad con pantallas previas
+  static const Color teal = Color(0xFF156082);
+  static const Color navy = Color(0xFF0E2841);
+  static const Color orange = Color(0xFFE97132);
+  static const Color sky = Color(0xFF0F9ED5);
+
   static ThemeData get theme {
     final colorScheme = ColorScheme.fromSeed(
       seedColor: primary,
@@ -39,7 +45,7 @@ class AppTheme {
       cardTheme: CardThemeData(
         color: surface,
         elevation: 2,
-        shadowColor: Colors.black.withOpacity(0.06),
+        shadowColor: const Color(0x0F000000),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       ),
@@ -75,7 +81,7 @@ class AppTheme {
       ),
       chipTheme: ChipThemeData(
         backgroundColor: const Color(0xFFF1F5F9),
-        selectedColor: primary.withOpacity(0.15),
+        selectedColor: const Color(0x26E05A47),
         labelStyle: const TextStyle(fontSize: 13, fontWeight: FontWeight.w500),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         side: BorderSide.none,

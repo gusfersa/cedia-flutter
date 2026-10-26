@@ -28,8 +28,8 @@ class EmptyView extends StatelessWidget {
           children: [
             Container(
               padding: const EdgeInsets.all(AppSpacing.lg),
-              decoration: BoxDecoration(
-                color: AppTheme.primary.withOpacity(0.08),
+              decoration: const BoxDecoration(
+                color: Color(0x14E05A47),
                 shape: BoxShape.circle,
               ),
               child: Icon(icono, size: 54, color: AppTheme.primary),

@@ -233,7 +233,7 @@ class _TabPerfil extends StatelessWidget {
               const SizedBox(height: AppSpacing.lg),
               CircleAvatar(
                 radius: 46,
-                backgroundColor: AppTheme.primary.withOpacity(0.12),
+                backgroundColor: const Color(0x1FE05A47),
                 child: Icon(
                   estaAutenticado ? Icons.person_rounded : Icons.person_outline_rounded,
                   size: 52,
@@ -256,9 +256,9 @@ class _TabPerfil extends StatelessWidget {
               ),
               const SizedBox(height: AppSpacing.xl),
               // Tarjeta de información técnica de la app
-              Card(
+              const Card(
                 child: Padding(
-                  padding: const EdgeInsets.all(AppSpacing.lg),
+                  padding: EdgeInsets.all(AppSpacing.lg),
                   child: Column(
                     children: [
                       _FilaInfo(
@@ -267,21 +267,21 @@ class _TabPerfil extends StatelessWidget {
                         valor: 'Node.js REST API',
                         color: Colors.green,
                       ),
-                      const Divider(height: 24),
+                      Divider(height: 24),
                       _FilaInfo(
                         icono: Icons.storage_rounded,
                         titulo: 'Persistencia Local',
                         valor: 'Hive Box (Offline)',
                         color: AppTheme.primary,
                       ),
-                      const Divider(height: 24),
+                      Divider(height: 24),
                       _FilaInfo(
                         icono: Icons.auto_awesome_rounded,
                         titulo: 'Asistente Inteligente',
                         valor: 'Servidor Privado IA',
                         color: AppTheme.secondary,
                       ),
-                      const Divider(height: 24),
+                      Divider(height: 24),
                       _FilaInfo(
                         icono: Icons.lock_outline_rounded,
                         titulo: 'Almacenamiento Token',

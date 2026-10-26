@@ -168,7 +168,7 @@ class _RecetaFormScreenState extends State<RecetaFormScreen> {
                   children: [
                     Expanded(
                       child: DropdownButtonFormField<String>(
-                        value: _categoria,
+                        initialValue: _categoria,
                         decoration: const InputDecoration(labelText: 'Categoría'),
                         items: _categorias
                             .map((c) => DropdownMenuItem(value: c, child: Text(c)))
@@ -181,7 +181,7 @@ class _RecetaFormScreenState extends State<RecetaFormScreen> {
                     const SizedBox(width: AppSpacing.md),
                     Expanded(
                       child: DropdownButtonFormField<String>(
-                        value: _dificultad,
+                        initialValue: _dificultad,
                         decoration: const InputDecoration(labelText: 'Dificultad'),
                         items: _dificultades
                             .map((d) => DropdownMenuItem(value: d, child: Text(d)))

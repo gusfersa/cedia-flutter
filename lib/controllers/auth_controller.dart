@@ -9,8 +9,15 @@ typedef LimpiezaSesion = Future<void> Function(bool definitivo);
 class AuthController extends GetxController {
   final AuthService _authService;
 
-  AuthController({AuthService? authService, ApiClient? api})
-      : _authService = authService ?? AuthService(apiClient: api);
+  AuthController({
+    AuthService? authService,
+    ApiClient? api,
+    dynamic almacen,
+  }) : _authService = authService ??
+            AuthService(
+              apiClient: api,
+              tokenStorage: almacen is SecureTokenStorage ? almacen : null,
+            );
 
   final Rx<Usuario?> usuario = Rx<Usuario?>(null);
   final RxBool isLoading = false.obs;
@@ -18,17 +25,40 @@ class AuthController extends GetxController {
 
   bool get isAuthenticated => usuario.value != null;
 
-  // Propiedades y métodos de compatibilidad con arneses previos
+  // Propiedades y métodos de compatibilidad con arneses y pantallas previas
   ApiClient get api => _authService.apiClient;
   RxBool get cargando => isLoading;
   RxString get mensajeError => errorMessage;
   bool get estaAutenticado => isAuthenticated;
   Future<void> get cierrePendiente => Future.value();
+  int get generacion => api.generacionToken;
+  final RxBool restaurando = false.obs;
+  Future<void> get restauracion => Future.value();
+  final RxString avisoSesion = ''.obs;
+
+  Future<void> restaurarSesion() async {
+    restaurando.value = true;
+    try {
+      await verificarSesion();
+    } finally {
+      restaurando.value = false;
+    }
+  }
+
+  Future<bool> iniciarSesion(String correo, String contrasena) =>
+      login(correo, contrasena);
+
+  Future<void> cerrarSesion({String aviso = ''}) async {
+    avisoSesion.value = aviso;
+    await logout();
+  }
 
   void agregarLimpieza(LimpiezaSesion limpieza) {}
   void quitarLimpieza(LimpiezaSesion limpieza) {}
-  Future<void> sesionCaducada() => logout();
+  Future<void> sesionCaducada() =>
+      cerrarSesion(aviso: 'Tu sesión caducó, inicia sesión de nuevo.');
   void invalidarTokenParaPruebas() => api.token = 'token-invalido';
+  Future<void> cargarUsuario() => verificarSesion();
 
   @override
   void onInit() {
@@ -63,10 +93,6 @@ class AuthController extends GetxController {
     }
   }
 
-  Future<void> iniciarSesion(String email, String password) async {
-    await login(email, password);
-  }
-
   Future<bool> register(String nombre, String email, String password) async {
     isLoading.value = true;
     errorMessage.value = '';
@@ -98,9 +124,5 @@ class AuthController extends GetxController {
     await _authService.logout();
     usuario.value = null;
     errorMessage.value = '';
-  }
-
-  Future<void> cerrarSesion({String aviso = ''}) async {
-    await logout();
   }
 }

@@ -32,7 +32,9 @@ class RecetasService {
 
   Future<Receta> getRecetaPorId(String id) async {
     final respuesta = await _apiClient.get('/api/recetas/$id');
-    final datos = respuesta.data is Map ? respuesta.data as Map<String, dynamic> : {};
+    final Map<String, dynamic> datos = respuesta.data is Map
+        ? (respuesta.data as Map).cast<String, dynamic>()
+        : <String, dynamic>{};
     return Receta.fromJson(datos);
   }
 
@@ -42,9 +44,11 @@ class RecetasService {
       data: receta.toJson(),
     );
 
-    final datos = respuesta.data is Map ? respuesta.data as Map<String, dynamic> : {};
-    final recetaJson = datos['receta'] is Map
-        ? datos['receta'] as Map<String, dynamic>
+    final Map<String, dynamic> datos = respuesta.data is Map
+        ? (respuesta.data as Map).cast<String, dynamic>()
+        : <String, dynamic>{};
+    final Map<String, dynamic> recetaJson = datos['receta'] is Map
+        ? (datos['receta'] as Map).cast<String, dynamic>()
         : datos;
     return Receta.fromJson(recetaJson);
   }

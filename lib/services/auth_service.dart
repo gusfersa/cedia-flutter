@@ -28,9 +28,13 @@ class AuthService {
       },
     );
 
-    final datos = respuesta.data is Map ? respuesta.data as Map<String, dynamic> : {};
+    final Map<String, dynamic> datos = respuesta.data is Map
+        ? (respuesta.data as Map).cast<String, dynamic>()
+        : <String, dynamic>{};
     final token = datos['token']?.toString() ?? '';
-    final usuarioJson = datos['usuario'] is Map ? datos['usuario'] as Map<String, dynamic> : {};
+    final Map<String, dynamic> usuarioJson = datos['usuario'] is Map
+        ? (datos['usuario'] as Map).cast<String, dynamic>()
+        : <String, dynamic>{};
 
     if (token.isNotEmpty) {
       await _tokenStorage.guardar(token);
@@ -52,9 +56,13 @@ class AuthService {
       },
     );
 
-    final datos = respuesta.data is Map ? respuesta.data as Map<String, dynamic> : {};
+    final Map<String, dynamic> datos = respuesta.data is Map
+        ? (respuesta.data as Map).cast<String, dynamic>()
+        : <String, dynamic>{};
     final token = datos['token']?.toString() ?? '';
-    final usuarioJson = datos['usuario'] is Map ? datos['usuario'] as Map<String, dynamic> : {};
+    final Map<String, dynamic> usuarioJson = datos['usuario'] is Map
+        ? (datos['usuario'] as Map).cast<String, dynamic>()
+        : <String, dynamic>{};
 
     if (token.isNotEmpty) {
       await _tokenStorage.guardar(token);
@@ -71,7 +79,9 @@ class AuthService {
     _apiClient.token = token;
     try {
       final respuesta = await _apiClient.get('/api/auth/perfil');
-      final datos = respuesta.data is Map ? respuesta.data as Map<String, dynamic> : {};
+      final Map<String, dynamic> datos = respuesta.data is Map
+          ? (respuesta.data as Map).cast<String, dynamic>()
+          : <String, dynamic>{};
       return Usuario.fromJson(datos, token: token);
     } catch (_) {
       await _tokenStorage.borrar();
