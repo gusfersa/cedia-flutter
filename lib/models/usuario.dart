@@ -1,19 +1,45 @@
-// Modelo de Patricio-CEDIA/exploraec-app, Sesión 8.
-import '../services/api_exception.dart';
-
 class Usuario {
-  const Usuario({required this.id, required this.email});
-  final int id;
+  final String id;
+  final String nombre;
   final String email;
+  final String? token;
 
-  factory Usuario.fromJson(Map<String, dynamic> json) {
-    if (json['id'] is! int ||
-        (json['id'] as int) <= 0 ||
-        json['email'] is! String ||
-        (json['email'] as String).isEmpty) {
-      throw ApiException(
-          'Respuesta inesperada del servidor al leer tu perfil.');
-    }
-    return Usuario(id: json['id'] as int, email: json['email'] as String);
+  Usuario({
+    required this.id,
+    required this.nombre,
+    required this.email,
+    this.token,
+  });
+
+  factory Usuario.fromJson(Map<String, dynamic> json, {String? token}) {
+    return Usuario(
+      id: json['id']?.toString() ?? '',
+      nombre: json['nombre']?.toString() ?? '',
+      email: json['email']?.toString() ?? '',
+      token: token ?? json['token']?.toString(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'nombre': nombre,
+      'email': email,
+      if (token != null) 'token': token,
+    };
+  }
+
+  Usuario copyWith({
+    String? id,
+    String? nombre,
+    String? email,
+    String? token,
+  }) {
+    return Usuario(
+      id: id ?? this.id,
+      nombre: nombre ?? this.nombre,
+      email: email ?? this.email,
+      token: token ?? this.token,
+    );
   }
 }
