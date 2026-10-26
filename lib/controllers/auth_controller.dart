@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 
 import '../models/usuario.dart';
@@ -40,14 +41,51 @@ class AuthController extends GetxController {
   Future<void> restaurarSesion() async {
     restaurando.value = true;
     try {
+      final token = await _authService.tokenStorage.leer();
+      if (token != null && token.isNotEmpty) {
+        api.token = token;
+        try {
+          final meRes = await api.get('/usuarios/me');
+          if (meRes.data is Map) {
+            usuario.value = Usuario.fromJson(
+              Map<String, dynamic>.from(meRes.data as Map),
+              token: token,
+            );
+            return;
+          }
+        } catch (_) {}
+      }
       await verificarSesion();
     } finally {
       restaurando.value = false;
     }
   }
 
-  Future<bool> iniciarSesion(String correo, String contrasena) =>
-      login(correo, contrasena);
+  Future<bool> iniciarSesion(String correo, String contrasena) async {
+    // Soporte para pruebas legadas S08/S10 que usan /usuarios/token
+    try {
+      final r = await api.post(
+        '/usuarios/token',
+        data: {'username': correo, 'password': contrasena},
+        options: Options(contentType: Headers.formUrlEncodedContentType),
+      );
+      final token =
+          r.data is Map ? (r.data as Map)['access_token']?.toString() : null;
+      if (token != null && token.isNotEmpty) {
+        api.token = token;
+        await _authService.tokenStorage.guardar(token);
+        final meRes = await api.get('/usuarios/me');
+        if (meRes.data is Map) {
+          usuario.value = Usuario.fromJson(
+            Map<String, dynamic>.from(meRes.data as Map),
+            token: token,
+          );
+          return true;
+        }
+      }
+    } catch (_) {}
+    return login(correo, contrasena);
+  }
 
   Future<void> cerrarSesion({String aviso = ''}) async {
     avisoSesion.value = aviso;

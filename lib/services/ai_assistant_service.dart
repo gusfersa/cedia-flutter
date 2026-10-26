@@ -51,8 +51,16 @@ class RespuestaIA {
   const RespuestaIA({required this.respuesta, this.accion});
 
   factory RespuestaIA.fromJson(Map<String, dynamic> json) {
-    final texto = json['respuesta']?.toString() ?? '';
+    final texto = json['respuesta'];
+    if (texto is! String || texto.trim().isEmpty) {
+      throw AsistenteException(
+          'La respuesta del asistente no tiene el formato esperado.');
+    }
     final accion = AccionPropuesta.desdeJson(json['accion']);
+    if (json['accion'] != null && accion == null) {
+      throw AsistenteException(
+          'El asistente propuso una acción inválida. No se registró ningún gasto.');
+    }
     return RespuestaIA(respuesta: texto.trim(), accion: accion);
   }
 }
@@ -107,6 +115,10 @@ class AiAssistantService {
   }
 
   Future<RespuestaIA> preguntar(String consulta, ResumenGastos resumen) async {
+    if (consulta.trim().isEmpty || consulta.length > 500) {
+      throw AsistenteException('Escribe una consulta de 1 a 500 caracteres.',
+          statusCode: 422);
+    }
     try {
       final token = _apiClient.token;
       final r = await _dio.post(
@@ -119,11 +131,18 @@ class AiAssistantService {
       if (r.data is Map<String, dynamic>) {
         return RespuestaIA.fromJson(r.data as Map<String, dynamic>);
       }
-      return RespuestaIA(respuesta: r.data?.toString() ?? '');
-    } catch (e) {
-      return const RespuestaIA(
-        respuesta: 'Modo compatibilidad: consulta procesada correctamente.',
-      );
+      throw AsistenteException(
+          'La respuesta del asistente no tiene el formato esperado.');
+    } on DioException catch (e) {
+      final codigo = e.response?.statusCode;
+      if (codigo == 401) {
+        _apiClient.alSesionCaducada?.call();
+        throw AsistenteException('Tu sesión caducó, inicia sesión de nuevo.',
+            statusCode: 401);
+      }
+      throw AsistenteException(
+          'No se pudo conectar con el asistente. Revisa que el proxy esté encendido.',
+          statusCode: codigo);
     }
   }
 }

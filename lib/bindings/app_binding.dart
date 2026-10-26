@@ -3,12 +3,14 @@ import 'package:get/get.dart';
 import '../controllers/asistente_controller.dart';
 import '../controllers/auth_controller.dart';
 import '../controllers/favoritos_controller.dart';
+import '../controllers/gastos_controller.dart';
 import '../controllers/recetas_controller.dart';
 import '../services/ai_assistant_service.dart';
 import '../services/api_client.dart';
 import '../services/auth_service.dart';
 import '../services/recetas_service.dart';
 import '../services/secure_token_storage.dart';
+import 'places_binding.dart';
 
 class AppBinding extends Bindings {
   @override
@@ -31,10 +33,16 @@ class AppBinding extends Bindings {
       permanent: true,
     );
 
-    // 3. Controladores GetX
-    Get.put<AuthController>(AuthController(authService: authService), permanent: true);
+    // 3. Controladores GetX ChefCraft
+    final auth = Get.put<AuthController>(AuthController(authService: authService), permanent: true);
     Get.put<FavoritosController>(FavoritosController(), permanent: true);
     Get.put<RecetasController>(RecetasController(recetasService: recetasService), permanent: true);
     Get.put<AsistenteController>(AsistenteController(aiService: aiService), permanent: true);
+
+    // 4. Dependencias y controladores de compatibilidad con pruebas previas
+    PlacesBinding().dependencies();
+    if (!Get.isRegistered<GastosController>()) {
+      Get.put<GastosController>(GastosController(auth: auth, api: apiClient), permanent: true);
+    }
   }
 }

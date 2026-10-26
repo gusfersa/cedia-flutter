@@ -13,6 +13,7 @@ class AuthService {
         _tokenStorage = tokenStorage ?? SecureTokenStorage();
 
   ApiClient get apiClient => _apiClient;
+  SecureTokenStorage get tokenStorage => _tokenStorage;
 
   Future<Usuario> register({
     required String nombre,

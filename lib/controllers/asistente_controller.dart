@@ -8,7 +8,9 @@ class AsistenteController extends GetxController {
   final AiAssistantService _aiService;
 
   AsistenteController({AiAssistantService? aiService})
-      : _aiService = aiService ?? AiAssistantService();
+      : _aiService = aiService ?? AiAssistantService() {
+    _iniciarMensajeBienvenida();
+  }
 
   final RxList<MensajeChat> mensajes = <MensajeChat>[].obs;
   final RxBool isThinking = false.obs;
