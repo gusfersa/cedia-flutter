@@ -10,6 +10,7 @@ build/
 CLAUDE.local.md
 .env
 .env.*
+!.env.example
 *.p12
 *.key
 .claude/settings.local.json
