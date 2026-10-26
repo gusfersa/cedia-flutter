@@ -12,6 +12,8 @@ class AuthService {
   })  : _apiClient = apiClient ?? ApiClient(),
         _tokenStorage = tokenStorage ?? SecureTokenStorage();
 
+  ApiClient get apiClient => _apiClient;
+
   Future<Usuario> register({
     required String nombre,
     required String email,

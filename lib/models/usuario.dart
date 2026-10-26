@@ -1,19 +1,19 @@
 class Usuario {
-  final String id;
+  final dynamic id;
   final String nombre;
   final String email;
   final String? token;
 
-  Usuario({
+  const Usuario({
     required this.id,
-    required this.nombre,
+    this.nombre = '',
     required this.email,
     this.token,
   });
 
   factory Usuario.fromJson(Map<String, dynamic> json, {String? token}) {
     return Usuario(
-      id: json['id']?.toString() ?? '',
+      id: json['id'] ?? '',
       nombre: json['nombre']?.toString() ?? '',
       email: json['email']?.toString() ?? '',
       token: token ?? json['token']?.toString(),
@@ -30,7 +30,7 @@ class Usuario {
   }
 
   Usuario copyWith({
-    String? id,
+    dynamic id,
     String? nombre,
     String? email,
     String? token,
