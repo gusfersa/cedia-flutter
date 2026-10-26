@@ -96,7 +96,7 @@ class _AsistenteScreenState extends State<AsistenteScreen> {
             // Banner de seguridad sin claves en el cliente
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              color: AppTheme.accent.withOpacity(0.08),
+              color: const Color(0x142EC4B6),
               child: const Row(
                 children: [
                   Icon(Icons.shield_outlined, size: 16, color: AppTheme.accent),
@@ -141,10 +141,10 @@ class _AsistenteScreenState extends State<AsistenteScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
               decoration: BoxDecoration(
                 color: Colors.white,
-                boxShadow: [
+                boxShadow: const [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.05),
-                    offset: const Offset(0, -2),
+                    color: Color(0x0D000000),
+                    offset: Offset(0, -2),
                     blurRadius: 6,
                   ),
                 ],
@@ -251,10 +251,10 @@ class _BurbujaMensaje extends StatelessWidget {
                       bottomLeft: Radius.circular(esUsuario ? 16 : 4),
                       bottomRight: Radius.circular(esUsuario ? 4 : 16),
                     ),
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.04),
-                        offset: const Offset(0, 1),
+                        color: Color(0x0A000000),
+                        offset: Offset(0, 1),
                         blurRadius: 3,
                       ),
                     ],

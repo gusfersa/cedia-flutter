@@ -2,7 +2,6 @@ import 'package:get/get.dart';
 
 import '../models/usuario.dart';
 import '../services/api_client.dart';
-import '../services/api_exception.dart';
 import '../services/auth_service.dart';
 
 typedef LimpiezaSesion = Future<void> Function(bool definitivo);
@@ -24,10 +23,12 @@ class AuthController extends GetxController {
   RxBool get cargando => isLoading;
   RxString get mensajeError => errorMessage;
   bool get estaAutenticado => isAuthenticated;
-  Future<void>? get cierrePendiente => Future.value();
+  Future<void> get cierrePendiente => Future.value();
 
   void agregarLimpieza(LimpiezaSesion limpieza) {}
   void quitarLimpieza(LimpiezaSesion limpieza) {}
+  Future<void> sesionCaducada() => logout();
+  void invalidarTokenParaPruebas() => api.token = 'token-invalido';
 
   @override
   void onInit() {
