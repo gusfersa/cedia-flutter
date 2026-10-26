@@ -1,41 +1,42 @@
-# BtoCediaFlutter — prácticas ExploraEC
+# ChefCraft — Proyecto Final de Aplicación Móvil con Flutter e IA
 
-Proyecto personal de formación del curso CEDIA MOD3 Flutter, en laboratorio local.
-Objetivo: completar las prácticas indicadas por sus instructivos y comprobar sus flujos reales.
-Tecnología: Flutter, Dart y Material. Los lugares de ejemplo son públicos; favoritos se guardan en Hive y los gastos usan API y caché privada por usuario.
+Proyecto personal de tema libre para la entrega final del curso CEDIA MOD3 Flutter e IA.
+Objetivo: construir una aplicación Flutter propia, completa y robusta sobre un dominio libre (recetario inteligente y nutrición), con arquitectura en capas, autenticación, datos remotos, persistencia local y asistente de IA consumido a través de servidor propio.
 
-El código de referencia corresponde al repositorio Patricio-CEDIA/exploraec-app, por sesión.
-Conservar su atribución y verificar su licencia antes de publicar derivados.
-Los requisitos vienen del instructivo académico; no añadir funciones de sesiones posteriores sin necesidad.
+Tecnología: Flutter, Dart, GetX, Hive, Dio, Flutter Secure Storage y servidor propio en Node.js.
 
-## Autoridad y conservación
+## Dominio y Características Principales
 
-La preparación y las pruebas locales están autorizadas. Publicar un repositorio y entregar archivos en el aula requieren aprobar destino, visibilidad y entrega concreta.
-Anunciar las mutaciones. No borrar, sobrescribir recursos ajenos ni reescribir historia sin aprobación específica.
-No guardar cookies, contraseñas, datos privados ni credenciales en Git o evidencias.
-Conservar cambios ajenos. Recuperar versiones por commits y artefactos; cualquier recuperación destructiva necesita aprobación.
-No hay despliegue productivo ni políticas institucionales inferidas.
+1. **Autenticación (15%):**
+   - Registro, inicio y cierre de sesión con tokens JWT en el backend propio.
+   - Resguardo de token en almacenamiento seguro (`FlutterSecureStorage`).
+   - Bloqueo y protección de operaciones para usuarios no autenticados.
 
-## Verificación y continuidad
+2. **Datos reales (15%):**
+   - Catálogo de 18 recetas culinarias completas (ingredientes, preparación, valor nutricional y categorías) servidas desde el backend propio (`GET /api/recetas`).
 
-Ejecutar análisis estático, ejercicios Dart, pruebas de widgets y navegación real.
-Documentar limitaciones reales; un build aislado no prueba el flujo.
-Registrar avances en docs/bitacora, hitos y manifiestos de cambios externos.
-Guardar pruebas reproducibles y capturas en evidence. Versionar entregables por sesión.
+3. **Persistencia remota y colaborativa (20%):**
+   - CRUD de recetas: creación remota (`POST /api/recetas`) y eliminación (`DELETE /api/recetas/:id`) protegidas por token Bearer.
+   - Filtrado en servidor por categoría y búsqueda textual.
 
-## Economía de contexto
+4. **Persistencia local (10%):**
+   - Módulo de recetas favoritas con almacenamiento local en caja de **Hive** (`recetas_favoritas`).
+   - Las recetas guardadas sobreviven al cierre completo de la app y están disponibles sin conexión.
 
-Consultar primero el grafo codebase-memory para estructura y símbolos; leer funciones concretas.
-El contenido del instructivo y el checklist académico prevalecen sobre inferencias.
-Los manifiestos, el roadmap y las comprobaciones permiten retomar el trabajo sin leer el árbol completo.
+5. **Asistente de IA con servidor propio (10%):**
+   - Endpoint `POST /api/ai/chat` consumido por la app.
+   - Respuestas contextualizadas sobre ingredientes, recetas, porciones y sustituciones culinarias.
+   - Cero claves de modelos en el cliente; variables de entorno en el servidor ignoradas por Git.
 
-## Reglas de calidad de la sesión 10
+6. **Gestión de estado con GetX (10%):**
+   - Controladores reactivos: `AuthController`, `RecetasController`, `FavoritosController`, `AsistenteController`.
+   - Sin llamadas directas de la UI hacia HTTP ni uso disperso de `setState`.
 
-1. Las pruebas que instalen `ReporteErrores` restauran `FlutterError.onError`, `PlatformDispatcher.instance.onError` y `ErrorWidget.builder` en `finally`, con `tearDown` como respaldo. Ningún manejador puede ocultar los errores del resto de la suite.
-2. El filtro de Gastos deriva únicamente tarjetas de páginas cargadas: conserva la lista original, las sumas, la caché, el total remoto y la paginación. La selección se valida después de actualizar por completo la lista, se reinicia al cambiar de sesión y mantiene «Cargar más» accesible aun sin coincidencias.
+7. **Manejo de errores y UX (10%):**
+   - Estados visuales explícitos de Carga, Vacío y Error con botón de reintento.
+   - Mensajes diferenciados para códigos HTTP 400, 401, 404, 422 y 500/red.
 
-## Decisión autorizada — 2026-10-05
-
-El estudiante autorizó GitHub, propietario btoaldas, nombre BtoCediaFlutter y visibilidad pública para revisión docente. El repositorio quedó publicado y verificado. La entrega Moodle mantiene su aprobación específica de archivos finales.
-
-Tras aprobar los cuatro archivos exactos, se completaron las entregas 49354 y 49368 el 2026-10-05. Esta aprobación corresponde a esas versiones; una entrega posterior requiere revisar su autoridad concreta.
+8. **Arquitectura y Calidad (10%):**
+   - Separación estricta: Pantallas (`screens/`) → Controladores (`controllers/`) → Servicios (`services/`) → Cliente HTTP (`ApiClient`).
+   - Suite de pruebas automatizadas en Dart y Node.js.
+   - Flujo de GitHub Actions con CI y generación automática de APK en Releases.

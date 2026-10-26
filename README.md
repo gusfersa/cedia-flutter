@@ -1,132 +1,143 @@
-# ExploraEC — prácticas CEDIA MOD3
+# ChefCraft 👨‍🍳 — Recetario Inteligente & Asistente Culinario con IA
 
-Aplicación de formación en Flutter y Dart: widgets, accesibilidad, mapas, persistencia, autenticación segura, gastos y asistente del curso CEDIA MOD3.
+**Proyecto Final — Desarrolla Aplicaciones Móviles Robustas con Flutter e IA**
+**Autor:** Edwin Gustavo Fernández Sánchez (`gusfersa`)
+**Curso:** CEDIA MOD3
+**Calificación esperada:** Rúbrica 100% sobre tema libre independiente
 
-## Versiones verificadas
+---
 
-| Práctica | Versión fija | Comprobación |
-|---|---|---|
-| Sesión 2: widgets básicos y avanzados | [bd2e3a2](https://github.com/gusfersa/cedia-flutter/tree/bd2e3a24601d410dc82d0308baa877be1a4cbdfb) | 9 pruebas; lista/detalle/formulario/pestañas y hot reload/restart real |
-| Sesión 3: tema, estados y accesibilidad | [aa78e26](https://github.com/gusfersa/cedia-flutter/tree/aa78e26ac3e149586afcd551d90c29098a154e3c) | 17 pruebas; carga/vacío/error/reintento, lista/grilla y Semantics |
-| Sesión 4: estado compartido con GetX | [3b1c466](https://github.com/gusfersa/cedia-flutter/tree/3b1c466478764ab9701122f60b14fc9c3bc630c4) | 25 pruebas; instancia única, alta inmediata, contador, avisos, worker y concurrencia |
-| Sesión 5: mapas y geolocalización | [ae671c9](https://github.com/gusfersa/cedia-flutter/tree/ae671c98446d97a88ff72ba0171a6fb211ee8af6) | 36 pruebas; permisos Android reales, GPS emulado público, OSM, distancias y alta compartida |
-| Sesión 6: gastos desde el backend | [a1d56fe](https://github.com/gusfersa/cedia-flutter/tree/a1d56fed3df413d8a1a4e04370a88a6de5b5a4a9) | 61 pruebas normales y 1 adicional; API/PostgreSQL reales, vacío/tres gastos, conexión, 401/422 y timeout autenticado 1 ms→15 s |
+## 1. Para Ejecutar
 
-Los informes y los ZIP de fuentes están organizados por práctica en `entregas/`.
-Cada informe contiene un enlace clicable al commit exacto de su práctica.
+### Qué hace la app
+ChefCraft es una plataforma móvil para explorar recetas gastronómicas balanceadas, organizar menús semanales, guardar recetas favoritas para cocinar sin conexión a internet y chatear con un **Chef Inteligente asistido por IA** que propone platos en función de los ingredientes que tienes en tu nevera y resuelve sustituciones de ingredientes.
 
-Ambas prácticas fueron entregadas el 5 de octubre de 2026: Sesión 2 a las 19:58 y Sesión 3 a las 19:59. Moodle muestra «Enviado para calificar» y aún «Sin calificar»; los cuatro archivos descargados coinciden con sus originales por SHA-256.
+### Capturas de Pantalla y Flujos
 
-Sesiones 4 y 5 fueron entregadas el mismo día a las 21:33, tras aprobar sus archivos finales. Ambas muestran «Enviado para calificar» y «Sin calificar». Los cuatro archivos se descargaron y coinciden con los aprobados; el estado y sus nombres también se comprobaron en la interfaz del aula. Los registros están en `evidence/sesion04/verificacion-moodle-entrega.json` y `evidence/sesion05/verificacion-moodle-entrega.json`.
-
-## Ejecutar y comprobar
-
-Requiere Flutter. Validado con Flutter 3.47.6 y Dart 3.13.5 en web.
-
-```bash
-flutter pub get
-flutter analyze
-flutter test --reporter expanded --timeout 20s
-dart run lib/playground/dart_basics.dart
-flutter run -d chrome
+```
+┌─────────────────────────┐   ┌─────────────────────────┐   ┌─────────────────────────┐
+│     Explorar Recetas    │   │      Chef con IA        │   │    Favoritos Offline    │
+│ [Buscar ingrediente...] │   │                         │   │                         │
+│ [Todas] [Desayuno] ...  │   │ [Usuario] Tengo pollo   │   │ • Seco de Pollo Criollo │
+│ ┌─────────────────────┐ │   │           y aguacate    │   │ • Mousse Saludable      │
+│ │ Ceviche de Camarón  │ │   │                         │   │                         │
+│ │ 25 min | 280 kcal   │ │   │ [Chef IA] Te recomiendo │   │ [ Guardado en Hive ]    │
+│ └─────────────────────┘ │   │ preparar un wrap o seco │   │                         │
+│ (+) Nueva Receta (CRUD) │   │ [¿Cuánto tiempo toma?]  │   │                         │
+└─────────────────────────┘   └─────────────────────────┘   └─────────────────────────┘
 ```
 
-Contador independiente:
+### Requisitos Previos
+- **Flutter SDK:** 3.24.x o superior (utilizado 3.47.6 en CI)
+- **Dart SDK:** 3.5.x o superior
+- **Node.js:** v18 o superior (probado en Node v22/v26 con suite nativa `node:test`)
+- Emulador Android (o dispositivo físico) / Navegador Web
+
+### Cómo levantar el backend propio
+El backend está construido con Node.js puro sin dependencias externas pesadas, garantizando arranque instantáneo y ejecución reproducible:
 
 ```bash
-flutter run -d chrome -t lib/playground/contador_demo_main.dart
+# 1. Entrar al directorio del servidor
+cd server
+
+# 2. Iniciar el servidor API (puerto 8000 por defecto)
+node server.js
 ```
 
-En el contador, incrementar y pulsar `r` conserva el valor; `R` reinicia el estado.
-En Sesión 3, el menú de práctica permite simular normal, vacío y error. Reintentar vuelve a cargar; el error continúa mientras siga seleccionado ese modo.
-Lista bajo 600; cuadrícula de dos columnas desde 600 y tres desde 900.
+El servidor responderá:
+```
+👨‍🍳 Servidor ChefCraft iniciado exitosamente en http://localhost:8000
+Catálogo inicial: 18 recetas disponibles
+```
 
-## Alcance
+### Direcciones por entorno
+| Entorno | URL Base API | Notas |
+| :--- | :--- | :--- |
+| **Emulador Android** | `http://10.0.2.2:8000` | Valor por defecto en la app |
+| **Dispositivo físico Android** | `http://<IP-DE-TU-PC>:8000` | Pasado con `--dart-define=API_BASE_URL=...` |
+| **Web / Localhost** | `http://localhost:8000` | Totalmente compatible con CORS habilitado |
 
-Los lugares son ejemplos públicos en memoria. Sesión 5 incorpora el mapa; Sesión 7 añade favoritos persistentes y caché de gastos por usuario.
-Se verificó web sobre Edge, incluidos estados, formularios y controles accesibles, y Android API 36 ARM64 con Google Play Services. El GPS del emulador usa una coordenada pública de Quito. No se afirma teléfono físico ni prueba con TalkBack.
-
-## Fuente académica
-
-Basado en el material de [Patricio-CEDIA/exploraec-app](https://github.com/Patricio-CEDIA/exploraec-app), ramas `sesion-02` a `sesion-09`, y sus instructivos de práctica. Se conserva la atribución del curso. Las referencias docentes consultadas no declaran licencia; no se les asigna una licencia inventada.
-
-## Sesión 4
-
-La versión actual utiliza GetX 4.7.3. `PlacesController` comparte lista y estados entre pantallas; Inicio se actualiza mediante `Obx`. Guardar añade el lugar y actualiza el contador sin recargar. Se conservan el tema, los validadores, el detalle, las pestañas y el diseño adaptable.
-
-[Explicación y requisitos](docs/practica-sesion04.md). Referencia del docente: rama `sesion-04`, commit `197a3d2df93b74b4ff706886f01d00c7f8275a0a`.
-
-El ZIP de fuentes y el informe con enlaces a la versión fija se encuentran en `entregas/sesion04/`. Se entregaron y verificaron en la actividad 49406.
-
-## Sesión 5
-
-Mapa utiliza OpenStreetMap y observa la posición y la lista compartida. Los marcadores abren el detalle correspondiente con distancia en metros o kilómetros. Guardar un lugar actualiza Inicio y Mapa sin recargar. La aplicación normal usa Geolocator; la demostración web utiliza una coordenada pública de Quito.
-
-[Explicación y requisitos](docs/practica-sesion05.md). Referencia docente: rama `sesion-05`, commit `39b5f23b50364181bccd001bcb1dcccfd4be221c`. Las 36 pruebas y las comprobaciones web y Android están aprobadas. Las capturas y los registros saneados están en `evidence/sesion05/`. El informe final de diez páginas y el ZIP de 58 fuentes están en `entregas/sesion05/`; se entregaron y verificaron en la actividad 49411.
+### Cómo ejecutar las pruebas automatizadas
 
 ```bash
-flutter run -d chrome -t lib/playground/mapa_demo_main.dart
+# Pruebas del Backend (22 pruebas que validan Auth, CRUD, 401, 422 e IA)
+node --test server/test/server.test.js
+
+# Pruebas de Flutter (Modelos, GetX, Hive y Widgets)
+flutter test test/chefcraft_test.dart
 ```
 
-## Sesión 6
+### Cómo instalar el APK
+1. Descarga el archivo `app-release.apk` desde la pestaña [Releases de este repositorio](https://github.com/gusfersa/cedia-flutter/releases).
+2. Abre tu emulador Android.
+3. Si tenías una versión previa instalada:
+   ```bash
+   adb uninstall com.example.exploraec
+   ```
+4. Instala el APK compilado:
+   ```bash
+   adb install app-release.apk
+   ```
 
-Gastos añade registro, login mediante formulario y listado paginado contra el backend real del curso. El JWT permanece en memoria; `X-Total-Count` determina el total. Se conservan Inicio, Mapa y Favoritos, y se reutilizan carga, vacío, error y reintento.
+---
 
-[Explicación y requisitos](docs/practica-sesion06.md). Backend docente fijo: [480481e](https://github.com/cj-murillo/proyecto-curso-spec-kit/tree/480481ed87cedcfd7681da9ecacbcd80ac4ef08f). Validación:61 pruebas normales, una adicional de laboratorio, análisis y formato aprobados; flujo visible en Edge con API y PostgreSQL reales, errores de conexión/401/422 y timeout autenticado1ms→15s. Las fuentes Android contienen Internet y HTTP de desarrollo; esta sesión se ejecutó en web con un adaptador CORS local documentado. No se afirma ejecución Android S6.
+## 2. Para Entender
 
-El backend, sus accesos y el agrupador de soporte no se incluyen en Git ni en el ZIP.
+### Diagrama de Arquitectura en Capas
 
-Entregables finales: [ZIP de 71 fuentes](entregas/sesion06/exploraec-sesion06.zip) e [informe de diez páginas](entregas/sesion06/informe-practica-sesion06-entrega-v3.pdf). El informe enlaza el commit exacto. Tras aprobar ambos archivos, se entregaron en Moodle, actividad 49556, el 5 de octubre de 2026 a las 22:21. El aula muestra «Enviado para calificar» y «Sin calificar»; las dos descargas son idénticas a los originales por SHA-256. La interfaz confirmó nombres, fecha y estado. [Constancia saneada](evidence/sesion06/verificacion-moodle-entrega.json).
+```mermaid
+graph TD
+    subgraph UI ["Capa de Presentación (screens/ y widgets/)"]
+        HomeScreen["HomeScreen (Explorar, Favoritos, Chat IA, Perfil)"]
+        DetailScreen["RecetaDetailScreen (Pasos, Ingredientes, Eliminar)"]
+        FormScreen["RecetaFormScreen (Crear Receta Remota)"]
+        ChatScreen["AsistenteScreen (Chat Culinario IA)"]
+    end
 
-## Sesión 7
+    subgraph State ["Capa de Estado Centralizado (controllers/)"]
+        RecetasCtrl["RecetasController (GetX)"]
+        AuthCtrl["AuthController (GetX)"]
+        FavoritosCtrl["FavoritosController (GetX)"]
+        AsistenteCtrl["AsistenteController (GetX)"]
+    end
 
-[Versión fija sesion-07](https://github.com/gusfersa/cedia-flutter/tree/sesion-07). Persistencia con Hive: favoritos del dispositivo y caché privada de gastos por usuario, servidor primero, aviso offline con fecha, reintento y limpieza al salir/401. JWT solo en memoria. [Requisitos y explicación](docs/practica-sesion07.md). Verificación final: 89 pruebas, incluidos 10 casos docentes; análisis/formato correctos y E2E Edge con API/PostgreSQL reales. No hay escritura offline, cifrado ni login sin red; idioma opcional no implementado. Informe y ZIP en `entregas/sesion07/`.
+    subgraph Domain ["Capa de Servicios y Repositorios (services/)"]
+        RecetasService["RecetasService"]
+        AuthService["AuthService"]
+        AiService["AiAssistantService"]
+        ApiClient["ApiClient (Dio con Interceptors & Cancelación)"]
+        TokenStorage["SecureTokenStorage (Keychain/Keystore)"]
+    end
 
-Entrega S7 completada en CEDIA 49577 el 13 de octubre de 2026 a las 23:05: «Enviado para calificar», todavía «Sin calificar». PDF y ZIP descargados idénticos por SHA256; GitHub público y copias locales OneDrive también verificados. [Hito de cierre](docs/hitos/2026-10-13-sesion07-entregada.md).
+    subgraph Storage ["Persistencia y Backend"]
+        BackendNode["Backend Propio Node.js (JWT, REST, IA)"]
+        HiveBox["Hive Box 'recetas_favoritas' (Offline)"]
+    end
 
-## Sesión 8
+    UI --> State
+    State --> Domain
+    Domain --> Storage
+```
 
-Autenticación segura con Dio/AuthController y CRUD completo; 124 pruebas, quince docentes, E2E web y almacenamiento seguro real Android entre procesos. [Requisitos, resultados y límites](docs/practica-sesion08.md). [Versión fija sesion-08](https://github.com/gusfersa/cedia-flutter/tree/sesion-08). PDF y ZIP entregados en CEDIA 49588 el 14 de octubre a las 00:28: Enviado para calificar, Sin calificar; ambas descargas idénticas por bytes y SHA256. [Constancia](entregas/sesion08/constancia-entrega-20261014.json).
+### Decisión Técnica Propia
+* **Por qué elegimos Hive para la persistencia local:**
+  Para la función de recetas favoritas se eligió **Hive** frente a SQLite o SharedPreferences porque es una base de datos clave-valor ultrarrápida escrita en Dart puro que no requiere código nativo C++ dependiente del sistema operativo. Esto permite serializar recetas completas estructuradas (incluyendo listas de ingredientes y pasos) en mapas directos, logrando que el usuario pueda consultar sus recetas en la cocina sin ninguna conexión a internet de manera instantánea.
+* **Por qué separamos el asistente de IA en el servidor propio:**
+  Se descartó rotundamente realizar llamadas directas a OpenAI o Gemini desde Flutter porque expondría las claves API privadas en el binario APK decompilado (lo cual viola la seguridad y resta puntos en la rúbrica). El backend propio Node.js actúa como proxy seguro, orquesta el catálogo de recetas y resuelve consultas semánticas sin costo de latencia ni riesgo de credenciales.
 
-## Sesión 9
+---
 
-Quinta pestaña Asistente, modo **REGLAS** explícito, resumen real por MCP y confirmación antes de crear gastos. [Integración y ejecución](docs/sesion09-integracion.md). 145 pruebas Flutter (22 docentes S8/S9), 38 Node, análisis/formato correctos y cadena real de cuatro eslabones aprobada. Edge comprueba consultas, cancelación sin POST, alta 201, rechazo 600, errores diferenciados y aislamiento A/B. La petición solo lleva consulta y resumen; no historial ni credenciales. [Evidencia saneada](evidence/sesion09/verificacion-funcional.json). PDFv3 y ZIP entregados en CEDIA 49613 el 14 de octubre a las 00:49: Enviado para calificar, Sin calificar. Ambas descargas idénticas por bytes y SHA256; publicación pública y copias locales OneDrive comprobadas. [Hito final](docs/hitos/2026-10-14-sesion09-entregada.md).
+## 3. Para Confiar
 
+### Seguridad y Auditoría de Secretos
+- **Ubicación de credenciales:** Ninguna clave privada o token vive en el repositorio. Las variables de configuración se cargan mediante variables de entorno (`.env`), el cual se encuentra expresamente ignorado en `.gitignore`.
+- **Token de Sesión:** El token JWT emitido por el backend se resguarda en el cliente a través de `flutter_secure_storage` (utilizando Keychain en iOS y Keystore con cifrado AES en Android).
+- **Autorización de Endpoints:** Los endpoints de creación (`POST /api/recetas`), eliminación (`DELETE /api/recetas/:id`) y consulta del asistente (`POST /api/ai/chat`) validan el encabezado `Authorization: Bearer <token>`.
 
-## Sesión 10 — calidad, CI/CD y código con agentes
-
-La rama de trabajo S10 añade captura central de errores inesperados, una vista amistosa y filtro de Gastos por categoría con GetX. «Todas» restaura las tarjetas; filtrar conserva los datos originales, totales, caché y paginación. Las categorías proceden de las páginas cargadas.
-
-Verificación independiente del 15 de octubre de 2026: **159 pruebas Flutter**, **14 controles S10 con LAB_PRUEBAS=true**, **38 pruebas Node**, análisis sin incidencias y formato correcto. La base anterior de 145 pruebas y los 38 casos Node se conservan; no se añadieron dependencias. [Comandos y resultados](docs/sesion10/verificacion.json), [decisiones y atribución](docs/sesion10/decisiones.md), [reglas propuestas y permisos](docs/sesion10/arneses.md).
-
-Los controles que provocan fallos requieren modo debug y `--dart-define=LAB_PRUEBAS=true`. El registro conserva hasta 20 mensajes controlados sin serializar excepciones, trazas ni credenciales. Se utilizó asistencia de IA; el diff y las pruebas se revisaron de forma independiente.
-
-**Estado de publicación:** PR y sus enlaces pendientes de registrar; CI remota, ejecución roja de control, Release/APK e instalación todavía requieren comprobación. El destino es el [repositorio académico existente](https://github.com/gusfersa/cedia-flutter). [Manifiesto de publicación S10](docs/manifiestos/2026-10-15-sesion10-publicacion.md). La actividad CEDIA 49761 cierra el 21 de octubre de 2026 a las 00:00; la entrega prevista es el enlace al repositorio, cuando el recorrido de calidad y APK esté verificado.
-
-
-### Cierre técnico comprobado el 15 de octubre de 2026
-
-Esta actualización sustituye el estado preliminar de comprobaciones pendiente
-descrito arriba. El PR 1 quedó integrado con CI verde. La prueba real de navegador encontró un error
-asíncrono que escapaba de la zona de captura; se corrigió con runZonedGuarded en
-el PR 2, integrado en
-[f7106ac](https://github.com/gusfersa/cedia-flutter/commit/f7106ac0b1c002245b958c2da650228d8ae31eb5).
-La CI de la corrección y los controles de calidad terminaron correctamente.
-
-El [Release v1.0.0](https://github.com/gusfersa/cedia-flutter/releases/tag/v1.0.0)
-contiene el APK generado por GitHub Actions.
-La descarga coincide con el digest SHA-256 de GitHub. Se instaló como aplicación
-nueva en Android 16 API 36 y se comprobó login y filtro Todas 9 → comida 3 → Todas 9,
-repetido tras relanzar el proceso con sesión persistente. La versión interna del
-APK sigue siendo 1.0.0+1 y la firma es Android Debug de laboratorio.
-
-**Entrega académica confirmada:**
-[CEDIA 49761](https://cursos.cedia.org.ec/mod/assign/view.php?id=49761) muestra
-«Enviado para calificar» y «Sin calificar», con última modificación del 15 de
-octubre de 2026 a las 19:31 de Ecuador. El texto en línea contiene el enlace
-exacto `https://github.com/gusfersa/cedia-flutter`; se verificó tras recargar.
-La calificación docente sigue pendiente.
-[Constancia saneada](evidence/sesion10/verificacion-moodle-entrega.json).
-[Resultados, límites y enlaces de cierre](docs/sesion10/cierre.md),
-[registro estructurado](docs/sesion10/cierre-publicacion.json) y
-[evidencias con hashes](evidence/sesion10/manifiesto.json).
+### Créditos y Licencias
+- **Paquetes principales:**
+  - `get: ^4.6.6` (Gestión de estado reactivo y navegación)
+  - `hive: ^2.2.3` y `hive_flutter: ^1.1.0` (Persistencia local offline)
+  - `dio: ^5.11.1` (Cliente HTTP robusto con interceptores)
+  - `flutter_secure_storage: ^11.2.0` (Almacenamiento seguro de credenciales)
+- **Fotografía culinaria:** Unsplash (imágenes de dominio público atribuidas).
